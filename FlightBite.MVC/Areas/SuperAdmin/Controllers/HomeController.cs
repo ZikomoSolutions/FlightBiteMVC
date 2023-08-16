@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace FlightBite.MVC.Controllers
+namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
 {
+    [Area("SuperAdmin")]
     public class HomeController : Controller
     {
         public IActionResult Index()
