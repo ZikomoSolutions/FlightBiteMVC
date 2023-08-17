@@ -1,0 +1,69 @@
+﻿:root {
+    /* text */
+    --text-primary: #002C55;
+    --text-secondary: #0466C1;
+    --text-light: #D4DBE1;
+    --text-link: #0466C1;
+    /* brand 1*/
+    --brand-1: #0466C1;
+    --brand-1--tint-1: #2C93F1;
+    --brand-1--tint-2: #0F79DB;
+    --brand-1--shade-1: #025DB0;
+    --brand-1--shade-2: #025098;
+    --brand-1--lg: linear-gradient(to right, #002C55, #034482);
+    /* brand 2*/
+    --brand-2: #034482;
+    --brand-2--tint-1: #2B79C5;
+    --brand-2--tint-2: #125A9E;
+    --brand-2--shade-1: #02376A;
+    --brand-2--shade-2: #002C55;
+    /* greyscale */
+    --white: #ffffff;
+    --grey-0: #ffffff;
+    --grey-1: #F6F7F9;
+    --grey-2: #E0E5E9;
+    --grey-3: #D4DBE1;
+    --grey-4: #C0C7CE;
+    --grey-5: #AEB7BE;
+    --grey-6: #9DA3A9;
+    --grey-7: #808589;
+    /* positive */
+    --positive: #14D17B;
+    --positive--tint-1: #25E990;
+    --positive--shade-1: #08BF6C;
+    /* Success */
+    --success: #06BAB1;
+    --success--tint-1: #1BD2C9;
+    --success--shade-1: #009F97;
+    /* Error */
+
+    --error: #D11E50;
+    --error--tint-1: #EE3E70;
+    --error--shade-1: #B70D3C;
+    /* negative */
+    --negative: #D11E50;
+    --negative--tint--1: #EE3E70;
+    --negative--shade--1: #B70D3C;
+    /* warning */
+    --warning: #E89D0C;
+    --warning--tint-1: #FFC453;
+    --warning--shade-1: #C3840B;
+    /* B&W Alpha */
+    --white-alpha-10: color(#fff alpha(0.1));
+    --white-alpha-15: color(#fff alpha(0.15));
+    --white-alpha-25: color(#fff alpha(0.25));
+    --white-alpha-35: color(#fff alpha(0.35));
+    --white-alpha-50: color(#fff alpha(0.5));
+    --white-alpha-75: color(#fff alpha(0.75));
+    --white-alpha-95: color(#fff alpha(0.95));
+    --black-alpha-05: color(black alpha(0.05));
+    --black-alpha-10: color(black alpha(0.10));
+    --black-alpha-15: color(black alpha(0.15));
+    --black-alpha-20: color(black alpha(0.20));
+    --black-alpha-25: color(black alpha(0.25));
+    --black-alpha-50: color(black alpha(0.5));
+    --black-alpha-75: color(black alpha(0.75));
+    --black-alpha-85: color(black alpha(0.85));
+    --black-alpha-90: color(black alpha(0.9));
+    --black-alpha-95: color(black alpha(0.95));
+}

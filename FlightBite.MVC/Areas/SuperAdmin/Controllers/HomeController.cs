@@ -9,5 +9,9 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         {
             return View();
         }
+        public IActionResult Demo()
+        {
+            return View();
+        }
     }
 }
