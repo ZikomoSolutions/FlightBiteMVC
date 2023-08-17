@@ -1,10 +1,14 @@
-﻿<section class="enquiries-section">
-    <div class=" page-content page-content--max-1440">
+﻿<section class="clients-section">
+    <div class="page-content page-content--max-1440">
+        <div style="padding: 24px 0px">
+            <span asp-area="SuperAdmin" asp-controller="Home" asp-action="Index">Home</span> <i class="icon-chevron-right"></i>
+            <span>Client List</span>
+        </div>
         <div class="superuser">
             <div class="superuser__header">
                 <div class="flex flex--is-wrap flex--distribute">
-                    <h1><strong> Enquires / Leads </strong></h1>
-                    <button class="btn btn--success" id="opener" onclick="addActiveClassOnModal()">Add Manual Enquiry</button>
+                    <h1><strong> Clients </strong></h1>
+                    <button class="btn btn--success">New Client</button>
                 </div>
                 <div class="flex flex--distribute flex--align-center flex--is-wrap">
                     <div class="flex flex--is-wrap flex--has-gap">
@@ -42,52 +46,58 @@
 
                 @for (int i = 0; i < 10; i++)
                 {
-
                     <div class="flex flex--align-center flex--distribute flex--is-wrap"
                          style="
                 border-bottom: 1px solid var(--grey-2);
-                padding-bottom: 8px;
-              ">
+                padding-bottom: 8px;">
                         <div class="flex flex--align-center flex--has-gap">
                             <div class="superuser__body__date">
                                 <span>Mon 02</span>
                                 <span style="font-size: 16px"> <strong> OCT </strong></span>
                                 <span>2023</span>
                             </div>
-                            <div class="superuser__body__clients-name">
-                                <div><strong>Zikomo Solutions Limited</strong></div>
-                                <div>zikomo@gmail.com</div>
+                            <div style="border: 1px solid var(--grey-2)">
+                                <img src="~/images/tavel-logo.svg" alt="clients-logo" />   
                             </div>
-                        </div>
-                        <div class="flex flex--is-wrap flex--align-center" style="gap: 4rem">
-                            <div class="flex flex--is-wrap flex--has-gap">
+                            <div class="superuser__body__clients-name">
                                 <div class="superuser__body__provider">
                                     Provider
                                     <span style="background-color: var(--brand-1)">Api</span>
                                 </div>
-
-                                <div class="superuser__body__status flex  flex--is-wrap flex--align-center flex--has-sm-gap"
-                                     style="color: var(--warning)">
-                                    <div style="background-color: var(--warning)"></div>
-                                    In Progress
+                                <div style="margin-top: 8px">
+                                    <strong>Zikomo Solutions Limited</strong>
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="flex flex--is-wrap flex--align-center"
+                             style="gap: 4rem">
                             <div class="">
                                 <div class="superuser__body__notes flex">
+                                    <div style="position: relative">
+                                        <span class="icon-airplane"></span>
+                                        <div class="counts"
+                                             style="background-color: var(--warning)">
+                                            5
+                                        </div>
+                                    </div>
+                                    <div style="position: relative">
+                                        <span class="icon-airplane"></span>
+                                        <div class="counts"
+                                             style="background-color: var(--success)">
+                                            5
+                                        </div>
+                                    </div>
                                     <div style="position: relative">
                                         <span class="icon-file-text2"></span>
                                         <div class="counts">5</div>
                                     </div>
                                     <div style="position: relative">
                                         <span class="icon-bubbles"></span>
-                                        <div class="counts"
-                                             style="background-color: var(--success)">
-                                            2
-                                        </div>
+                                        <div class="counts">2</div>
                                     </div>
                                     <div>
                                         <span class="icon-info"></span>
+                                        <span class="icon-more" style="margin-left: 24px;"></span>
                                     </div>
                                 </div>
                             </div>
@@ -99,18 +109,3 @@
         </div>
     </div>
 </section>
-@*
-<div>
-    @await Component.InvokeAsync("Hello",new {UserName="Zayan"})
-</div>
-
-<div>
-    <h2>Second way</h2>
-    <vc:hello user-name="Taha"></vc:hello>
-</div>*@
-
-<div id="">
-    @await Component.InvokeAsync("EnquiryModal");
-</div>
-
-

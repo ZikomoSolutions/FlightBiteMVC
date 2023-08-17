@@ -1,0 +1,103 @@
+﻿
+<div class="modal" id="toggle-modal">
+    <div class="modal__container" >
+        <div class="modal__header flex flex--distribute flex--align-center">
+            <div class="h3">Provider Form</div>
+            <div class="h4" style="color: var(--brand-1); cursor: pointer">
+                Back
+            </div>
+        </div>
+
+        <div class="modal__body">
+            <div class="flex flex--is-column flex--has-gap">
+                <div class="input-item input-item--full-width">
+                    <div>
+                        <label>Company / Group Name</label>
+                        <input type="text"
+                               placeholder="Company / Group Name"
+                               aria-autocomplete="list" />
+                    </div>
+                </div>
+                <div class="input-item input-item--full-width">
+                    <div>
+                        <label>ATOL</label>
+                        <input type="text"
+                               placeholder="ATOL"
+                               aria-autocomplete="list" />
+                    </div>
+                </div>
+
+                <div class="input-item input-item--full-width">
+                    <div>
+                        <label>IATA</label>
+                        <input type="text"
+                               placeholder="IATA"
+                               aria-autocomplete="list" />
+                    </div>
+                </div>
+                <div class="input-item input-item--full-width">
+                    <div>
+                        <label>Position / Job Title </label>
+                        <input type="text"
+                               placeholder="Position / Job Title"
+                               aria-autocomplete="list" />
+                    </div>
+                </div>
+                <div class="input-item input-item--full-width">
+                    <div>
+                        <label>Email Address</label>
+                        <input type="email"
+                               placeholder="Email Address"
+                               aria-autocomplete="list" />
+                    </div>
+                </div>
+                <div class="input-item input-item--full-width">
+                    <div>
+                        <label>Phone Number</label>
+                        <input type="email"
+                               placeholder="Phone Number"
+                               aria-autocomplete="list" />
+                    </div>
+                </div>
+                <div>Where did you hear about FlightBite?</div>
+            </div>
+
+            <div class="flex flex--is-column flex--has-gap" style="margin-top: 24px;">
+
+
+                <div>
+                    <label class="radio-button-container">
+                        Google
+                        <input type="radio" name="radio" />
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+
+                <div>
+                    <label class="radio-button-container">
+                        Brochure
+                        <input type="radio" name="radio" />
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+
+                <div>
+                    <label class="radio-button-container">
+                        Brochure
+                        <input type="radio" name="radio" />
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <!--!-->
+        <div style="align-self: center; margin-bottom: 32px">
+            <button class="btn btn--brand-1" onclick="removeActiveClassOnModal()">Submit</button>
+        </div>
+    </div>
+    <!--!-->
+</div>

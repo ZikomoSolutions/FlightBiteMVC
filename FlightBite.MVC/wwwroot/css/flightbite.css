@@ -4015,6 +4015,7 @@ a.btn {
     backdrop-filter: blur(1px);
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
+    display:none;
 }
 
 .modal__container {
@@ -4233,6 +4234,110 @@ a.btn {
     height: 8px;
     border-radius: 50%;
     background: white;
+}
+
+.checkbox input, .switch input {
+    opacity: 1;
+    position: absolute;
+    left: -99999px;
+}
+
+    .checkbox input:focus + label::before, .switch input:focus + label::before {
+        outline: #2C93F1 auto 5px;
+    }
+
+    .checkbox input + label, .switch input + label {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding: 8px 0 8px 40px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+        .checkbox input + label::before,
+        .checkbox input + label::after,
+        .switch input + label::before,
+        .switch input + label::after {
+            position: absolute;
+            top: 8px;
+            left: 0;
+            width: 24px;
+            height: 24px;
+            content: "";
+        }
+
+        .checkbox input + label::before, .switch input + label::before {
+            border: 2px solid #002C55;
+            border-radius: 4px;
+            background: white;
+        }
+
+        .checkbox input + label::after, .switch input + label::after {
+            font-family: 'zikomo' !important;
+            content: "\ea1d"; /*this is the checkmark glyph code*/
+            color: white;
+            text-align: center;
+            opacity: 0;
+        }
+
+    .checkbox input:checked + label, .switch input:checked + label {
+        color: #14D17B;
+    }
+
+        .checkbox input:checked + label::before, .switch input:checked + label::before {
+            background-color: #14D17B;
+            border-color: #14D17B;
+        }
+
+        .checkbox input:checked + label::after, .switch input:checked + label::after {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+.switch label::before {
+    width: 28px;
+    width: 1.75rem;
+    content: "";
+    border-radius: 0.6rem;
+    height: 19.2px;
+    height: 1.2rem;
+    top: 16px;
+    top: 1rem;
+    overflow: hidden;
+}
+
+.switch input + label::after {
+    display: block;
+    content: "";
+    width: 19.2px;
+    width: 1.2rem;
+    height: 19.2px;
+    height: 1.2rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 16px;
+    top: 1rem;
+    left: -1.6px;
+    left: -0.1rem;
+    background-color: white;
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+    border: 1px solid #002C55;
+}
+
+.switch input:checked + label::after {
+    left: 11.2px;
+    left: 0.7rem;
+    -webkit-transform: none;
+    transform: none;
 }
 /*widgets*/
 /*vendor css*/
