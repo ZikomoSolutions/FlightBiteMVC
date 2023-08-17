@@ -1,15 +1,34 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FlightBite.Data.Models;
+using FlightBite.Data.Interfaces;
+using FlightBite.Data.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
 {
     [Area("SuperAdmin")]
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IEnquiryMaster _enquiryMasterRepository;
+
+        public HomeController(IEnquiryMaster enquiryMaster)
         {
-            return View();
+            this._enquiryMasterRepository = enquiryMaster;
         }
-        public IActionResult Demo()
+        public async Task<IActionResult> Index()
+        {
+            try
+            {
+                var result = await _enquiryMasterRepository.GetAllEnquiry();
+                return View(result);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                return null!;
+            }
+        }
+
+        public IActionResult AddEnquiry()
         {
             return View();
         }

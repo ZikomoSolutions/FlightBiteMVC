@@ -7,10 +7,10 @@ using FlightBite.Data.Models;
 
 namespace FlightBite.Data.Interfaces
 {
-    internal interface IEnquiryMaster
+    public interface IEnquiryMaster
     {
         EnquiryMasterModel GetEnquiry(int id);
-        IEnumerable<EnquiryMasterModel> GetAllEnquiry();
-        EnquiryMasterModel Add(EnquiryMasterModel model);
+        Task<IEnumerable<EnquiryMasterModel>> GetAllEnquiry();
+        EnquiryMasterModel AddEnquiry(EnquiryMasterModel model);
     }
 }

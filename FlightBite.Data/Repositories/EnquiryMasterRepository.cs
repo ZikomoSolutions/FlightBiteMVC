@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using FlightBite.Data.Interfaces;
 using FlightBite.Data.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace FlightBite.Data.Repositories
 {
@@ -16,16 +18,25 @@ namespace FlightBite.Data.Repositories
         {
             this.context = context;
         }
-        public EnquiryMasterModel Add(EnquiryMasterModel model)
+        public EnquiryMasterModel AddEnquiry(EnquiryMasterModel model)
         {
             context.EnquiryMaster.Add(model);
             context.SaveChanges();
             return model;
         }
 
-        public IEnumerable<EnquiryMasterModel> GetAllEnquiry()
+        public async Task<IEnumerable<EnquiryMasterModel>> GetAllEnquiry()
         {
-            return context.EnquiryMaster;
+            try
+            {
+                return await context.EnquiryMaster.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                return null!;
+            }
+            
         }
 
         public EnquiryMasterModel GetEnquiry(int id)

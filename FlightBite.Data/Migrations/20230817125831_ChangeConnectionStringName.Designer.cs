@@ -4,6 +4,7 @@ using FlightBite.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlightBite.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230817125831_ChangeConnectionStringName")]
+    partial class ChangeConnectionStringName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,26 +170,26 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(1974),
+                            CreatedAt = new DateTime(2023, 8, 17, 18, 28, 31, 802, DateTimeKind.Local).AddTicks(7624),
                             Description = "-",
                             Name = "Google",
-                            UpdatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(1975)
+                            UpdatedAt = new DateTime(2023, 8, 17, 18, 28, 31, 802, DateTimeKind.Local).AddTicks(7625)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(1980),
+                            CreatedAt = new DateTime(2023, 8, 17, 18, 28, 31, 802, DateTimeKind.Local).AddTicks(7630),
                             Description = "-",
                             Name = "Brochure",
-                            UpdatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(1980)
+                            UpdatedAt = new DateTime(2023, 8, 17, 18, 28, 31, 802, DateTimeKind.Local).AddTicks(7630)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(1982),
+                            CreatedAt = new DateTime(2023, 8, 17, 18, 28, 31, 802, DateTimeKind.Local).AddTicks(7632),
                             Description = "-",
                             Name = "Other",
-                            UpdatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(1983)
+                            UpdatedAt = new DateTime(2023, 8, 17, 18, 28, 31, 802, DateTimeKind.Local).AddTicks(7633)
                         });
                 });
 
@@ -223,16 +226,16 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(2099),
-                            Status = "In Progress",
-                            UpdatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(2099)
+                            CreatedAt = new DateTime(2023, 8, 17, 18, 28, 31, 802, DateTimeKind.Local).AddTicks(7762),
+                            Status = "Is Processing",
+                            UpdatedAt = new DateTime(2023, 8, 17, 18, 28, 31, 802, DateTimeKind.Local).AddTicks(7763)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(2102),
+                            CreatedAt = new DateTime(2023, 8, 17, 18, 28, 31, 802, DateTimeKind.Local).AddTicks(7765),
                             Status = "Complete",
-                            UpdatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(2102)
+                            UpdatedAt = new DateTime(2023, 8, 17, 18, 28, 31, 802, DateTimeKind.Local).AddTicks(7765)
                         });
                 });
 
@@ -274,18 +277,18 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(2116),
+                            CreatedAt = new DateTime(2023, 8, 17, 18, 28, 31, 802, DateTimeKind.Local).AddTicks(7779),
                             Description = "-",
                             Type = "Supplier",
-                            UpdatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(2116)
+                            UpdatedAt = new DateTime(2023, 8, 17, 18, 28, 31, 802, DateTimeKind.Local).AddTicks(7780)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(2119),
+                            CreatedAt = new DateTime(2023, 8, 17, 18, 28, 31, 802, DateTimeKind.Local).AddTicks(7782),
                             Description = "-",
                             Type = "Agent",
-                            UpdatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(2119)
+                            UpdatedAt = new DateTime(2023, 8, 17, 18, 28, 31, 802, DateTimeKind.Local).AddTicks(7782)
                         });
                 });
 #pragma warning restore 612, 618

@@ -58,7 +58,7 @@ namespace FlightBite.Data
                 new EnquiryStatusModel
                 {
                     Id = 1,
-                    Status = "Is Processing",
+                    Status = "In Progress",
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now,
                     DeletedAt = null,

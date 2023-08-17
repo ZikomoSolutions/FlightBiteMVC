@@ -1,4 +1,6 @@
 using FlightBite.Data;
+using FlightBite.Data.Interfaces;
+using FlightBite.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -13,8 +15,8 @@ namespace FlightBite.MVC
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("connectionString")));
-            //builder.Services.AddDbContext<DatabaseContext>(e => e.EnableSensitiveDataLogging());
+            builder.Services.AddDbContextPool<DatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddScoped<IEnquiryMaster, EnquiryMasterRepository>();
 
             var app = builder.Build();
 

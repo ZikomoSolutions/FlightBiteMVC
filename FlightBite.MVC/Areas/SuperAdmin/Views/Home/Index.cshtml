@@ -1,4 +1,6 @@
-﻿<section class="enquiries-section">
+﻿@using FlightBite.Data.Models;
+@model IEnumerable<EnquiryMasterModel>
+<section class="enquiries-section">
     <div class=" page-content page-content--max-1440">
         <div class="superuser">
             <div class="superuser__header">
@@ -39,8 +41,7 @@
             </div>
 
             <div class="superuser__body">
-
-                @for (int i = 0; i < 10; i++)
+                @foreach (var enquiry in Model)
                 {
                     
                 <div class="flex flex--align-center flex--distribute flex--is-wrap"
@@ -50,13 +51,21 @@
               ">
                     <div class="flex flex--align-center flex--has-gap">
                         <div class="superuser__body__date">
-                            <span>Mon 02</span>
-                            <span style="font-size: 16px"> <strong> OCT </strong></span>
-                            <span>2023</span>
+                            <span>@enquiry.CreatedAt.ToString("MMM dd")</span>
+                            <span style="font-size: 16px"> <strong> @enquiry.CreatedAt.ToString("MMM") </strong></span>
+                            <span>@enquiry.CreatedAt.ToString("yyyy")</span>
                         </div>
                         <div class="superuser__body__clients-name">
-                            <div><strong>Zikomo Solutions Limited</strong></div>
-                            <div>zikomo@gmail.com</div>
+                            @if (enquiry.CompanyName != null)
+                            {
+                                <div><strong>@enquiry.CompanyName</strong></div>
+                                <div>@enquiry.ContactEmail</div>
+                            }
+                            else
+                            {
+                                <div><strong>@enquiry.ContactPerson</strong></div>
+                                <div>@enquiry.ContactEmail</div>
+                            }
                         </div>
                     </div>
                     <div class="flex flex--is-wrap flex--align-center" style="gap: 4rem">
@@ -70,6 +79,7 @@
                                  style="color: var(--warning)">
                                 <div style="background-color: var(--warning)"></div>
                                 In Progress
+                                
                             </div>
                         </div>
 
