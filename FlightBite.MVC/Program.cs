@@ -1,3 +1,7 @@
+using FlightBite.Data;
+using Microsoft.EntityFrameworkCore;
+using System;
+
 namespace FlightBite.MVC
 {
     public class Program
@@ -8,6 +12,9 @@ namespace FlightBite.MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("connectionString")));
+            //builder.Services.AddDbContext<DatabaseContext>(e => e.EnableSensitiveDataLogging());
 
             var app = builder.Build();
 
@@ -28,14 +35,12 @@ namespace FlightBite.MVC
 
             app.MapControllerRoute(
                   name: "areas",
-                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                  pattern: "{area=superadmin}/{controller=Home}/{action=Index}/{id?}"
                 );
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
-            
             
             app.Run();
         }
