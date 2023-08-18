@@ -29,7 +29,9 @@ namespace FlightBite.Data.Repositories
         {
             try
             {
-                return await context.EnquiryMaster.ToListAsync();
+                IList<EnquiryMasterModel> enquiryMasters = await context.EnquiryMaster.Include(c=>c.EnquiryStatus).ToListAsync();
+                return (enquiryMasters);
+
             }
             catch (Exception ex)
             {

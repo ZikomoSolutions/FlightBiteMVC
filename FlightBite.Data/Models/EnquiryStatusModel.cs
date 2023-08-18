@@ -16,5 +16,7 @@ namespace FlightBite.Data.Models
 
         [Column(name: "status", TypeName = "nvarchar(50)")]
         public string? Status { get; set; }
+
+        public IList<EnquiryMasterModel>? EnquiryMaster { get; set; }
     }
 }
