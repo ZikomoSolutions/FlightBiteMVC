@@ -2,6 +2,7 @@
 using FlightBite.Data.Interfaces;
 using FlightBite.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using FlightBite.Data;
 
 namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
 {
@@ -27,12 +28,24 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
                 return null!;
             }
         }
-
-
         public IActionResult Client()
-
-        public IActionResult AddEnquiry()
         {
+            return View();  
+        }
+
+
+        public async Task<IActionResult> AddEnquiry()
+        {
+            //try
+            //{
+            //    var result = await _enquiryMaster.AddEnquiry();
+            //    return RedirectToAction("Index");
+            //}
+            //catch (Exception ex)
+            //{
+            //    string message = ex.Message;
+            //    return null!;
+            //}
             return View();
         }
     }

@@ -20,9 +20,30 @@ namespace FlightBite.Data.Repositories
         }
         public EnquiryMasterModel AddEnquiry(EnquiryMasterModel model)
         {
-            context.EnquiryMaster.Add(model);
-            context.SaveChanges();
-            return model;
+            try
+            {
+                var enquiry = new EnquiryMasterModel()
+                {
+                    CompanyName = model.CompanyName,
+                    ContactPerson = model.ContactPerson,
+                    ATOL = model.ATOL,
+                    IATA = model.IATA,
+                    JobTitle = model.JobTitle,
+                    ContactEmail = model.ContactEmail,
+                    ContactPhone = model.ContactPhone,
+                    EnquiryPlatformId = model.EnquiryPlatformId,
+                    EnquiryStatusId = 1,
+                    UserTypeId = model.UserTypeId
+                };
+                context.EnquiryMaster.Add(enquiry);
+                context.SaveChanges();
+                return enquiry;
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                return null!;
+            }
         }
 
         public async Task<IEnumerable<EnquiryMasterModel>> GetAllEnquiry()

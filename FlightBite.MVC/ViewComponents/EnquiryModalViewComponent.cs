@@ -1,19 +1,21 @@
-﻿using FlightBite.MVC.Models;
+﻿using FlightBite.Data.Interfaces;
+using FlightBite.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 namespace FlightBite.MVC.ViewComponents
 {
     public class EnquiryModalViewComponent : ViewComponent
     {
+        private readonly IEnquiryPlatform _enquiryPlatform;
 
-        //public IViewComponentResult InvokeAsync()
-        //{
-        //    return View("Default");
-        //}
+        public EnquiryModalViewComponent(IEnquiryPlatform enquiryPlatform)
+        {
+            this._enquiryPlatform = enquiryPlatform;
+        }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            //return View("Default",UserName);
-            return View("Default");
+            var result = await _enquiryPlatform.GetAllEnquityPlatform();
+            return View(result);
         }
     }
 }

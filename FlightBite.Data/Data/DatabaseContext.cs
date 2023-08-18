@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FlightBite.Data.Interfaces;
 using FlightBite.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlightBite.Data
 {
-    public class DatabaseContext : DbContext
+    public class DatabaseContext : DbContext, ILoggingDbContext
     {
         public DatabaseContext(DbContextOptions options) : base(options)
         {
@@ -94,6 +95,15 @@ namespace FlightBite.Data
                     DeletedAt = null,
                 }
             );
+        }
+
+        public void AddLogEntry(LogsMasterModel logEntry)
+        {
+            LogsMaster.Add(logEntry);
+        }
+        public void AddRequestResponseLogEntry(RequestResponseLogsModel requestResponseLogs)
+        {
+            RequestResponseLogs.Add(requestResponseLogs);
         }
     }
 }

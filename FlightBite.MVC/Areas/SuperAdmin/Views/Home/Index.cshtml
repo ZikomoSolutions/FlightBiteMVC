@@ -43,21 +43,25 @@
             <div class="superuser__body">
                 @foreach (var enquiry in Model)
                 {
-
                     <div class="flex flex--align-center flex--distribute flex--is-wrap"
-                         style="
-                border-bottom: 1px solid var(--grey-2);
-                padding-bottom: 8px;
-              ">
+                         style="border-bottom: 1px solid var(--grey-2); padding-bottom: 8px;">
                         <div class="flex flex--align-center flex--has-gap">
                             <div class="superuser__body__date">
-                                <span>Mon 02</span>
-                                <span style="font-size: 16px"> <strong> OCT </strong></span>
-                                <span>2023</span>
+                                <span>@enquiry.CreatedAt.ToString("MMM dd")</span>
+                                <span style="font-size: 16px"> <strong> @enquiry.CreatedAt.ToString("MMM") </strong></span>
+                                <span>@enquiry.CreatedAt.ToString("yyyy")</span>
                             </div>
                             <div class="superuser__body__clients-name">
-                                <div><strong>Zikomo Solutions Limited</strong></div>
-                                <div>zikomo@gmail.com</div>
+                                @if(enquiry.CompanyName != null)
+                                {
+                                    <div><strong>@enquiry.CompanyName</strong></div>
+                                    <div>@enquiry.ContactEmail</div>
+                                }
+                                else
+                                {
+                                    <div><strong>@enquiry.ContactPerson</strong></div>
+                                    <div>@enquiry.ContactEmail</div>
+                                }
                             </div>
                         </div>
                         <div class="flex flex--is-wrap flex--align-center" style="gap: 4rem">
@@ -70,7 +74,7 @@
                                 <div class="superuser__body__status flex  flex--is-wrap flex--align-center flex--has-sm-gap"
                                      style="color: var(--warning)">
                                     <div style="background-color: var(--warning)"></div>
-                                    In Progress
+                                    @enquiry.EnquiryStatus?.Status
                                 </div>
                             </div>
 
@@ -112,6 +116,7 @@
 
 <div id="">
     @await Component.InvokeAsync("EnquiryModal");
+    
 </div>
 
 

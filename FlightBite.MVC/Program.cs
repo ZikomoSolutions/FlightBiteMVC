@@ -1,6 +1,7 @@
 using FlightBite.Data;
 using FlightBite.Data.Interfaces;
 using FlightBite.Data.Repositories;
+using FlightBite.Data.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -17,6 +18,8 @@ namespace FlightBite.MVC
 
             builder.Services.AddDbContextPool<DatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddScoped<IEnquiryMaster, EnquiryMasterRepository>();
+            builder.Services.AddScoped<IEnquiryPlatform, EnquiryPlatformRepository>();
+            builder.Services.AddScoped<ILogRequestResponse, LogRequestResponse<DatabaseContext>>();
 
             var app = builder.Build();
 
