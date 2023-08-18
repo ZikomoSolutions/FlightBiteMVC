@@ -4013,8 +4013,10 @@ a.btn {
     align-items: center;
     -webkit-backdrop-filter: blur(1px);
     backdrop-filter: blur(1px);
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .3s ease-in-out;
+    visibility:hidden;
     display:none;
 }
 
