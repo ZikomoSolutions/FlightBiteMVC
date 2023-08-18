@@ -1,3 +1,54 @@
+
+var selectedClientValue;
+let toggleClientType = document.getElementById("type-of-client");
+let toggleClientForm = document.getElementById("client-form");
+let toggleFormHeader = document.getElementById("form-header");
+let toggleClientHeader = document.getElementById("client-header");
+let backToClient = document.getElementById("back-to-client");
+
+//provider.addEventListener("change", function (e) {
+
+//    if (provider.value == "provider") {
+//        console.log(provider.value);
+//    }
+//    if (agent.value == "agent") {
+//        //console.log("agent");
+//    }
+//    console.log(e.value);
+
+
+//});
+
+function selectClientType(e) {
+    selectedClientValue = e;
+
+    //console.log(selectedClientValue);
+}
+function SelectedClient() {
+    if (selectedClientValue == "agent" || selectedClientValue == "provider") {
+        toggleClientType.classList.add("hide");
+        toggleClientForm.classList.add("show");
+        toggleClientForm.classList.remove("hide");
+        toggleFormHeader.classList.add("flex");
+        toggleFormHeader.classList.remove("hide");
+        toggleClientHeader.classList.add("hide");
+    }
+    if (selectedClientValue == undefined) {
+        alert("please select");
+    }
+}
+backToClient.addEventListener("click", function () {
+    toggleClientType.classList.remove("hide");
+    toggleClientForm.classList.remove("show");
+    toggleClientForm.classList.add("hide");
+    toggleFormHeader.classList.remove("show");
+    toggleFormHeader.classList.add("hide");
+    toggleClientHeader.classList.remove("hide");
+});
+
+
+/*Modal functionality */
+
 let toggleModalClass = document.getElementById("toggle-modal");
 let submitButtonOfModal = document.getElementById("submit-button");
 let crossIcon = document.getElementById("cross-icon");
@@ -11,7 +62,6 @@ openModalId.addEventListener("click", function () {
 toggleModalClass.addEventListener("click", function (e) {
     if (e.target !== toggleModalClass) return;
     closeModal();
-    console.log(e.target);
 });
 
 //document.addEventListener("click", function (e) {
@@ -39,3 +89,5 @@ function openModal() {
     toggleModalClass.classList.add("modal-active");
     document.body.style.overflow = "hidden";
 }
+
+

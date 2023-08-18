@@ -4017,7 +4017,6 @@ a.btn {
     pointer-events: none;
     transition: all .3s ease-in-out;
     visibility:hidden;
-    display:none;
 }
 
 .modal__container {
