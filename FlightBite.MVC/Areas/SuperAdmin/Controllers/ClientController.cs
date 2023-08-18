@@ -3,14 +3,11 @@
 namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
 {
     [Area("SuperAdmin")]
-    public class HomeController : Controller
+    public class ClientController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
-
-
-       
     }
 }

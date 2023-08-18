@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+
+
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,7 +14,7 @@
     <link rel="stylesheet" href="~/css/flightbite_css_variables.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FlightBite.MVC.styles.css" asp-append-version="true" />
     <link href="~/css/style.css" rel="stylesheet" asp-append-version="true" />
-    
+
 </head>
 
 <body>
@@ -20,26 +24,27 @@
                 <img src="~/images/flight-bite-logo.svg" />
             </div>
             <div class="header__nav-bar">
-                <a class="active" asp-area="SuperAdmin" asp-controller="Home" asp-action="Index">
+
+                <a class="nav__menu" is-active-route asp-area="SuperAdmin" asp-controller="Home" asp-action="Index">
                     <span class="icon-home"></span>
                     <div>Enquiries</div>
                 </a>
-                <a asp-area="SuperAdmin" asp-controller="Home" asp-action="Client">
+                <a class="nav__menu" is-active-route asp-area="SuperAdmin" asp-controller="Client" asp-action="Index">
                     <span class="icon-airplane"></span>
-                    <div>Client</div>
+                    <div>Clients</div>
                 </a>
-                <a style="position: relative">
+                <a class="nav__menu" style="position: relative">
                     <span class="icon-bell"></span>
                     <span class="icon-counter">5</span>
                     <div>Notificataions</div>
                 </a>
-
                 <div class="header__profile-photo">
                     <img src="~/images/profile-photo.png" />
                 </div>
             </div>
         </header>
     </section>
+
 
     @*    <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -74,8 +79,8 @@
     </div>
     </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/superadmin.js" asp-append-version="true"></script>
+    <script src="~/js/script.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

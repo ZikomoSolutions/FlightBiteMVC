@@ -24,6 +24,14 @@ function selectClientType(e) {
 
     //console.log(selectedClientValue);
 }
+function backToClientSection() {
+    toggleClientType.classList.remove("hide");
+    toggleClientForm.classList.remove("show");
+    toggleClientForm.classList.add("hide");
+    toggleFormHeader.classList.remove("show");
+    toggleFormHeader.classList.add("hide");
+    toggleClientHeader.classList.remove("hide");
+}
 function SelectedClient() {
     if (selectedClientValue == "agent" || selectedClientValue == "provider") {
         toggleClientType.classList.add("hide");
@@ -38,12 +46,7 @@ function SelectedClient() {
     }
 }
 backToClient.addEventListener("click", function () {
-    toggleClientType.classList.remove("hide");
-    toggleClientForm.classList.remove("show");
-    toggleClientForm.classList.add("hide");
-    toggleFormHeader.classList.remove("show");
-    toggleFormHeader.classList.add("hide");
-    toggleClientHeader.classList.remove("hide");
+    backToClientSection();
 });
 
 
@@ -62,6 +65,7 @@ openModalId.addEventListener("click", function () {
 toggleModalClass.addEventListener("click", function (e) {
     if (e.target !== toggleModalClass) return;
     closeModal();
+    backToClientSection();
 });
 
 //document.addEventListener("click", function (e) {
@@ -71,11 +75,13 @@ toggleModalClass.addEventListener("click", function (e) {
 
 submitButtonOfModal.addEventListener("click", function () {
     closeModal();
+    backToClientSection();
 });
 
 document.addEventListener("keyup", function (e) {
     if (e.key == "Escape") {
         closeModal();
+        backToClientSection();
     }
 
 })
