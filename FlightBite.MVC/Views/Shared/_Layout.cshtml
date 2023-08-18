@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="~/css/flightbite.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/flightbite_css_variables.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FlightBite.MVC.styles.css" asp-append-version="true" />
+    <link href="~/css/style.css" rel="stylesheet" asp-append-version="true" />
+    
 </head>
 
 <body>
@@ -18,11 +20,11 @@
                 <img src="~/images/flight-bite-logo.svg" />
             </div>
             <div class="header__nav-bar">
-                <a class="active">
+                <a class="active" asp-area="SuperAdmin" asp-controller="Home" asp-action="Index">
                     <span class="icon-home"></span>
                     <div>Enquiries</div>
                 </a>
-                <a>
+                <a asp-area="SuperAdmin" asp-controller="Home" asp-action="Client">
                     <span class="icon-airplane"></span>
                     <div>Client</div>
                 </a>
@@ -73,6 +75,7 @@
     </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/superadmin.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

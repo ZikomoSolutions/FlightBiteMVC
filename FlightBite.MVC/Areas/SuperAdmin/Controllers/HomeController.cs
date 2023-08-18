@@ -28,6 +28,9 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
             }
         }
 
+
+        public IActionResult Client()
+
         public IActionResult AddEnquiry()
         {
             return View();

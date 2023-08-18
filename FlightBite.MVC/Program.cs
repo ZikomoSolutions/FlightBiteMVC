@@ -35,9 +35,14 @@ namespace FlightBite.MVC
 
             app.UseAuthorization();
 
+            /*app.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );*/
+
             app.MapControllerRoute(
                   name: "areas",
-                  pattern: "{area=superadmin}/{controller=Home}/{action=Index}/{id?}"
+                  pattern: "{area=SuperAdmin}/{controller=Home}/{action=Index}/{id?}"
                 );
 
             app.MapControllerRoute(

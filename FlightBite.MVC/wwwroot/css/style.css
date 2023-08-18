@@ -1,0 +1,14 @@
+﻿.modal-active {
+    opacity: 1;
+    visibility: visible;
+    display:flex;
+    pointer-events: auto;
+}
+.modal.modal-active .modal__container {
+    transform: translateY(0px) !important;
+}
+
+.modal__container {
+    transform: translateY(-150%) !important;
+    transition: all .3s ease-in-out !important;
+}
