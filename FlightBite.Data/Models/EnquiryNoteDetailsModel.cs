@@ -17,7 +17,7 @@ namespace FlightBite.Data.Models
         [Column(name:"enquiry_id")]
         public int EnquiryId { get; set; }
 
-        [Column(name:"note", TypeName ="nvarchar(255)")]
+        [Column(name:"note", TypeName ="nvarchar(Max)")]
         public string? Note { get; set; }
     }
 }
