@@ -8,7 +8,7 @@
             <div class="superuser__header">
                 <div class="flex flex--is-wrap flex--distribute">
                     <h1><strong> Clients </strong></h1>
-                    <button class="btn btn--success">New Client</button>
+                    <button class="btn btn--success" id="open-modal">New Client</button>
                 </div>
                 <div class="flex flex--distribute flex--align-center flex--is-wrap">
                     <div class="flex flex--is-wrap flex--has-gap">
@@ -27,6 +27,7 @@
                             <span>Provider</span>
                         </div>
                     </div>
+
                     <div class="input-item input-item--full-width input-item--has-icon input-item--label-inside input-item--is-select"
                          style="min-width: 20%">
                         <div>
@@ -39,6 +40,7 @@
                             <label>Label</label>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -57,7 +59,7 @@
                                 <span>2023</span>
                             </div>
                             <div style="border: 1px solid var(--grey-2)">
-                                <img src="~/images/tavel-logo.svg" alt="clients-logo" />   
+                                <img src="~/images/tavel-logo.svg" alt="clients-logo" />
                             </div>
                             <div class="superuser__body__clients-name">
                                 <div class="superuser__body__provider">
@@ -109,3 +111,8 @@
         </div>
     </div>
 </section>
+
+<div>
+    @await Component.InvokeAsync("AddClientModal");
+     
+</div>

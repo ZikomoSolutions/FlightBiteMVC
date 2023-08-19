@@ -14,6 +14,11 @@ namespace FlightBite.MVC.ViewComponents
         {
             this._enquiryPlatform = enquiryPlatform;
         }
+        //public IViewComponentResult InvokeAsync()
+        //{
+        //    return View("Default");
+        //}
+
         public async Task<IViewComponentResult> InvokeAsync()
         {
             EnquiryCreateViewModel model = new();
