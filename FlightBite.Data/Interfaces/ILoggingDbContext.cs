@@ -7,7 +7,7 @@ using FlightBite.Data.Models;
 
 namespace FlightBite.Data.Interfaces
 {
-    public class ILoggingDbContext
+    public interface ILoggingDbContext
     {
         void AddLogEntry(LogsMasterModel logEntry);
         void AddRequestResponseLogEntry(RequestResponseLogsModel requestResponseLogs);

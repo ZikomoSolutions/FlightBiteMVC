@@ -20,7 +20,10 @@ namespace FlightBite.Data
         public DbSet<EnquiryStatusModel> EnquiryStatus { get; set;}
         public DbSet<EnquiryPlatformModel> EnquityPlatform { get; set;}
         public DbSet<UserTypesModel> UserType { get; set;}
-
+        public DbSet<LogsMasterModel> LogsMaster { get; set; }
+        public DbSet<RequestResponseLogsModel> RequestResponseLogs { get; set; }
+        public DbSet<RequestLogsMasterModel> RequestLogsMasters { get; set; }  
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EnquiryPlatformModel>().HasData

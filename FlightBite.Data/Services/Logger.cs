@@ -4,7 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FlightBite.Data.Interfaces;
 using FlightBite.Data.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -75,8 +77,8 @@ namespace FlightBite.Data.Services
                     }
                 }
 
-                database?.AddLogEntry(logEntry);
-                database?.SaveChanges();
+                database.AddLogEntry(logEntry);
+                database.SaveChanges();
             }
         }
     }
