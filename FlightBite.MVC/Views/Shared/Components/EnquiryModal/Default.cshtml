@@ -1,6 +1,7 @@
-﻿
-
-
+﻿@model IEnumerable<EnquiryPlatformModel>
+@{
+    Layout = null;
+}
 <div class="modal" id="toggle-modal">
     <div class="modal__container" id="modal-container">
 
@@ -10,7 +11,6 @@
                 Back
             </div>
         </div>
-
 
         <div class="modal__header flex flex--distribute flex--align-center" id="client-header">
             <div class="h3">I AM A</div>
@@ -38,7 +38,6 @@
                     <button class="btn btn--brand-1" style="margin-top:16px;" onclick="SelectedClient()">  Submit </button>
                 </div>
             </div>
-
 
             <div class="hide" id="client-form">
 
@@ -96,40 +95,22 @@
                 </div>
 
                 <div class="flex flex--is-column flex--has-gap" style="margin-top: 24px;">
-
-
-                    <div>
-                        <label class="radio-button-container">
-                            Google
-                            <input type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-
-                    <div>
-                        <label class="radio-button-container">
-                            Brochure
-                            <input type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-
-                    <div>
-                        <label class="radio-button-container">
-                            Brochure
-                            <input type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
+                    @foreach (var platform in Model)
+                    {
+                        <div>
+                            <label class="radio-button-container">
+                                @platform.Name
+                                <input type="radio" name="radio" />
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    }
                 </div>
-
-
 
                 <!--!-->
                 <div class="flex" style="justify-content: center; margin-top: 16px">
                     <button class="btn btn--brand-1" id="submit-button">Submit</button>
                 </div>
-
 
             </div>
         </div>

@@ -1,4 +1,6 @@
 
+
+
 /*Modal functionality */
 
 let toggleModalClass = document.getElementById("toggle-modal");
@@ -9,6 +11,13 @@ let modalContainer = document.getElementById("modal-container");
 openModalId.addEventListener("click", function () {
     openModal();
 });
+
+window.addEventListener("keyup", function (e) {
+    if (e.key == "Escape") {
+        console.log(e.key);
+        closeModal();
+        backToClientSection();
+    }
 
 
 toggleModalClass.addEventListener("click", function (e) {
@@ -27,11 +36,6 @@ submitButtonOfModal.addEventListener("click", function () {
     backToClientSection();
 });
 
-document.addEventListener("keyup", function (e) {
-    if (e.key == "Escape") {
-        closeModal();
-        backToClientSection();
-    }
 
 })
 
@@ -96,6 +100,3 @@ function SelectedClient() {
 backToClient.addEventListener("click", function () {
     backToClientSection();
 });
-
-
-

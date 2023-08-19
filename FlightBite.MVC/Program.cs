@@ -1,3 +1,10 @@
+using FlightBite.Data;
+using FlightBite.Data.Interfaces;
+using FlightBite.Data.Repositories;
+using FlightBite.Data.Services;
+using Microsoft.EntityFrameworkCore;
+using System;
+
 namespace FlightBite.MVC
 {
     public class Program
@@ -8,6 +15,12 @@ namespace FlightBite.MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContextPool<DatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddScoped<IEnquiryMaster, EnquiryMasterRepository>();
+            builder.Services.AddScoped<IEnquiryPlatform, EnquiryPlatformRepository>();
+            builder.Services.AddScoped<ILogRequestResponse, LogRequestResponse<DatabaseContext>>();
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             var app = builder.Build();
 
@@ -39,8 +52,6 @@ namespace FlightBite.MVC
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
-            
             
             app.Run();
         }

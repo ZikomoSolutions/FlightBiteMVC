@@ -3144,6 +3144,12 @@ display:none;
     justify-content: flex-end;
 }
 
+.flex--align-end {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: end;
+}
+
 .flex--distribute {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
@@ -3928,6 +3934,10 @@ a.btn {
 .modal__header {
     /* border-bottom: 1px solid var(--grey-3); */
 }
+
+    .modal__header .h3 {
+        font-weight: 600;
+    }
 
 .modal__body {
     max-height: 750px;
