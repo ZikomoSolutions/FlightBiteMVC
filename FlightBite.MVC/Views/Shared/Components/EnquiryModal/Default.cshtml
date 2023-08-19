@@ -49,6 +49,7 @@
                                 <input type="text"
                                        placeholder="Company / Group Name"
                                        aria-autocomplete="list" asp-for="CompanyName"/>
+                                <span asp-validation-for="CompanyName" class="text-red"></span>
                             </div>
                         </div>
                         <div class="input-item input-item--full-width">
@@ -87,7 +88,7 @@
                         <div class="input-item input-item--full-width">
                             <div>
                                 <label>Phone Number</label>
-                                <input type="email"
+                                <input type="number"
                                        placeholder="Phone Number"
                                        aria-autocomplete="list" asp-for="ContactPhone" />
                             </div>

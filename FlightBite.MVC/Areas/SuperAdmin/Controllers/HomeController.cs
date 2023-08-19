@@ -41,7 +41,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
                 var model = new EnquiryMasterModel()
                 {
                     CompanyName = viewModel.CompanyName,
-                    ContactPerson = viewModel.ContactPerson,
+                    ContactPerson = "-", //viewModel.ContactPerson,
                     ATOL = viewModel.ATOL,
                     IATA = viewModel.IATA,
                     JobTitle = viewModel.JobTitle,
@@ -59,8 +59,6 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
                 string message = ex.Message;
                 return null!;
             }
-
-            //return View();
         }
     }
 }
