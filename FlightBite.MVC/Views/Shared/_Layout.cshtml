@@ -7,8 +7,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>@ViewData["Title"] - FlightBite.MVC</title>
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    <link rel="icon" type="image/x-icon" href="./images/flight-bite-logo.svg"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/flightbite.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/flightbite_css_variables.css" asp-append-version="true" />
@@ -33,7 +35,7 @@
                     <span class="icon-airplane"></span>
                     <div>Clients</div>
                 </a>
-                <a class="nav__menu" style="position: relative">
+                <a class="nav__menu" is-active-route style="position: relative">
                     <span class="icon-bell"></span>
                     <span class="icon-counter">5</span>
                     <div>Notificataions</div>

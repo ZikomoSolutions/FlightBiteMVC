@@ -1,4 +1,52 @@
 
+/*Modal functionality */
+
+let toggleModalClass = document.getElementById("toggle-modal");
+let submitButtonOfModal = document.getElementById("submit-button");
+let crossIcon = document.getElementById("cross-icon");
+let openModalId = document.getElementById("open-modal");
+let modalContainer = document.getElementById("modal-container");
+openModalId.addEventListener("click", function () {
+    openModal();
+});
+
+
+toggleModalClass.addEventListener("click", function (e) {
+    if (e.target !== toggleModalClass) return;
+    closeModal();
+    backToClientSection();
+});
+
+
+
+crossIcon.addEventListener("click", function () {
+    closeModal();
+});
+submitButtonOfModal.addEventListener("click", function () {
+    closeModal();
+    backToClientSection();
+});
+
+document.addEventListener("keyup", function (e) {
+    if (e.key == "Escape") {
+        closeModal();
+        backToClientSection();
+    }
+
+})
+
+
+function closeModal() {
+    toggleModalClass.classList.remove("modal-active");
+    document.body.style.overflow = "auto";
+}
+function openModal() {
+    toggleModalClass.classList.add("modal-active");
+    document.body.style.overflow = "hidden";
+}
+
+
+
 var selectedClientValue;
 let toggleClientType = document.getElementById("type-of-client");
 let toggleClientForm = document.getElementById("client-form");
@@ -49,51 +97,5 @@ backToClient.addEventListener("click", function () {
     backToClientSection();
 });
 
-
-/*Modal functionality */
-
-let toggleModalClass = document.getElementById("toggle-modal");
-let submitButtonOfModal = document.getElementById("submit-button");
-let crossIcon = document.getElementById("cross-icon");
-let openModalId = document.getElementById("open-modal");
-let modalContainer = document.getElementById("modal-container");
-openModalId.addEventListener("click", function () {
-    openModal();
-});
-
-
-toggleModalClass.addEventListener("click", function (e) {
-    if (e.target !== toggleModalClass) return;
-    closeModal();
-    backToClientSection();
-});
-
-//document.addEventListener("click", function (e) {
-//    if (e.target != modalContainer) return;
-//    closeModal();
-//});
-
-submitButtonOfModal.addEventListener("click", function () {
-    closeModal();
-    backToClientSection();
-});
-
-document.addEventListener("keyup", function (e) {
-    if (e.key == "Escape") {
-        closeModal();
-        backToClientSection();
-    }
-
-})
-
-
-function closeModal() {
-    toggleModalClass.classList.remove("modal-active");
-    document.body.style.overflow = "auto";
-}
-function openModal() {
-    toggleModalClass.classList.add("modal-active");
-    document.body.style.overflow = "hidden";
-}
 
 
