@@ -31,46 +31,11 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         }
         public IActionResult Client()
         {
-<<<<<<< HEAD
             return View();  
         }
 
-        public async Task<IActionResult> AddEnquiry(EnquiryCreateViewModel viewModel)
+       public async Task<IActionResult> AddEnquiry(EnquiryCreateViewModel viewModel)
         {
-
-            try
-            {
-                var model = new EnquiryMasterModel()
-                {
-                    CompanyName = viewModel.CompanyName,
-                    ContactPerson = viewModel.ContactPerson,
-                    ATOL = viewModel.ATOL,
-                    IATA = viewModel.IATA,
-                    JobTitle = viewModel.JobTitle,
-                    ContactEmail = viewModel.ContactEmail,
-                    ContactPhone = viewModel.ContactPhone,
-                    EnquiryPlatformId = 1,
-                    EnquiryStatusId = 1,
-                    UserTypeId = 1
-                };
-                var result = await _enquiryMaster.AddEnquiry(model);
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                string message = ex.Message;
-                return null!;
-            }
-
-            //return View();
-=======
-            return View();
->>>>>>> 464abd593a45367b18b7b3ba3c43baaaddbac0ab
-        }
-
-        public async Task<IActionResult> AddEnquiry(EnquiryCreateViewModel viewModel)
-        {
-
             try
             {
                 var model = new EnquiryMasterModel()
