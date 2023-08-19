@@ -1,4 +1,5 @@
-﻿@model IEnumerable<EnquiryPlatformModel>
+﻿@using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
+@model EnquiryCreateViewModel
 @{
     Layout = null;
 }
@@ -40,78 +41,78 @@
             </div>
 
             <div class="hide" id="client-form">
+                <form enctype="multipart/form-data" method="post" asp-controller="home" asp-action="AddEnquiry">
+                    <div class="flex flex--is-column flex--has-gap ">
+                        <div class="input-item input-item--full-width">
+                            <div>
+                                <label>Company / Group Name</label>
+                                <input type="text"
+                                       placeholder="Company / Group Name"
+                                       aria-autocomplete="list" asp-for="CompanyName"/>
+                            </div>
+                        </div>
+                        <div class="input-item input-item--full-width">
+                            <div>
+                                <label>ATOL</label>
+                                <input type="text"
+                                       placeholder="ATOL"
+                                       aria-autocomplete="list" asp-for="ATOL" />
+                            </div>
+                        </div>
 
-                <div class="flex flex--is-column flex--has-gap ">
-                    <div class="input-item input-item--full-width">
-                        <div>
-                            <label>Company / Group Name</label>
-                            <input type="text"
-                                   placeholder="Company / Group Name"
-                                   aria-autocomplete="list" />
+                        <div class="input-item input-item--full-width">
+                            <div>
+                                <label>IATA</label>
+                                <input type="text"
+                                       placeholder="IATA"
+                                       aria-autocomplete="list" asp-for="IATA" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-item input-item--full-width">
-                        <div>
-                            <label>ATOL</label>
-                            <input type="text"
-                                   placeholder="ATOL"
-                                   aria-autocomplete="list" />
+                        <div class="input-item input-item--full-width">
+                            <div>
+                                <label>Position / Job Title </label>
+                                <input type="text"
+                                       placeholder="Position / Job Title"
+                                       aria-autocomplete="list" asp-for="JobTitle" />
+                            </div>
                         </div>
+                        <div class="input-item input-item--full-width">
+                            <div>
+                                <label>Email Address</label>
+                                <input type="email"
+                                       placeholder="Email Address"
+                                       aria-autocomplete="list" asp-for="ContactEmail" />
+                            </div>
+                        </div>
+                        <div class="input-item input-item--full-width">
+                            <div>
+                                <label>Phone Number</label>
+                                <input type="email"
+                                       placeholder="Phone Number"
+                                       aria-autocomplete="list" asp-for="ContactPhone" />
+                            </div>
+                        </div>
+                        <div>Where did you hear about FlightBite?</div>
                     </div>
 
-                    <div class="input-item input-item--full-width">
-                        <div>
-                            <label>IATA</label>
-                            <input type="text"
-                                   placeholder="IATA"
-                                   aria-autocomplete="list" />
-                        </div>
+                    <div class="flex flex--is-column flex--has-gap" style="margin-top: 24px;">
+@*                        @foreach (var platform in Model.PlatformMaster)
+                        {
+                            <div>
+                                <label class="radio-button-container">
+                                    @platform.ToString();
+                                    <input type="radio" name="radio" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        }*@
                     </div>
-                    <div class="input-item input-item--full-width">
-                        <div>
-                            <label>Position / Job Title </label>
-                            <input type="text"
-                                   placeholder="Position / Job Title"
-                                   aria-autocomplete="list" />
-                        </div>
-                    </div>
-                    <div class="input-item input-item--full-width">
-                        <div>
-                            <label>Email Address</label>
-                            <input type="email"
-                                   placeholder="Email Address"
-                                   aria-autocomplete="list" />
-                        </div>
-                    </div>
-                    <div class="input-item input-item--full-width">
-                        <div>
-                            <label>Phone Number</label>
-                            <input type="email"
-                                   placeholder="Phone Number"
-                                   aria-autocomplete="list" />
-                        </div>
-                    </div>
-                    <div>Where did you hear about FlightBite?</div>
-                </div>
 
-                <div class="flex flex--is-column flex--has-gap" style="margin-top: 24px;">
-                    @foreach (var platform in Model)
-                    {
-                        <div>
-                            <label class="radio-button-container">
-                                @platform.Name
-                                <input type="radio" name="radio" />
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                    }
-                </div>
-
-                <!--!-->
-                <div class="flex" style="justify-content: center; margin-top: 16px">
-                    <button class="btn btn--brand-1" id="submit-button">Submit</button>
-                </div>
-
+                    <!--!-->
+                    <div class="flex" style="justify-content: center; margin-top: 16px">
+                        <button type="submit" class="btn btn--brand-1" id="submit-button">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

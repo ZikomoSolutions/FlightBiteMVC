@@ -18,26 +18,13 @@ namespace FlightBite.Data.Repositories
         {
             this.context = context;
         }
-        public EnquiryMasterModel AddEnquiry(EnquiryMasterModel model)
+        public async Task<EnquiryMasterModel> AddEnquiry(EnquiryMasterModel model)
         {
             try
             {
-                var enquiry = new EnquiryMasterModel()
-                {
-                    CompanyName = model.CompanyName,
-                    ContactPerson = model.ContactPerson,
-                    ATOL = model.ATOL,
-                    IATA = model.IATA,
-                    JobTitle = model.JobTitle,
-                    ContactEmail = model.ContactEmail,
-                    ContactPhone = model.ContactPhone,
-                    EnquiryPlatformId = model.EnquiryPlatformId,
-                    EnquiryStatusId = 1,
-                    UserTypeId = model.UserTypeId
-                };
-                context.EnquiryMaster.Add(enquiry);
-                context.SaveChanges();
-                return enquiry;
+                var result = await context.EnquiryMaster.AddAsync(model);
+                await context.SaveChangesAsync();
+                return result.Entity;
             }
             catch (Exception ex)
             {
@@ -66,5 +53,7 @@ namespace FlightBite.Data.Repositories
         {
             return context.EnquiryMaster.Find(id);
         }
+
+       
     }
 }
