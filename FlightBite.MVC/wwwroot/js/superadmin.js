@@ -85,14 +85,15 @@ function backToClientSection() {
     toggleClientHeader.classList.remove("hide");
 }
 function SelectedClient() {
-    if (selectedClientValue == "agent" || selectedClientValue == "provider") {
+    
         toggleClientType.classList.add("hide");
         toggleClientForm.classList.add("show");
+
         toggleClientForm.classList.remove("hide");
         toggleFormHeader.classList.add("flex");
         toggleFormHeader.classList.remove("hide");
         toggleClientHeader.classList.add("hide");
-    }
+    
     if (selectedClientValue == undefined) {
         alert("please select");
     }

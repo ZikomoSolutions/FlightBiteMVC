@@ -97,16 +97,19 @@
                     </div>
 
                     <div class="flex flex--is-column flex--has-gap" style="margin-top: 24px;">
-@*                        @foreach (var platform in Model.PlatformMaster)
+                        @if(Model.Platforms != null)
                         {
-                            <div>
-                                <label class="radio-button-container">
-                                    @platform.ToString();
-                                    <input type="radio" name="radio" />
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        }*@
+                            @foreach (var platform in Model.Platforms)
+                            {
+                                <div>
+                                    <label class="radio-button-container">
+                                        @platform.Name
+                                        <input type="radio" name="radio" />
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            }
+                        }
                     </div>
 
                     <!--!-->

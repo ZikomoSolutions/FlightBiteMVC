@@ -1,12 +1,14 @@
 ﻿@using FlightBite.Data.Models;
-@model IEnumerable<EnquiryMasterModel>
+@using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
+@*@model IEnumerable<EnquiryMasterModel>*@
+@model EnquiryCreateViewModel
 <section class="enquiries-section">
     <div class=" page-content page-content--max-1440">
         <div class="superuser">
             <div class="superuser__header">
                 <div class="flex flex--is-wrap flex--distribute">
                     <h1><strong> Enquires / Leads </strong></h1>
-                    <button class="btn btn--success" id="open-modal">Add Manual Enquiry</button>
+                    <button type="submit" class="btn btn--success" asp-controller="Home" asp-action="FillUserAndPlatform" id="open-modal">Add Manual Enquiry</button>
                 </div>
                 <div class="flex flex--distribute flex--align-center flex--is-wrap">
                     <div class="flex flex--is-wrap flex--has-gap">
@@ -46,7 +48,7 @@
             <div class="superuser__body">
                 @if (Model != null)
                 {
-                    @foreach (var enquiry in Model)
+                    @foreach (var enquiry in Model.EnquiryMasters)
                     {
                         <div class="flex flex--align-center flex--distribute flex--is-wrap"
                              style="border-bottom: 1px solid var(--grey-2); padding-bottom: 8px;">
@@ -105,7 +107,6 @@
                         </div>
                     }
                 }
-
             </div>
         </div>
     </div>
@@ -121,8 +122,7 @@
 </div>*@
 
 <div id="">
-    @await Component.InvokeAsync("EnquiryModal");
-
+    <partial name="_EnquiryPartial"></partial>
 </div>
 
 

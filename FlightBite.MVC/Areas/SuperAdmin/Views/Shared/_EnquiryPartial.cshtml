@@ -1,0 +1,123 @@
+﻿@using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
+@model EnquiryCreateViewModel
+@{
+	Layout = null;
+}
+<div class="modal" id="toggle-modal">
+	<div class="modal__container" id="modal-container">
+
+		<div class="modal__header flex flex--distribute flex--align-center hide" id="form-header">
+			<div class="h3">Provider Form</div>
+			<div class="h4" style="color: var(--brand-1); cursor: pointer" id="back-to-client">
+				Back
+			</div>
+		</div>
+
+		<div class="modal__header flex flex--distribute flex--align-center" id="client-header">
+			<div class="h3">I AM A</div>
+		</div>
+
+		<div class="modal__body">
+
+			<div id="type-of-client">
+				@{
+					bool isFirstChecked = false;
+					foreach (var UserType in Model.UserTypes)
+					{
+						<div style="margin-top: 24px;">
+							<label class="radio-button-container">
+								@UserType.Type
+								<input @(isFirstChecked ? "" : "checked") type="radio" name="radio" value="@UserType.Type" checked="checked" onclick="selectClientType(this.value)" asp-for="@Model.UserTypeSelectedId" />
+								<span class="checkmark"></span>
+								<br />
+							</label>
+						</div>
+						isFirstChecked = true;
+					}
+				}
+
+				<div class="flex flex--align-center" style="justify-content:center">
+					<button class="btn btn--brand-1" style="margin-top:16px;" onclick="SelectedClient()">  Submit </button>
+				</div>
+			</div>
+
+			<div class="hide" id="client-form">
+				<form enctype="multipart/form-data" method="post" asp-controller="home" asp-action="AddEnquiry">
+					<div class="flex flex--is-column flex--has-gap ">
+						<div class="input-item input-item--full-width">
+							<div>
+								<label>Company / Group Name</label>
+								<input type="text"
+									   placeholder="Company / Group Name"
+									   aria-autocomplete="list" asp-for="@Model.CompanyName" />
+							</div>
+						</div>
+						<div class="input-item input-item--full-width">
+							<div>
+								<label>ATOL</label>
+								<input type="text"
+									   placeholder="ATOL"
+									   aria-autocomplete="list" asp-for="@Model.ATOL" />
+							</div>
+						</div>
+
+						<div class="input-item input-item--full-width">
+							<div>
+								<label>IATA</label>
+								<input type="text"
+									   placeholder="IATA"
+									   aria-autocomplete="list" asp-for="@Model.IATA" />
+							</div>
+						</div>
+						<div class="input-item input-item--full-width">
+							<div>
+								<label>Position / Job Title </label>
+								<input type="text"
+									   placeholder="Position / Job Title"
+									   aria-autocomplete="list" asp-for="@Model.JobTitle" />
+							</div>
+						</div>
+						<div class="input-item input-item--full-width">
+							<div>
+								<label>Email Address</label>
+								<input type="email"
+									   placeholder="Email Address"
+									   aria-autocomplete="list" asp-for="@Model.ContactEmail" />
+							</div>
+						</div>
+						<div class="input-item input-item--full-width">
+							<div>
+								<label>Phone Number</label>
+								<input type="number"
+									   placeholder="Phone Number"
+									   aria-autocomplete="list" asp-for="@Model.ContactPhone" />
+							</div>
+						</div>
+						<div>Where did you hear about FlightBite?</div>
+					</div>
+
+					<div class="flex flex--is-column flex--has-gap" style="margin-top: 24px;">
+						@foreach (var platform in Model.Platforms)
+						{
+							<div>
+								<label class="radio-button-container">
+									@platform.Name
+									<input type="radio" id="@platform.Id" value="@platform.Name" name="radio" asp-for="@Model.PlatformSelectedId" />
+									<span class="checkmark"></span>
+								</label>
+							</div>
+						}
+					</div>
+
+					<!--!-->
+					<div class="flex" style="justify-content: center; margin-top: 16px">
+						<button type="submit" class="btn btn--brand-1" id="submit-button">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!--!-->
+</div>
+
+
