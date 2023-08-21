@@ -1,12 +1,12 @@
-﻿@using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
-@model EnquiryCreateViewModel
+﻿@*@using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
+@model EnquiryCreateViewModel*@
 @{
     Layout = null;
 }
 <div class="modal" id="toggle-modal">
     <div class="modal__container" id="modal-container">
 
-        <div class="modal__header flex flex--distribute flex--align-center hide"  id="form-header">
+        <div class="modal__header flex flex--distribute flex--align-center hide" id="form-header">
             <div class="h3">Provider Form</div>
             <div class="h4" style="color: var(--brand-1); cursor: pointer" id="back-to-client">
                 Back
@@ -20,11 +20,11 @@
         <div class="modal__body">
 
             <div id="type-of-client">
-                
+
                 <div>
                     <label class="radio-button-container">
                         Flight Provider / Consolidator
-                        <input type="radio" id="provider" value="provider" name="radio" onclick="selectClientType(this.value)" />
+                        <input type="radio" checked id="provider" value="provider" name="radio" onclick="selectClientType(this.value)" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -47,10 +47,9 @@
                             <div>
                                 <label>Company / Group Name</label>
                                 <input type="text"
-                                       
                                        placeholder="Company / Group Name"
-                                       aria-autocomplete="list" asp-for="CompanyName"/>
-                                <span asp-validation-for="CompanyName" class="text-danger"></span>
+                                       aria-autocomplete="list"  />
+                             
                             </div>
                         </div>
                         <div class="input-item input-item--full-width">
@@ -58,7 +57,7 @@
                                 <label>ATOL</label>
                                 <input type="text"
                                        placeholder="ATOL"
-                                       aria-autocomplete="list" asp-for="ATOL" />
+                                       aria-autocomplete="list" />
                             </div>
                         </div>
 
@@ -67,7 +66,7 @@
                                 <label>IATA</label>
                                 <input type="text"
                                        placeholder="IATA"
-                                       aria-autocomplete="list" asp-for="IATA" />
+                                       aria-autocomplete="list" />
                             </div>
                         </div>
                         <div class="input-item input-item--full-width">
@@ -75,7 +74,7 @@
                                 <label>Position / Job Title </label>
                                 <input type="text"
                                        placeholder="Position / Job Title"
-                                       aria-autocomplete="list" asp-for="JobTitle" />
+                                       aria-autocomplete="list"  />
                             </div>
                         </div>
                         <div class="input-item input-item--full-width">
@@ -83,7 +82,7 @@
                                 <label>Email Address</label>
                                 <input type="email"
                                        placeholder="Email Address"
-                                       aria-autocomplete="list" asp-for="ContactEmail" />
+                                       aria-autocomplete="list"  />
                             </div>
                         </div>
                         <div class="input-item input-item--full-width">
@@ -91,22 +90,22 @@
                                 <label>Phone Number</label>
                                 <input type="number"
                                        placeholder="Phone Number"
-                                       aria-autocomplete="list" asp-for="ContactPhone" />
+                                       aria-autocomplete="list"  />
                             </div>
                         </div>
                         <div>Where did you hear about FlightBite?</div>
                     </div>
 
                     <div class="flex flex--is-column flex--has-gap" style="margin-top: 24px;">
-@*                        @foreach (var platform in Model.PlatformMaster)
+                        @*                        @foreach (var platform in Model.PlatformMaster)
                         {
-                            <div>
-                                <label class="radio-button-container">
-                                    @platform.ToString();
-                                    <input type="radio" name="radio" />
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
+                        <div>
+                        <label class="radio-button-container">
+                        @platform.ToString();
+                        <input type="radio" name="radio" />
+                        <span class="checkmark"></span>
+                        </label>
+                        </div>
                         }*@
                     </div>
 

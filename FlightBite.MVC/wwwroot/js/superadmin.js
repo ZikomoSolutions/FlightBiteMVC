@@ -4,13 +4,18 @@
 /*Modal functionality */
 
 let toggleModalClass = document.getElementById("toggle-modal");
-let submitButtonOfModal = document.getElementById("submit-button");
+//let submitButtonOfModal = document.getElementById("submit-button");
 let crossIcon = document.getElementById("cross-icon");
 let openModalId = document.getElementById("open-modal");
 let modalContainer = document.getElementById("modal-container");
 openModalId.addEventListener("click", function () {
     openModal();
 });
+function openModal() {
+    toggleModalClass.classList.add("modal-active");
+    document.body.style.overflow = "hidden";
+}
+
 
 window.addEventListener("keyup", function (e) {
     if (e.key == "Escape") {
@@ -20,21 +25,21 @@ window.addEventListener("keyup", function (e) {
     }
 
 
-toggleModalClass.addEventListener("click", function (e) {
-    if (e.target !== toggleModalClass) return;
-    closeModal();
-    backToClientSection();
-});
+    toggleModalClass.addEventListener("click", function (e) {
+        if (e.target !== toggleModalClass) return;
+        closeModal();
+        backToClientSection();
+    });
 
 
 
-crossIcon.addEventListener("click", function () {
-    closeModal();
-});
-submitButtonOfModal.addEventListener("click", function () {
-    closeModal();
-    backToClientSection();
-});
+    crossIcon.addEventListener("click", function () {
+        closeModal();
+    });
+    submitButtonOfModal.addEventListener("click", function () {
+        closeModal();
+        backToClientSection();
+    });
 
 
 })
@@ -44,11 +49,6 @@ function closeModal() {
     toggleModalClass.classList.remove("modal-active");
     document.body.style.overflow = "auto";
 }
-function openModal() {
-    toggleModalClass.classList.add("modal-active");
-    document.body.style.overflow = "hidden";
-}
-
 
 
 var selectedClientValue;
@@ -93,10 +93,12 @@ function SelectedClient() {
         toggleFormHeader.classList.remove("hide");
         toggleClientHeader.classList.add("hide");
     }
-    if (selectedClientValue == undefined) {
-        alert("please select");
-    }
+    //if (selectedClientValue == undefined) {
+    //    alert("please select");
+    //}
 }
 backToClient.addEventListener("click", function () {
     backToClientSection();
 });
+
+

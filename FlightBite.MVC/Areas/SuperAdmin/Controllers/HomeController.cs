@@ -31,12 +31,11 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         }
         public IActionResult Client()
         {
-            return View();
+            return View();  
         }
 
-        public async Task<IActionResult> AddEnquiry(EnquiryCreateViewModel viewModel)
+       public async Task<IActionResult> AddEnquiry(EnquiryCreateViewModel viewModel)
         {
-
             try
             {
                 var model = new EnquiryMasterModel()
@@ -63,5 +62,12 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
 
             //return View();
         }
+
+        public IActionResult OnClick()
+        {
+            return PartialView("_EnquiryPartial");
+        }
+
+
     }
 }

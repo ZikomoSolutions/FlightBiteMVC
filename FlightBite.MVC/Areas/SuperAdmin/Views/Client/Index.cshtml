@@ -98,8 +98,10 @@
                                         <div class="counts">2</div>
                                     </div>
                                     <div>
-                                        <span class="icon-info"></span>
-                                        <span class="icon-more" style="margin-left: 24px;"></span>
+                                        <a asp-area="SuperAdmin" asp-controller="ClientInformation" asp-action="Index">
+                                            <span class="icon-info"></span>
+                                        </a>
+                                            <span class="icon-more" style="margin-left: 24px;"></span>
                                     </div>
                                 </div>
                             </div>
@@ -114,5 +116,5 @@
 
 <div>
     @await Component.InvokeAsync("AddClientModal");
-     
+
 </div>
