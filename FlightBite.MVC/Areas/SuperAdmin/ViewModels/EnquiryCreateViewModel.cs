@@ -1,12 +1,15 @@
 ﻿using FlightBite.Data.Interfaces;
 using FlightBite.Data.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
 {
     public class EnquiryCreateViewModel
     {
+
+        [Required]
         public string? CompanyName { get; set; }
         public string? ATOL { get; set; }
         public string? IATA { get; set; }

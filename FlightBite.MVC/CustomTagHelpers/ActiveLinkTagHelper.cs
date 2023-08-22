@@ -45,6 +45,7 @@ namespace FlightBite.MVC.CustomTagHelpers
 
                 output.Attributes.Add("class", $"{existingClasses} active__menu");
             }
+
         }
     }
 }

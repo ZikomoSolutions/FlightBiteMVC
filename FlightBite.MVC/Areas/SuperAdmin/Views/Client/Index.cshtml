@@ -8,7 +8,7 @@
             <div class="superuser__header">
                 <div class="flex flex--is-wrap flex--distribute">
                     <h1><strong> Clients </strong></h1>
-                    <button class="btn btn--success" id="open-modal">New Client</button>
+                    <button class="btn btn--success open-modal" data-modal-target="add-new-client-modal">New Client</button>
                 </div>
                 <div class="flex flex--distribute flex--align-center flex--is-wrap">
                     <div class="flex flex--is-wrap flex--has-gap">
@@ -114,7 +114,6 @@
     </div>
 </section>
 
-<div>
-    @await Component.InvokeAsync("AddClientModal");
 
-</div>
+
+<partial name="_AddNewClientPartial"></partial>

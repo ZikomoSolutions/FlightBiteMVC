@@ -62,6 +62,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
             }
         }
 
+        [HttpPost]
         public async Task<IActionResult> AddEnquiry(EnquiryCreateViewModel viewModel)
         {
             try
