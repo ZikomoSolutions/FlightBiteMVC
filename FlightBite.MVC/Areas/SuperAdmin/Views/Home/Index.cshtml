@@ -7,7 +7,8 @@
             <div class="superuser__header">
                 <div class="flex flex--is-wrap flex--distribute">
                     <h1><strong> Enquires / Leads </strong></h1>
-                    <button type="submit" class="btn btn--success" asp-controller="Home" asp-action="FillUserAndPlatform" id="open-modal">Add Manual Enquiry</button>
+                    <button class="btn btn--success open-modal" data-modal-target="enquiry-modal">Add Manual Enquiry</button>
+                    @*<a class="btn btn--success"  asp-controller="Home" asp-area="SuperAdmin" asp-action="OnClick" >Add Manual Enquiry</a>*@
                 </div>
                 
                 <div class="flex flex--distribute flex--align-center flex--is-wrap">
@@ -100,9 +101,12 @@
                                                 2
                                             </div>
                                         </div>
-                                        <div>
+
+
+                                        <div class="open-modal" data-modal-target="client-details-modal">
                                             <span class="icon-info"></span>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -113,18 +117,9 @@
         </div>
     </div>
 </section>
-@*
-<div>
-    @await Component.InvokeAsync("Hello",new {UserName="Zayan"})
-</div>
 
-<div>
-    <h2>Second way</h2>
-    <vc:hello user-name="Taha"></vc:hello>
-</div>*@
+<partial name="_EnquiryPartial"></partial>
 
-<div id="">
-    <partial name="_EnquiryPartial"></partial>
-</div>
+<partial name="_ClientDetailsPartial"></partial>
 
 

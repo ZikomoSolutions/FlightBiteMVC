@@ -1,4 +1,4 @@
-﻿using FlightBite.Data.Interfaces;
+﻿    using FlightBite.Data.Interfaces;
 using FlightBite.Data.Models;
 using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
 using FlightBite.MVC.Models;

@@ -3,7 +3,7 @@
 @{
     Layout = null;
 }
-<div class="modal" id="toggle-modal">
+<div class="modal" id="modal">
     <div class="modal__container" id="modal-container">
 
         <div class="modal__header flex flex--distribute flex--align-center hide"  id="form-header">
@@ -47,8 +47,10 @@
                             <div>
                                 <label>Company / Group Name</label>
                                 <input type="text"
+                                       
                                        placeholder="Company / Group Name"
                                        aria-autocomplete="list" asp-for="CompanyName"/>
+                                <span asp-validation-for="CompanyName" class="text-danger"></span>
                                 <span asp-validation-for="CompanyName" class="text-red"></span>
                             </div>
                         </div>

@@ -107,5 +107,12 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         {
             return View();
         }
+
+        public IActionResult OnClick()
+        {
+            return PartialView("_EnquiryPartial");
+        }
+
+
     }
 }
