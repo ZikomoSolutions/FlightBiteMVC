@@ -8,21 +8,21 @@ namespace FlightBite.MVC.ViewComponents
 {
     public class EnquiryModalViewComponent : ViewComponent
     {
-        private readonly IEnquiryPlatform _enquiryPlatform;
+        //private readonly IEnquiryPlatform _enquiryPlatform;
 
-        public EnquiryModalViewComponent(IEnquiryPlatform enquiryPlatform)
-        {
-            this._enquiryPlatform = enquiryPlatform;
-        }
-        //public IViewComponentResult InvokeAsync()
+        //public EnquiryModalViewComponent(IEnquiryPlatform enquiryPlatform)
         //{
-        //    return View("Default");
+        //    this._enquiryPlatform = enquiryPlatform;
         //}
+        ////public IViewComponentResult InvokeAsync()
+        ////{
+        ////    return View("Default");
+        ////}
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            EnquiryCreateViewModel model = new();
-            return View(model);
+            
+            return View();
             //var result = await _enquiryPlatform.GetAllEnquityPlatform();
             //return View(result);
         }

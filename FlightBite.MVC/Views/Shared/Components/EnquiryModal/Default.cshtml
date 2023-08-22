@@ -51,6 +51,7 @@
                                        placeholder="Company / Group Name"
                                        aria-autocomplete="list" asp-for="CompanyName"/>
                                 <span asp-validation-for="CompanyName" class="text-danger"></span>
+                                <span asp-validation-for="CompanyName" class="text-red"></span>
                             </div>
                         </div>
                         <div class="input-item input-item--full-width">
@@ -98,16 +99,19 @@
                     </div>
 
                     <div class="flex flex--is-column flex--has-gap" style="margin-top: 24px;">
-@*                        @foreach (var platform in Model.PlatformMaster)
+                        @if(Model.Platforms != null)
                         {
-                            <div>
-                                <label class="radio-button-container">
-                                    @platform.ToString();
-                                    <input type="radio" name="radio" />
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        }*@
+                            @foreach (var platform in Model.Platforms)
+                            {
+                                <div>
+                                    <label class="radio-button-container">
+                                        @platform.Name
+                                        <input type="radio" name="radio" />
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            }
+                        }
                     </div>
 
                     <!--!-->

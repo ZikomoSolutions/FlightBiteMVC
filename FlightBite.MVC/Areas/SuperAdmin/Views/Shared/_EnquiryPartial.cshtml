@@ -1,55 +1,73 @@
-﻿@*@using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
-@model EnquiryCreateViewModel*@
+﻿@using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
+@model EnquiryCreateViewModel
 @{
     Layout = null;
 }
 <div class="modal" id="enquiry-modal">
-    <div class="modal__container" id="modal-container">
 
-        <div class="modal__header flex flex--distribute flex--align-center hide" id="form-header">
+    <div class="modal__container " id="enquiry-section-1">
+        <div class="modal__header flex flex--distribute flex--align-center">
+            <div class="h3">I AM A</div>
+        </div>
+      
+        <div class="modal__body">
+            <div id="type-of-client">
+                @{
+                    foreach (var UserType in Model.UserTypes)
+                    {
+                        <div style="margin-top: 24px;">
+                            <label class="radio-button-container">
+                                @UserType.Type
+                                <input type="radio" name="radio" value="@UserType.Id"  asp-for="@Model.UserTypeSelectedId" />
+                                <span class="checkmark"></span>
+                                <br />
+                            </label>
+                        </div>
+
+                    }
+                }
+
+                <div class="flex flex--align-center" style="justify-content:center">
+                    <button class="btn btn--brand-1" style="margin-top:16px;" id="submit-selected-client-type" >  Proceed </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal__container hide" id="enquiry-section-2">
+        <div class="modal__header flex flex--distribute flex--align-center" id="form-header">
             <div class="h3">Provider Form</div>
-            <div class="h4" style="color: var(--brand-1); cursor: pointer" id="back-to-client">
+
+            <div class="h4" style="color: var(--brand-1); cursor: pointer" id="back-to-enquiry-section-1">
                 Back
             </div>
         </div>
-
-        <div class="modal__header flex flex--distribute flex--align-center" id="client-header">
-            <div class="h3">I AM A</div>
-        </div>
-
         <div class="modal__body">
-
-            <div id="type-of-client">
-
-                <div>
-                    <label class="radio-button-container">
-                        Flight Provider / Consolidator
-                        <input type="radio" checked id="provider" value="provider" name="radio" onclick="selectClientType(this.value)" />
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-                <div style="margin-top: 16px;">
-                    <label class="radio-button-container">
-                        Travel Agent
-                        <input type="radio" id="agent" value="agent" name="radio" onclick="selectClientType(this.value)" />
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-                <div class="flex flex--align-center" style="justify-content:center">
-                    <button class="btn btn--brand-1" style="margin-top:16px;" onclick="SelectedClient()">  Submit </button>
-                </div>
-            </div>
-
-            <div class="hide" id="client-form">
+            <div class="" id="client-form">
                 <form enctype="multipart/form-data" method="post" asp-controller="home" asp-action="AddEnquiry">
+                    @*					@{
+
+                    foreach (var UserType in Model.UserTypes)
+                    {
+                    <div style="margin-top: 24px;">
+                    <label class="radio-button-container">
+                    @UserType.Type
+                    <input type="radio" name="radio" value="@UserType.Id" onclick="selectClientType(this.value)" asp-for="@Model.UserTypeSelectedId" />
+                    <span class="checkmark"></span>
+                    <br />
+                    </label>
+                    </div>
+
+                    }
+                    }*@
+
                     <div class="flex flex--is-column flex--has-gap ">
                         <div class="input-item input-item--full-width">
                             <div>
                                 <label>Company / Group Name</label>
                                 <input type="text"
                                        placeholder="Company / Group Name"
-                                       aria-autocomplete="list"  />
-                             
+                                       aria-autocomplete="list" asp-for="@Model.CompanyName" />
                             </div>
                         </div>
                         <div class="input-item input-item--full-width">
@@ -57,7 +75,7 @@
                                 <label>ATOL</label>
                                 <input type="text"
                                        placeholder="ATOL"
-                                       aria-autocomplete="list" />
+                                       aria-autocomplete="list" asp-for="@Model.ATOL" />
                             </div>
                         </div>
 
@@ -66,7 +84,7 @@
                                 <label>IATA</label>
                                 <input type="text"
                                        placeholder="IATA"
-                                       aria-autocomplete="list" />
+                                       aria-autocomplete="list" asp-for="@Model.IATA" />
                             </div>
                         </div>
                         <div class="input-item input-item--full-width">
@@ -74,7 +92,7 @@
                                 <label>Position / Job Title </label>
                                 <input type="text"
                                        placeholder="Position / Job Title"
-                                       aria-autocomplete="list"  />
+                                       aria-autocomplete="list" asp-for="@Model.JobTitle" />
                             </div>
                         </div>
                         <div class="input-item input-item--full-width">
@@ -82,7 +100,7 @@
                                 <label>Email Address</label>
                                 <input type="email"
                                        placeholder="Email Address"
-                                       aria-autocomplete="list"  />
+                                       aria-autocomplete="list" asp-for="@Model.ContactEmail" />
                             </div>
                         </div>
                         <div class="input-item input-item--full-width">
@@ -90,23 +108,23 @@
                                 <label>Phone Number</label>
                                 <input type="number"
                                        placeholder="Phone Number"
-                                       aria-autocomplete="list"  />
+                                       aria-autocomplete="list" asp-for="@Model.ContactPhone" />
                             </div>
                         </div>
                         <div>Where did you hear about FlightBite?</div>
                     </div>
 
                     <div class="flex flex--is-column flex--has-gap" style="margin-top: 24px;">
-                        @*                        @foreach (var platform in Model.PlatformMaster)
+                        @foreach (var platform in Model.Platforms)
                         {
-                        <div>
-                        <label class="radio-button-container">
-                        @platform.ToString();
-                        <input type="radio" name="radio" />
-                        <span class="checkmark"></span>
-                        </label>
-                        </div>
-                        }*@
+                            <div>
+                                <label class="radio-button-container">
+                                    @platform.Name
+                                    <input type="radio" id="@platform.Id" value="@platform.Id" name="radio" asp-for="@Model.PlatformSelectedId" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        }
                     </div>
 
                     <!--!-->

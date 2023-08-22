@@ -34,7 +34,7 @@ namespace FlightBite.Data
                     Name = "Google",
                     Description = "-",
                     CreatedAt = DateTime.Now,
-                    UpdatedAt = DateTime.Now,
+                    UpdatedAt = null,
                     DeletedAt = null,
                 },
                 new EnquiryPlatformModel
@@ -43,7 +43,7 @@ namespace FlightBite.Data
                     Name = "Brochure",
                     Description = "-",
                     CreatedAt = DateTime.Now,
-                    UpdatedAt = DateTime.Now,
+                    UpdatedAt = null,
                     DeletedAt = null,
                 },
                 new EnquiryPlatformModel
@@ -52,7 +52,7 @@ namespace FlightBite.Data
                     Name = "Other",
                     Description = "-",
                     CreatedAt = DateTime.Now,
-                    UpdatedAt = DateTime.Now,
+                    UpdatedAt = null,
                     DeletedAt = null,
                 }
             );
@@ -64,7 +64,7 @@ namespace FlightBite.Data
                     Id = 1,
                     Status = "In Progress",
                     CreatedAt = DateTime.Now,
-                    UpdatedAt = DateTime.Now,
+                    UpdatedAt = null,
                     DeletedAt = null,
                 },
                 new EnquiryStatusModel
@@ -72,7 +72,7 @@ namespace FlightBite.Data
                     Id = 2,
                     Status = "Complete",
                     CreatedAt = DateTime.Now,
-                    UpdatedAt = DateTime.Now,
+                    UpdatedAt = null,
                     DeletedAt = null,
                 }
             );
@@ -82,19 +82,19 @@ namespace FlightBite.Data
                 new UserTypesModel
                 {
                     Id = 1,
-                    Type = "Supplier",
+                    Type = "Flight Provider / Consolidator",
                     Description= "-",
                     CreatedAt = DateTime.Now,
-                    UpdatedAt = DateTime.Now,
+                    UpdatedAt = null,
                     DeletedAt = null,
                 },
                 new UserTypesModel
                 {
                     Id = 2,
-                    Type = "Agent",
+                    Type = "Travel Agent",
                     Description= "-",
                     CreatedAt = DateTime.Now,
-                    UpdatedAt = DateTime.Now,
+                    UpdatedAt = null,
                     DeletedAt = null,
                 }
             );

@@ -30,7 +30,17 @@ $(document).ready(function () {
         $("#enquiry-details").show();
         $("#client-name-notes").hide();
     });
-
+    $("#submit-selected-client-type").click(function () {
+        $("#enquiry-section-2").show();
+        $("#enquiry-section-1").hide();
+    });
+    $("#back-to-enquiry-section-1").click(function () {
+        $("#enquiry-section-2").hide();
+        $("#enquiry-section-1").show();
+    })
+    $("#submit-button").click(function () {
+        $(".modal").removeClass("modal--active");
+    })
 });
 $(document).keydown(function (e) {
     if (e.keyCode == 27) {

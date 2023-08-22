@@ -1,6 +1,7 @@
 ﻿@using FlightBite.Data.Models;
-@model IEnumerable<EnquiryMasterModel>
-
+@using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
+@*@model IEnumerable<EnquiryMasterModel>*@
+@model EnquiryCreateViewModel
 <section class="enquiries-section">
     <div class=" page-content page-content--max-1440">
         <div class="superuser">
@@ -12,20 +13,18 @@
                 </div>
                 <div class="flex flex--distribute flex--align-center flex--is-wrap">
                     <div class="flex flex--is-wrap flex--has-gap">
-                        <div class="zik-switch">
-                            <label>
-                                <input type="checkbox" class="zik-swich__input" />
-                                <span class="zik-switch"></span>
-                            </label>
-                            <span>Agents</span>
-                        </div>
-                        <div class="zik-switch">
-                            <label>
-                                <input type="checkbox" class="zik-swich__input" />
-                                <span class="zik-switch"></span>
-                            </label>
-                            <span>Provider</span>
-                        </div>
+                        @{
+                            foreach (var UserType in Model.UserTypes)
+                            {
+                                <div class="zik-switch" style="margin-left: 24px;">
+                                    <label>
+                                        <input type="checkbox" class="zik-swich__input" value="@UserType.Id" />
+                                        <span class="zik-switch"></span>
+                                    </label>
+                                    <span>@UserType.Type</span>
+                                </div>
+                            }
+                        }
                     </div>
 
                     <div class="input-item input-item--full-width input-item--has-icon input-item--label-inside input-item--is-select"
@@ -48,7 +47,7 @@
             <div class="superuser__body">
                 @if (Model != null)
                 {
-                    @foreach (var enquiry in Model)
+                    @foreach (var enquiry in Model.EnquiryMasters)
                     {
                         <div class="flex flex--align-center flex--distribute flex--is-wrap"
                              style="border-bottom: 1px solid var(--grey-2); padding-bottom: 8px;">
@@ -110,7 +109,6 @@
                         </div>
                     }
                 }
-
             </div>
         </div>
     </div>
@@ -119,6 +117,5 @@
 <partial name="_EnquiryPartial"></partial>
 
 <partial name="_ClientDetailsPartial"></partial>
-<button class="btn btn--brand-2 ">Click</button>
 
 

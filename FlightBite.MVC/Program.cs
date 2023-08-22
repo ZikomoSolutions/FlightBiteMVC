@@ -19,8 +19,12 @@ namespace FlightBite.MVC
             builder.Services.AddDbContextPool<DatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddScoped<IEnquiryMaster, EnquiryMasterRepository>();
             builder.Services.AddScoped<IEnquiryPlatform, EnquiryPlatformRepository>();
+            builder.Services.AddScoped<IUserType, UserTypeRepository>();
+            builder.Services.AddScoped<IEnquiryStatus, EnquiryStatusRepository>();
+
             builder.Services.AddScoped<ILogRequestResponse, LogRequestResponse<DatabaseContext>>();
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            
 
             var app = builder.Build();
 
