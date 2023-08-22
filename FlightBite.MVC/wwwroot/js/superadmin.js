@@ -74,7 +74,7 @@ let backToClient = document.getElementById("back-to-client");
 function selectClientType(e) {
     selectedClientValue = e;
 
-    //console.log(selectedClientValue);
+    console.log(selectedClientValue);
 }
 function backToClientSection() {
     toggleClientType.classList.remove("hide");

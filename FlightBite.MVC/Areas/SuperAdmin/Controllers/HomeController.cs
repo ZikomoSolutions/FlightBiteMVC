@@ -88,6 +88,21 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
                 return null!;
             }
         }
+
+        public async Task<IActionResult> GetFilteredEnquiry(int[] ids)
+        {
+            try
+            {
+                var result = await _enquiryMaster.GetFilteredEnquiries(ids);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                return null!;
+            }
+        }
+
         public IActionResult Client()
         {
             return View();
