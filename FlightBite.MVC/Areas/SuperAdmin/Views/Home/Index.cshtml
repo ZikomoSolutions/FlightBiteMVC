@@ -1,6 +1,5 @@
 ﻿@using FlightBite.Data.Models;
 @using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
-@*@model IEnumerable<EnquiryMasterModel>*@
 @model EnquiryCreateViewModel
 <section class="enquiries-section">
     <div class=" page-content page-content--max-1440">
@@ -10,20 +9,24 @@
                     <h1><strong> Enquires / Leads </strong></h1>
                     <button type="submit" class="btn btn--success" asp-controller="Home" asp-action="FillUserAndPlatform" id="open-modal">Add Manual Enquiry</button>
                 </div>
+                
                 <div class="flex flex--distribute flex--align-center flex--is-wrap">
+                    
                     <div class="flex flex--is-wrap flex--has-gap">
+
                         @{
                             foreach (var UserType in Model.UserTypes)
                             {
                                 <div class="zik-switch" style="margin-left: 24px;">
                                     <label>
-                                        <input type="checkbox" class="zik-swich__input" value="@UserType.Id" />
+                                        <input type="checkbox" class="zik-swich__input" value="@UserType.Type" />
                                         <span class="zik-switch"></span>
                                     </label>
                                     <span>@UserType.Type</span>
                                 </div>
                             }
                         }
+
                     </div>
 
                     <div class="input-item input-item--full-width input-item--has-icon input-item--label-inside input-item--is-select"
@@ -38,9 +41,10 @@
                             <label>Label</label>
                         </div>
                     </div>
-
+                    
 
                 </div>
+                
             </div>
 
             <div class="superuser__body">
