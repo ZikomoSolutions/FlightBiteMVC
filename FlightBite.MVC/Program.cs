@@ -2,6 +2,7 @@ using FlightBite.Data;
 using FlightBite.Data.Interfaces;
 using FlightBite.Data.Repositories;
 using FlightBite.Data.Services;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -24,7 +25,7 @@ namespace FlightBite.MVC
 
             builder.Services.AddScoped<ILogRequestResponse, LogRequestResponse<DatabaseContext>>();
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            
+
 
             var app = builder.Build();
 

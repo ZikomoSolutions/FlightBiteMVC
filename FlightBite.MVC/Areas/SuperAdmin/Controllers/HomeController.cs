@@ -28,12 +28,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         {
             try
             {
-                //var result = await _enquiryMaster.GetAllEnquiry();
-                //await FillUserAndPlatform();
-                //return View(result);
-
                 return await FillUserAndPlatform();
-
             }
             catch (Exception ex)
             {
@@ -62,9 +57,10 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
             }
         }
 
+        [HttpPost]
         public async Task<IActionResult> AddEnquiry(EnquiryCreateViewModel viewModel)
         {
-            try
+            if(ModelState.IsValid)
             {
                 var model = new EnquiryMasterModel()
                 {
@@ -80,13 +76,10 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
                     UserTypeId = viewModel.UserTypeSelectedId   
                 };
                 var result = await _enquiryMaster.AddEnquiry(model);
-                return RedirectToAction("Index");
+                
             }
-            catch (Exception ex)
-            {
-                string message = ex.Message;
-                return null!;
-            }
+            
+            return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> GetFilteredEnquiry(int[] ids)
