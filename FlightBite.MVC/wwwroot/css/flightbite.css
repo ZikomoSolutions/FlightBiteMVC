@@ -4229,22 +4229,23 @@ a.btn {
     flex-direction: column;
 }
 
-.modal-active {
+.modal--active {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
 }
 
-.modal.modal-active .modal__container {
-    -webkit-transform: translateY(0px) !important;
-    transform: translateY(0px) !important;
-}
 
 .modal__container {
     -webkit-transform: translateY(-150%) !important;
     transform: translateY(-150%) !important;
     -webkit-transition: all .3s ease-in-out !important;
     transition: all .3s ease-in-out !important;
+}
+
+.modal.modal--active .modal__container {
+    -webkit-transform: translateY(0px) !important;
+    transform: translateY(0px) !important;
 }
 /*defaults and reset */
 textarea {

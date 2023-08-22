@@ -1,7 +1,10 @@
-$(document).ready(function () {
-    $("#button").click(function () {
-        //$(this).hide();
-        alert("CLicked");
-        console.log("Clicked");
-    });
+
+
+let modal = document.querySelector(".modal");
+console.log(modal);
+window.addEventListener("click", function (e) {
+    if (e.target == modal) {
+        modal.classList.remove("modal--active");
+    }
+
 });

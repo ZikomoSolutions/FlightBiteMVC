@@ -1,16 +1,16 @@
-﻿.modal-active {
+﻿.modal--active {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
 }
-.modal.modal-active .modal__container {
+/*.modal.modal-active .modal__container {
     transform: translateY(0px) !important;
 }
 
 .modal__container {
     transform: translateY(-150%) !important;
     transition: all .3s ease-in-out !important;
-}
+}*/
 .hide{
     display:none;
 }

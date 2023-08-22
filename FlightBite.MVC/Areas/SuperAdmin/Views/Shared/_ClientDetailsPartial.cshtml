@@ -1,30 +1,12 @@
-﻿<div class="modal"
-     id="toggle-modal"
-     style="">
-    <div class="modal__container"
-         id="modal-container"
-         style="">
+﻿<div class="modal" id="client-details-modal">
 
-   @*     <div class="modal__header">
-            <div class="flex flex--distribute flex--align-center">
-                <div class="h3">Client Name Notes</div>
-                <button class="btn btn--small" title="close">
-                    <i class="icon-cross" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div style="
-              text-decoration: underline;
-              color: var(--brand-1);
-              margin-top: 16px;
-            ">
-                Enquiry Details
-            </div>
-        </div>*@
+
+    <div class="modal__container" id="enquiry-details">
 
         <div class="modal__header flex flex--distribute flex--align-center">
             <div class="h3">Client Name</div>
             <div class="" style="cursor: pointer">
-                <span class="icon-cross"></span>
+                <span class="icon-cross close-modal"></span>
             </div>
         </div>
 
@@ -42,7 +24,7 @@
                         </select>
                         <!-- <i class="icon-chevron-down"></i> -->
                     </div>
-                    <div class="superuser__body__notes flex">
+                    <div class="superuser__body__notes flex" id="open-client-notes-section">
                         <div style="position: relative">
                             <span class="icon-file-text2"></span>
                             <div class="counts" style="background-color: var(--success)">
@@ -92,36 +74,50 @@
                 </div>
             </div>
         </div>
-        @*
-        <div class="modal__body">
-        <div class="flex flex--align-center flex--distribute flex--is-wrap"
-        style="border-bottom: 1px solid var(--grey-2); padding-bottom: 8px">
-        <div class="flex flex--align-center flex--has-gap">
-        <div class="superuser__body__date">
-        <span>Mon 02</span>
-        <span style="font-size: 16px"> <strong> OCT </strong></span>
-        <span>2023</span>
-        </div>
-        <div class="superuser__body__clients-name">
-        <div><strong>Chetan Patel</strong></div>
-        <div>Note Test Goes Here Etc.....</div>
-        </div>
-        </div>
-        <button class="btn btn--small" title="close">
-        <i class="icon-bin2 h3" aria-hidden="true"></i>
-        </button>
-        </div>
-        </div>*@
-
-        @*    <div class="modal__footer flex flex--align-end flex--distribute flex--is-wrap">
-        <div style="width: 85%" class="input-item input-item--full-width">
-        <div>
-        <label> Note </label>
-        <input type="text" placeholder="Write Note" />
-        </div>
-        </div>
-        <button class="btn btn--brand-1">Add Note</button>
-        </div>*@
 
     </div>
+
+    <div class="modal__container hide" id="client-name-notes">
+        <div class="modal__header">
+            <div class="flex flex--distribute flex--align-center">
+                <div class="h3">Client Name Notes</div>
+                <button class="btn btn--small" title="close">
+                    <i class="icon-cross" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div id="back-to-enquiry-details" style="text-decoration: underline;color: var(--brand-1);margin-top: 16px;">
+                Enquiry Details
+            </div>
+        </div>
+        <div class="modal__body">
+            <div class="flex flex--align-center flex--distribute flex--is-wrap"
+                 style="border-bottom: 1px solid var(--grey-2); padding-bottom: 8px">
+                <div class="flex flex--align-center flex--has-gap">
+                    <div class="superuser__body__date">
+                        <span>Mon 02</span>
+                        <span style="font-size: 16px"> <strong> OCT </strong></span>
+                        <span>2023</span>
+                    </div>
+                    <div class="superuser__body__clients-name">
+                        <div><strong>Chetan Patel</strong></div>
+                        <div>Note Test Goes Here Etc.....</div>
+                    </div>
+                </div>
+                <button class="btn btn--small" title="close">
+                    <i class="icon-bin2 h3" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal__footer flex flex--align-end flex--distribute flex--is-wrap">
+            <div style="width: 85%" class="input-item input-item--full-width">
+                <div>
+                    <label> Note </label>
+                    <input type="text" placeholder="Write Note" />
+                </div>
+            </div>
+            <button class="btn btn--brand-1">Add Note</button>
+        </div>
+    </div>
+
+
 </div>
