@@ -11,7 +11,7 @@ window.addEventListener("click", function (e) {
 
 
 function toggleModalSection(modalSection) {
-    var modalContainer = document.querySelectorAll(".modal__container");
+    var modalContainer = document.querySelectorAll(".modal--active .modal__container");
     modalContainer.forEach(e => {
         e.classList.remove("show");
         e.classList.add("hide");

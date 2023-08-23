@@ -1,7 +1,7 @@
 ﻿<section class="client-information">
     <div class="page-content page-content--max-1440">
         <div style="padding: 24px 0px">
-            <span asp-area="SuperAdmin" asp-controller="Home" asp-action="Index">Home</span> 
+            <span>Home</span> 
             <i class="icon-chevron-right"></i>
             <span>Client List</span>
             <i class="icon-chevron-right"></i>
@@ -15,7 +15,7 @@
                     <span style="background-color: var(--brand-1)">Api</span>
                 </div>
                 <div class="flex flex--has-gap flex--is-wrap">
-                    <button class="btn btn--brand-1">
+                    <button class="btn btn--brand-1 open-modal" data-modal-target="client-details-modal">
                         <div class="superuser__body__notes">
                             <div style="position: relative">
                                 <span class="icon-file-text2"></span>
@@ -35,7 +35,7 @@
                         Messages
                     </button>
                     <button class="btn btn--brand-1">Analytics</button>
-                    <button class="btn btn--success">Edit Client</button>
+                    <button class="btn btn--success open-modal" data-modal-target="add-new-client-modal">Edit Client</button>
                 </div>
             </div>
             <div class="header__section_2">
@@ -117,8 +117,8 @@
             <div class="client_information_card client_information_card_3 grid__col grid__col-md-6 grid__col-xl-4">
                 <div class="flex flex--distribute flex--align-center">
                     <div class="h3">Company Details</div>
-                    <button class="btn btn--brand-1 flex flex--has-gap"
-                            style="display: flex">
+                    <button class="btn btn--brand-1 flex flex--has-gap open-modal"
+                            style="display: flex" data-modal-target="company-document-modal" data-modal-container-target="">
                         Docs
                         <div class="superuser__body__notes">
                             <div style="position: relative">
@@ -130,6 +130,7 @@
                         </div>
                     
                     </button>
+                   
                 </div>
 
                 <div class="flex flex--is-column flex--has-sm-gap">
@@ -147,3 +148,7 @@
         </div>
     </div>
 </section>
+
+<partial name="_CompanyDocumentPartial"></partial>
+<partial name="_ClientDetailsPartial"></partial>
+<partial name="_AddNewClientPartial"></partial>

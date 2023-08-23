@@ -4093,7 +4093,7 @@ a.btn {
     }
 
 .modal__body {
-    max-height: 750px;
+    max-height: 590px;
     overflow: auto;
 }
 
@@ -4235,17 +4235,16 @@ a.btn {
     pointer-events: auto;
 }
 
+.modal.modal--active .modal__container {
+    -webkit-transform: translateY(0px) !important;
+    transform: translateY(0px) !important;
+}
 
 .modal__container {
     -webkit-transform: translateY(-150%) !important;
     transform: translateY(-150%) !important;
     -webkit-transition: all .3s ease-in-out !important;
     transition: all .3s ease-in-out !important;
-}
-
-.modal.modal--active .modal__container {
-    -webkit-transform: translateY(0px) !important;
-    transform: translateY(0px) !important;
 }
 /*defaults and reset */
 textarea {

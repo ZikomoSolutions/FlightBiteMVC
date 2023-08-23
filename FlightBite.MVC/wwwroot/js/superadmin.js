@@ -11,6 +11,7 @@ $(document).ready(function () {
     $(".open-modal").click(function () {
         var modalId = $(this).data("modal-target");
         $("#" + modalId).addClass("modal--active");
+
         $("body").css("overflow", "hidden");
     })
     $(".close-modal").click(function () {
