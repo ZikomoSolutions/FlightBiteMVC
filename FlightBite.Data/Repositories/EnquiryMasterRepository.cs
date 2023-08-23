@@ -54,11 +54,11 @@ namespace FlightBite.Data.Repositories
             return context.EnquiryMaster.Find(id);
         }
 
-        public async Task<IEnumerable<EnquiryMasterModel>> GetFilteredEnquiries(int[] ids)
+        public async Task<IEnumerable<EnquiryMasterModel>> GetFilteredEnquiries(int ids)
         {
             try
             {
-                var enquiries = await context.EnquiryMaster.Where(e => ids.Contains(e.UserTypeId)).ToListAsync();
+                var enquiries = await context.EnquiryMaster.Where(e => e.UserTypeId == ids).ToListAsync();
                 return (enquiries);
             }
             catch (Exception ex)

@@ -1,5 +1,6 @@
 ﻿using FlightBite.Data.Interfaces;
 using FlightBite.Data.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -24,11 +25,12 @@ namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
         public int UserTypeSelectedId { get; set; } = 1;
 
 
+        public List<SelectListItem>? SelectedUserTypes { get; set; }
 
         public IEnumerable<EnquiryMasterModel>? EnquiryMasters { get; set; }
         public IEnumerable<EnquiryStatusModel>? EnqyiryStatus { get; set; }
         public IEnumerable<EnquiryPlatformModel>? Platforms { get; set; }
         public IEnumerable<UserTypesModel>? UserTypes { get; set; }
-        
+        public bool IsChecked { get; set; }
     }
 }

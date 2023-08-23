@@ -1,6 +1,7 @@
 ﻿@using FlightBite.Data.Models;
 @using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
 @model EnquiryCreateViewModel
+
 <section class="enquiries-section">
     <div class=" page-content page-content--max-1440">
         <div class="superuser">
@@ -12,24 +13,22 @@
                 </div>
                 
                 <div class="flex flex--distribute flex--align-center flex--is-wrap">
-                    
-                    <div class="flex flex--is-wrap flex--has-gap">
-
-                        @{
-                            foreach (var UserType in Model.UserTypes)
-                            {
-                                <div class="zik-switch" style="margin-left: 24px;">
-                                    <label>
-                                        <input type="checkbox" class="zik-swich__input" value="@UserType.Type" />
-                                        <span class="zik-switch"></span>
-                                    </label>
-                                    <span>@UserType.Type</span>
-                                </div>
+                   <form method="post" asp-controller="home" asp-action="GetFilteredEnquiry">
+                        <div class="flex flex--is-wrap flex--has-gap">
+                            @{
+                                foreach (var UserType in Model.SelectedUserTypes)
+                                {
+                                    <div class="zik-switch">
+                                        <label>
+                                            <input type="checkbox" class="zik-swich__input" name="UserTypes" value="@UserType.Value" onchange="this.form.submit();" />
+                                            <span class="zik-switch"></span>
+                                        </label>
+                                        <span>@UserType.Text</span>
+                                    </div>
+                                }
                             }
-                        }
-
-                    </div>
-
+                        </div>
+                    </form>
                     <div class="input-item input-item--full-width input-item--has-icon input-item--label-inside input-item--is-select"
                          style="min-width: 20%">
                         <div>
@@ -102,11 +101,10 @@
                                             </div>
                                         </div>
 
-
-                                        <div class="open-modal" data-modal-target="client-details-modal">
+                                        <div class="open-modal" data-modal-target="client-details-modal" @enquiry.Id>
                                             <span class="icon-info"></span>
                                         </div>
-
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -118,8 +116,24 @@
     </div>
 </section>
 
-<partial name="_EnquiryPartial"></partial>
 
+<partial name="_EnquiryPartial"></partial>
 <partial name="_ClientDetailsPartial"></partial>
 
+@*<script>
+    function GetFilteredEnquiry()
+    {
+        alert(this.checked);
+        var theUrl = '@Url.Action("GetFilteredEnquiry", "Home");
+        window.location = theUrl;
+    }
+</script>*@
 
+@*<script>
+    //pass id in url
+    function GetFilteredEnquiry(1) {
+        var url = '@Url.Action("Home", "GetFilteredEnquiry", new {id = "_id" })';
+        var urlWithId = url.replace('_id', id);
+        window.location.href = urlWithId;
+    }
+</script>*@

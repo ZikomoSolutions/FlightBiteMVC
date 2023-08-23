@@ -14,12 +14,12 @@
 			<div class="modal__body">
 				<div id="type-of-client">
 					@{
-						foreach (var UserType in Model.UserTypes)
+						foreach (var UserType in Model.SelectedUserTypes)
 						{
 							<div style="margin-top: 24px;">
 								<label class="radio-button-container">
-									@UserType.Type
-									<input type="radio" value="@UserType.Id" asp-for="@Model.UserTypeSelectedId" />
+									@UserType.Text
+									<input type="radio" value="@UserType.Value" asp-for="@Model.UserTypeSelectedId" />
 									<span class="checkmark"></span>
 									<br />
 								</label>
@@ -58,7 +58,7 @@
 						</div>
 						<div class="input-item input-item--full-width">
 							<div>
-								<label>ATOL</label>
+								<label asp-for="@Model.ATOL">ATOL</label>
 								<input type="text"
 									   placeholder="ATOL"
 									   aria-autocomplete="list" asp-for="@Model.ATOL" />
@@ -67,7 +67,7 @@
 
 						<div class="input-item input-item--full-width">
 							<div>
-								<label>IATA</label>
+								<label asp-for="@Model.IATA">IATA</label>
 								<input type="text"
 									   placeholder="IATA"
 									   aria-autocomplete="list" asp-for="@Model.IATA" />
@@ -75,7 +75,7 @@
 						</div>
 						<div class="input-item input-item--full-width">
 							<div>
-								<label>Position / Job Title </label>
+								<label asp-for="@Model.JobTitle">Position / Job Title </label>
 								<input type="text"
 									   placeholder="Position / Job Title"
 									   aria-autocomplete="list" asp-for="@Model.JobTitle" />
@@ -83,7 +83,7 @@
 						</div>
 						<div class="input-item input-item--full-width">
 							<div>
-								<label>Email Address</label>
+								<label asp-for="@Model.ContactEmail">Email Address</label>
 								<input type="email"
 									   placeholder="Email Address"
 									   aria-autocomplete="list" asp-for="@Model.ContactEmail" />
@@ -92,7 +92,7 @@
 						</div>
 						<div class="input-item input-item--full-width">
 							<div>
-								<label>Phone Number</label>
+								<label asp-for="@Model.ContactPhone">Phone Number</label>
 								<input type="number"
 									   placeholder="Phone Number"
 									   aria-autocomplete="list" asp-for="@Model.ContactPhone" />

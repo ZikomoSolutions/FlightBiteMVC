@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using FlightBite.Data;
 using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
 {
@@ -27,7 +28,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         public async Task<IActionResult> Index()
         {
             try
-            {
+            {                
                 return await FillUserAndPlatform();
             }
             catch (Exception ex)
@@ -37,13 +38,25 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
             }
         }
 
+        public async Task<List<SelectListItem>> FillUserTypes()
+        {
+            var UserTypes = await _userType.GetAllUserTypes();
+            List<SelectListItem> items = new List<SelectListItem>();    
+            foreach (var types in UserTypes)
+            {
+               items.Add(new SelectListItem(types.Type, types.Id.ToString()));
+            }
+            return items;
+        }
+
+
         public async Task<IActionResult> FillUserAndPlatform()
         {
             try
             {
                 var model = new EnquiryCreateViewModel
                 {
-                    UserTypes = await _userType.GetAllUserTypes(),
+                    SelectedUserTypes = await FillUserTypes(),
                     Platforms = await _enquiryPlatform.GetAllEnquityPlatform(),
                     EnquiryMasters = await _enquiryMaster.GetAllEnquiry(),
                     EnqyiryStatus = await _enquiryStatus.GetAllEnquiryStatus()
@@ -76,24 +89,14 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
                     UserTypeId = viewModel.UserTypeSelectedId   
                 };
                 var result = await _enquiryMaster.AddEnquiry(model);
-                
             }
-            
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> GetFilteredEnquiry(int[] ids)
+        public async Task<IActionResult> GetFilteredEnquiry(EnquiryCreateViewModel model)
         {
-            try
-            {
-                var result = await _enquiryMaster.GetFilteredEnquiries(ids);
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                string message = ex.Message;
-                return null!;
-            }
+            var result = await _enquiryMaster.GetFilteredEnquiries(1);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Client()
