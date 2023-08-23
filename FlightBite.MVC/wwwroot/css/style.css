@@ -11,9 +11,16 @@
     transform: translateY(-150%) !important;
     transition: all .3s ease-in-out !important;
 }*/
-.hide{
-    display:none;
+.hide {
+    display: none;
 }
-.show{
-    display:block;
+
+.show {
+    display: block;
+}
+
+
+.validation-message{
+    color: red !important;
+    font-size: 12px !important;
 }

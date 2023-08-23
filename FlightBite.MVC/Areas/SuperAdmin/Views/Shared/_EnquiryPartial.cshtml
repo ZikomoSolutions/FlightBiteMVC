@@ -3,9 +3,7 @@
 @{
     Layout = null;
 }
-
-<form enctype="multipart/form-data" method="post" asp-controller="home" asp-action="AddEnquiry">
-    <div asp-validation-summary="All"></div>
+<form method="post" asp-controller="home" asp-action="AddEnquiry">
     <div class="modal " id="enquiry-modal">
 
         <div class="modal__container " id="enquiry-section-1">
@@ -21,7 +19,7 @@
                             <div style="margin-top: 24px;">
                                 <label class="radio-button-container">
                                     @UserType.Type
-                                    <input type="radio" name="radio" value="@UserType.Id" asp-for="@Model.UserTypeSelectedId" />
+                                    <input type="radio" value="@UserType.Id" asp-for="@Model.UserTypeSelectedId" />
                                     <span class="checkmark"></span>
                                     <br />
                                 </label>
@@ -31,7 +29,7 @@
                     }
 
                     <div class="flex flex--align-center" style="justify-content:center">
-                        <button class="btn btn--brand-1" style="margin-top:16px;" onclick="toggleModalSection('enquiry-section-2')" >  Proceed </button>
+                        <button type="button" class="btn btn--brand-1" style="margin-top:16px;" onclick="toggleModalSection('enquiry-section-2')">  Proceed </button>
                     </div>
                 </div>
             </div>
@@ -47,30 +45,15 @@
             </div>
             <div class="modal__body">
                 <div class="" id="client-form">
-                    @*					@{
-
-                    foreach (var UserType in Model.UserTypes)
-                    {
-                    <div style="margin-top: 24px;">
-                    <label class="radio-button-container">
-                    @UserType.Type
-                    <input type="radio" name="radio" value="@UserType.Id" onclick="selectClientType(this.value)" asp-for="@Model.UserTypeSelectedId" />
-                    <span class="checkmark"></span>
-                    <br />
-                    </label>
-                    </div>
-
-                    }
-                    }*@
-
                     <div class="flex flex--is-column flex--has-gap ">
+
                         <div class="input-item input-item--full-width">
                             <div>
                                 <label asp-for="@Model.CompanyName">Company / Group Name</label>
                                 <input type="text"
                                        placeholder="Company / Group Name"
-                                       aria-autocomplete="list" asp-for="@Model.CompanyName"  />
-                                <span asp-validation-for="@Model.CompanyName"  style="color:red;"></span>
+                                       aria-autocomplete="list" asp-for="@Model.CompanyName" />
+                                <span asp-validation-for="CompanyName" class="validation-message"></span>
                             </div>
                         </div>
                         <div class="input-item input-item--full-width">
@@ -104,6 +87,7 @@
                                 <input type="email"
                                        placeholder="Email Address"
                                        aria-autocomplete="list" asp-for="@Model.ContactEmail" />
+                                <span asp-validation-for="@Model.ContactEmail" class="validation-message"></span>
                             </div>
                         </div>
                         <div class="input-item input-item--full-width">
@@ -112,6 +96,7 @@
                                 <input type="number"
                                        placeholder="Phone Number"
                                        aria-autocomplete="list" asp-for="@Model.ContactPhone" />
+                                <span asp-validation-for="@Model.ContactPhone" class="validation-message"></span>
                             </div>
                         </div>
                         <div>Where did you hear about FlightBite?</div>
@@ -123,7 +108,7 @@
                             <div>
                                 <label class="radio-button-container">
                                     @platform.Name
-                                    <input type="radio" id="@platform.Id" value="@platform.Id" name="radio" asp-for="@Model.PlatformSelectedId" />
+                                    <input type="radio" value="@platform.Id" asp-for="@Model.PlatformSelectedId" />
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -132,8 +117,9 @@
 
                     <!--!-->
                     <div class="flex" style="justify-content: center; margin-top: 16px">
-                        <button type="submit" class="btn btn--brand-1 " >Submit</button>
+                        <button type="submit" class="btn btn--brand-1 ">Submit</button>
                     </div>
+
                 </div>
             </div>
         </div>
