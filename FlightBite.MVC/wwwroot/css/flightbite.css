@@ -568,7 +568,6 @@ h4, .h4 {
 }
 
     .superuser__body__notes div {
-        position: reletive !important;
     }
 
         .superuser__body__notes div .counts {
@@ -579,7 +578,7 @@ h4, .h4 {
             font-size: 12px;
             color: #fff;
             position: absolute;
-            top: -10px;
+            top: -9px;
             right: -4px;
             display: -webkit-box;
             display: -ms-flexbox;
@@ -616,7 +615,7 @@ h4, .h4 {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    align-item: center;
+    align-items: center;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     -webkit-box-pack: justify;
@@ -630,8 +629,8 @@ h4, .h4 {
         display: flex;
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-        align-item: center;
-        gap: 16px;
+        align-items: center;
+        gap: 8px;
     }
 
     .company__document ul li .company__document__icon {
@@ -4093,7 +4092,7 @@ a.btn {
     }
 
 .modal__body {
-    max-height: 750px;
+    max-height: 590px;
     overflow: auto;
 }
 
@@ -4235,17 +4234,16 @@ a.btn {
     pointer-events: auto;
 }
 
+.modal.modal--active .modal__container {
+    -webkit-transform: translateY(0px) !important;
+    transform: translateY(0px) !important;
+}
 
 .modal__container {
     -webkit-transform: translateY(-150%) !important;
     transform: translateY(-150%) !important;
     -webkit-transition: all .3s ease-in-out !important;
     transition: all .3s ease-in-out !important;
-}
-
-.modal.modal--active .modal__container {
-    -webkit-transform: translateY(0px) !important;
-    transform: translateY(0px) !important;
 }
 /*defaults and reset */
 textarea {

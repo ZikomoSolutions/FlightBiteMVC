@@ -1,0 +1,202 @@
+﻿
+<form>
+    <div class="modal" id="add-new-client-modal">
+
+        <div class="modal__container" id="add-client-section" style="max-width:1100px;">
+            <div class="modal__header flex flex--distribute flex--align-center">
+                <div class="h3"><strong> Add Client </strong></div>
+                <div style="cursor: pointer">
+                    <button class="btn btn--sm close-modal">
+                        <span class="icon-cross "></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal__body">
+                <div onclick="toggleModalSection('client-logo-section')" style="cursor:pointer;" class="modal__body__client-logo">
+                    <span class="icon-image"></span>
+                    <div>Add Client Logo</div>
+                </div>
+
+                <div class="flex" style="gap: 2rem ; margin-top: 1.5rem;">
+                    <div>
+                        <label class="radio-button-container">
+                            Agent
+                            <input type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="radio-button-container">
+                            Supplier
+                            <input type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex flex--is-column flex--has-gap">
+                    <div class="h4" style="margin-top: 32px">
+                        <strong> Company Details </strong>
+                    </div>
+
+                    <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
+                        <div>
+                            <input type="text"
+                                   placeholder="search for a really good hotel" />
+                            <label>Company Name </label>
+                            <i class="icon-pencil"></i>
+                        </div>
+                    </div>
+                    <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
+                        <div>
+                            <input type="text"
+                                   placeholder="search for a really good hotel" />
+                            <label>Vat Number </label>
+                            <i class="icon-pencil"></i>
+                        </div>
+                    </div>
+                    <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
+                        <div>
+                            <input type="text"
+                                   placeholder="search for a really good hotel" />
+                            <label>Registraion Number </label>
+                            <i class="icon-pencil"></i>
+                        </div>
+                    </div>
+                    <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
+                        <div>
+                            <input type="text"
+                                   placeholder="search for a really good hotel" />
+                            <label>Account Holder </label>
+                            <i class="icon-pencil"></i>
+                        </div>
+                    </div>
+                    <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
+                        <div>
+                            <input type="text"
+                                   placeholder="search for a really good hotel" />
+                            <label> Position / Job Title </label>
+                            <i class="icon-pencil"></i>
+                        </div>
+                    </div>
+                    <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
+                        <div>
+                            <input type="text"
+                                   placeholder="search for a really good hotel" />
+                            <label>Email Address </label>
+                            <i class="icon-pencil"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="h4" style="margin-block: 24px">
+                    <strong> Bonding Details </strong>
+                </div>
+
+                <div class="flex flex--is-column flex--has-gap">
+                    <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
+                        <div>
+                            <input type="text"
+                                   placeholder="search for a really good hotel" />
+                            <label> ATOL </label>
+                            <i class="icon-pencil"></i>
+                        </div>
+                    </div>
+
+                    <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
+                        <div>
+                            <input type="text"
+                                   placeholder="search for a really good hotel" />
+                            <label> IATA </label>
+                            <i class="icon-pencil"></i>
+                        </div>
+                    </div>
+
+                    <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
+                        <div>
+                            <input type="text"
+                                   placeholder="search for a really good hotel" />
+                            <label> PTS</label>
+                            <i class="icon-pencil"></i>
+                        </div>
+                    </div>
+
+                    <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
+                        <div>
+                            <input type="text"
+                                   placeholder="search for a really good hotel" />
+                            <label> TTA </label>
+                            <i class="icon-pencil"></i>
+                        </div>
+                    </div>
+
+                    <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
+                        <div>
+                            <input type="text"
+                                   placeholder="search for a really good hotel" />
+                            <label> Other </label>
+                            <i class="icon-pencil"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="h4" style="margin-block: 24px">
+                    <strong> Terms </strong>
+                </div>
+
+                <div class="flex flex--is-column flex--has-gap">
+                    <div class="checkbox">
+                        <input type="checkbox" id="Agreement" />
+                        <label for="Agreement">FlightBite Agreement Signed</label>
+                    </div>
+
+                    <div class="checkbox">
+                        <input type="checkbox" id="Document" />
+                        <label for="Document">Required Documnets Added And Signed Off</label>
+                    </div>
+                </div>
+            </div>
+            <!--!-->
+            <div style="padding: 24px 48px"
+                 class="modal__footer flex flex--align-center flex--distribute">
+                <a class="close-modal" style="text-decoration: underline; color:var(--brand-1);">Cancel</a>
+                <button class="btn btn--brand-1">Save</button>
+            </div>
+        </div>
+
+
+
+
+        <div class="modal__container hide" id="client-logo-section" style="max-width:1100px;">
+            <div class="modal__header flex flex--distribute flex--align-center">
+                <div class="h3">Add Client Logo</div>
+
+                <button class="btn btn--sm " style="color: var(--brand-1); cursor: pointer" onclick="toggleModalSection('add-client-section')">
+                    <i class="icon-cross"></i>
+                </button>
+            </div>
+            <div class="modal__body">
+                <label _="on dragover add .modal--upload-box-on-over on me on dragleave remove .modal--upload-box-on-over on me" class="modal__upload-box" for="upload-icon" style="cursor:pointer;">
+                    <div>
+                        Click to browse your device, or drag your image file here
+                    </div>
+                </label>
+                <input 
+                       class="input-file"
+                       type="file"
+                       name="icon-upload"
+                       id="upload-icon" style="opacity:0;" />
+            </div>
+
+            <div style="padding: 24px 48px"
+                 class="modal__footer flex flex--align-center flex--distribute">
+                <a class="" style="text-decoration: underline" onclick="toggleModalSection('add-client-section')">Cancel</a>
+                <button type="submit" class="btn btn--brand-1">Save</button>
+            </div>
+            <div />
+
+            <!--!-->
+        </div>
+
+</form>

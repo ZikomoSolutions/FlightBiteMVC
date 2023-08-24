@@ -27,20 +27,20 @@
 						}
 					}
 					<div class="flex flex--align-center" style="justify-content:center">
-						<button type="button" class="btn btn--brand-1" style="margin-top:16px;" id="submit-selected-client-type">  Proceed </button>
+						<button type="button" class="btn btn--brand-1" style="margin-top:16px;" onclick="toggleModalSection('enquiry-section-2')">  Proceed </button>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>	
 
 		<div class="modal__container hide " id="enquiry-section-2">
 			<div class="modal__header flex flex--distribute flex--align-center" id="form-header">
-				<div class="h3">Provider Form</div>
-
-				<div class="h4" style="color: var(--brand-1); cursor: pointer" id="back-to-enquiry-section-1">
+				<div class="h3">Add Enquiry Form</div>
+				<div class="h4" style="color: var(--brand-1); cursor: pointer" onclick="toggleModalSection('enquiry-section-1')">
 					Back
 				</div>
 			</div>
+
 			<div class="modal__body">
 				<div class="" id="client-form">
 					<div class="flex flex--is-column flex--has-gap ">
@@ -51,7 +51,7 @@
 								<input type="text"
 									   placeholder="Company / Group Name"
 									   aria-autocomplete="list" asp-for="@Model.CompanyName" />
-								<span asp-validation-for="CompanyName" style="color:red;"></span>
+								<span asp-validation-for="CompanyName" class="validation-message"></span>
 							</div>
 						</div>
 						<div class="input-item input-item--full-width">
@@ -85,7 +85,7 @@
 								<input type="email"
 									   placeholder="Email Address"
 									   aria-autocomplete="list" asp-for="@Model.ContactEmail" />
-								<span asp-validation-for="@Model.ContactEmail" style="color:red;"></span>
+								<span asp-validation-for="@Model.ContactEmail" class="validation-message"></span>
 							</div>
 						</div>
 						<div class="input-item input-item--full-width">
@@ -94,7 +94,7 @@
 								<input type="number"
 									   placeholder="Phone Number"
 									   aria-autocomplete="list" asp-for="@Model.ContactPhone" />
-								<span asp-validation-for="@Model.ContactPhone" style="color:red;"></span>
+								<span asp-validation-for="@Model.ContactPhone" class="validation-message"></span>
 							</div>
 						</div>
 						<div>Where did you hear about FlightBite?</div>
@@ -114,11 +114,13 @@
 					</div>
 
 					<!--!-->
-					<div class="flex" style="justify-content: center; margin-top: 16px">
-						<button type="submit" class="btn btn--brand-1">Submit</button>
-					</div>
+
 
 				</div>
+			</div>
+			
+			<div class=" modal__footer flex " style="justify-content: center;">
+				<button type="submit" class="btn btn--brand-1 ">Submit</button>
 			</div>
 		</div>
 		<!--!-->

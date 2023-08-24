@@ -1,6 +1,6 @@
-
-
 $(document).ready(function () {
+
+    /*Modal Functionlity*/
 
     //$(window).click(function (e) {
     //    if (e.target == $(".modal")) {
@@ -11,7 +11,8 @@ $(document).ready(function () {
     $(".open-modal").click(function () {
         var modalId = $(this).data("modal-target");
         $("#" + modalId).addClass("modal--active");
-        $("body").css("overflow","hidden");
+
+        $("body").css("overflow", "hidden");
     })
     $(".close-modal").click(function () {
 
@@ -20,6 +21,11 @@ $(document).ready(function () {
         $("#" + modalId).addClass("modal--active");
         $("body").css("overflow", "auto");
     });
+
+
+
+
+    //Enquiry Page 
 
     $("#open-client-notes-section").click(function () {
         $("#client-name-notes").show();
@@ -40,7 +46,17 @@ $(document).ready(function () {
     })
     $("#submit-button").click(function () {
         $(".modal").removeClass("modal--active");
-    })
+    });
+
+
+
+    /*Client Page*/
+    $("#selectClient").change(function (e) {
+        $("#client-enquiry-form-heading").text(e.value);
+        console.log(e.value);
+    });
+
+
 });
 $(document).keydown(function (e) {
     if (e.keyCode == 27) {
@@ -49,20 +65,3 @@ $(document).keydown(function (e) {
 
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

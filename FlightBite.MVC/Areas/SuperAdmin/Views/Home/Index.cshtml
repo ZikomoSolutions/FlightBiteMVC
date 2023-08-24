@@ -9,7 +9,6 @@
                 <div class="flex flex--is-wrap flex--distribute">
                     <h1><strong> Enquires / Leads </strong></h1>
                     <button class="btn btn--success open-modal" data-modal-target="enquiry-modal">Add Manual Enquiry</button>
-                    @*<a class="btn btn--success"  asp-controller="Home" asp-area="SuperAdmin" asp-action="OnClick" >Add Manual Enquiry</a>*@
                 </div>
                 <partial name="_FilterEnquiryPartial" model="Model.SelectedUserTypes"></partial>
             </div>
@@ -56,7 +55,7 @@
 
                                 <div class="">
                                     <div class="superuser__body__notes flex">
-                                        <div style="position: relative">
+                                        <div style="position: relative" class="open-modal" data-modal-target="client-details-modal"  >
                                             <span class="icon-file-text2"></span>
                                             <div class="counts">5</div>
                                         </div>

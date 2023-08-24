@@ -9,21 +9,20 @@ namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
 {
     public class EnquiryCreateViewModel
     {
-        [Required]
-        
+        [Required(ErrorMessage ="The company name is required ")]
         public string? CompanyName { get; set; }
         public string? ATOL { get; set; }
         public string? IATA { get; set; }
         public string? JobTitle { get; set; }
-        [Required]
+        [Required (ErrorMessage = "The email is required")]
         [EmailAddress]
         public string? ContactEmail { get; set; }
-        [Required]
+        [Required(ErrorMessage = "The phone number is required")]
         [Phone]
         public string? ContactPhone { get; set; }
         public int PlatformSelectedId { get; set; } = 1;
         public int UserTypeSelectedId { get; set; } = 1;
-
+        public bool IsChecked { get; set; }
 
         public List<SelectListItem>? SelectedUserTypes { get; set; }
 
