@@ -21,6 +21,8 @@
 
 .modal--upload-box-on-over {
     border: dotted 4px #C0C7CE;
+    background-color: var(--grey-1);
+    transition:all 1s;
 }
 
 .validation-message {

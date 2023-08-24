@@ -17,7 +17,7 @@
                         foreach (var UserType in Model.UserTypes)
                         {
                             <div style="margin-top: 24px;">
-                                <label class="radio-button-container">
+                                <label id="client-type" class="radio-button-container" onclick="selectClientType(@UserType.Type)">
                                     @UserType.Type
                                     <input type="radio" value="@UserType.Id" asp-for="@Model.UserTypeSelectedId" />
                                     <span class="checkmark"></span>
@@ -37,7 +37,7 @@
 
         <div class="modal__container hide " id="enquiry-section-2">
             <div class="modal__header flex flex--distribute flex--align-center" id="form-header">
-                <div class="h3">Provider Form</div>
+                <div id="client-enquiry-form-heading" class="h3">Add Enquiry Form</div>
 
                 <div class="h4" style="color: var(--brand-1); cursor: pointer" onclick="toggleModalSection('enquiry-section-1')">
                     Back
@@ -55,7 +55,7 @@
                                        aria-autocomplete="list" asp-for="@Model.CompanyName" />
 
                                 <span asp-validation-for="CompanyName" class="validation-message"></span>
-                                
+
                             </div>
                         </div>
                         <div class="input-item input-item--full-width">
@@ -118,12 +118,13 @@
                     </div>
 
                     <!--!-->
-                    <div class="flex" style="justify-content: center; margin-top: 16px">
-                        <button type="submit" class="btn btn--brand-1 ">Submit</button>
-                    </div>
+
 
                 </div>
             </div>
+                <div class=" modal__footer flex" style="justify-content: center;">
+                    <button type="submit" class="btn btn--brand-1 ">Submit</button>
+                </div>
         </div>
         <!--!-->
     </div>

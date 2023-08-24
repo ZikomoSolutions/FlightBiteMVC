@@ -23,7 +23,7 @@ $(document).ready(function () {
     });
 
 
-    
+
 
     //Enquiry Page 
 
@@ -51,8 +51,9 @@ $(document).ready(function () {
 
 
     /*Client Page*/
-    $(".input-file").change(function (e) {
-        
+    $("#selectClient").change(function (e) {
+        $("#client-enquiry-form-heading").text(e.value);
+        console.log(e.value);
     });
 
 
