@@ -31,6 +31,5 @@ namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
         public IEnumerable<EnquiryStatusModel>? EnqyiryStatus { get; set; }
         public IEnumerable<EnquiryPlatformModel>? Platforms { get; set; }
         public IEnumerable<UserTypesModel>? UserTypes { get; set; }
-        public bool IsChecked { get; set; }
     }
 }

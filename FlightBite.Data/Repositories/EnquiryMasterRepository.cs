@@ -39,7 +39,6 @@ namespace FlightBite.Data.Repositories
             {
                 IList<EnquiryMasterModel> enquiryMasters = await context.EnquiryMaster.Include(c=>c.EnquiryStatus).ToListAsync();
                 return (enquiryMasters);
-
             }
             catch (Exception ex)
             {
@@ -54,11 +53,11 @@ namespace FlightBite.Data.Repositories
             return context.EnquiryMaster.Find(id);
         }
 
-        public async Task<IEnumerable<EnquiryMasterModel>> GetFilteredEnquiries(int ids)
+        public async Task<IEnumerable<EnquiryMasterModel>> GetFilteredEnquiries(List<string> UserIds)
         {
             try
             {
-                var enquiries = await context.EnquiryMaster.Where(e => e.UserTypeId == ids).ToListAsync();
+                var enquiries = await context.EnquiryMaster.Where(e => UserIds.Contains(e.UserTypeId.ToString())).ToListAsync();
                 return (enquiries);
             }
             catch (Exception ex)

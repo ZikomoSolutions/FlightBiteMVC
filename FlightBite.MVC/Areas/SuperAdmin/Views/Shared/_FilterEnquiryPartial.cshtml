@@ -1,0 +1,34 @@
+﻿@using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
+@model List<SelectListItem>
+<form method="post" asp-controller="home" asp-action="Index">
+<div class="flex flex--distribute flex--align-center flex--is-wrap">
+    
+    <div class="flex flex--is-wrap flex--has-gap">
+        @for (var index = 0; index < Model.Count(); index++)
+        {
+            <div class="zik-switch">
+                <label asp-for="@Model[index].Selected">
+                    <input type="checkbox" asp-for="@Model[index].Selected" class="zik-swich__input" onchange="this.form.submit();" />
+                    <span class="zik-switch"></span>
+                </label>
+                <input type="hidden" asp-for="@Model[index].Value" />
+                <input type="hidden" asp-for="@Model[index].Text" />
+                <span>@Model[index].Text</span>
+            </div>
+        }
+    </div>
+
+    <div class="input-item input-item--full-width input-item--has-icon input-item--label-inside input-item--is-select"
+         style="min-width: 20%">
+        <div>
+            <select>
+                <option>Select One...</option>
+                <option>Item</option>
+                <option>Item</option>
+            </select>
+            <i class="icon-chevron-down"></i>
+            <label>Label</label>
+        </div>
+    </div>
+</div>
+</form>

@@ -11,40 +11,7 @@
                     <button class="btn btn--success open-modal" data-modal-target="enquiry-modal">Add Manual Enquiry</button>
                     @*<a class="btn btn--success"  asp-controller="Home" asp-area="SuperAdmin" asp-action="OnClick" >Add Manual Enquiry</a>*@
                 </div>
-                
-                <div class="flex flex--distribute flex--align-center flex--is-wrap">
-                   <form method="post" asp-controller="home" asp-action="GetFilteredEnquiry">
-                        <div class="flex flex--is-wrap flex--has-gap">
-                            @{
-                                foreach (var UserType in Model.SelectedUserTypes)
-                                {
-                                    <div class="zik-switch">
-                                        <label>
-                                            <input type="checkbox" class="zik-swich__input" name="UserTypes" value="@UserType.Value" onchange="this.form.submit();" />
-                                            <span class="zik-switch"></span>
-                                        </label>
-                                        <span>@UserType.Text</span>
-                                    </div>
-                                }
-                            }
-                        </div>
-                    </form>
-                    <div class="input-item input-item--full-width input-item--has-icon input-item--label-inside input-item--is-select"
-                         style="min-width: 20%">
-                        <div>
-                            <select>
-                                <option>Select One...</option>
-                                <option>Item</option>
-                                <option>Item</option>
-                            </select>
-                            <i class="icon-chevron-down"></i>
-                            <label>Label</label>
-                        </div>
-                    </div>
-                    
-
-                </div>
-                
+                <partial name="_FilterEnquiryPartial" model="Model.SelectedUserTypes"></partial>
             </div>
 
             <div class="superuser__body">
@@ -104,7 +71,6 @@
                                         <div class="open-modal" data-modal-target="client-details-modal" @enquiry.Id>
                                             <span class="icon-info"></span>
                                         </div>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -116,24 +82,5 @@
     </div>
 </section>
 
-
 <partial name="_EnquiryPartial"></partial>
 <partial name="_ClientDetailsPartial"></partial>
-
-@*<script>
-    function GetFilteredEnquiry()
-    {
-        alert(this.checked);
-        var theUrl = '@Url.Action("GetFilteredEnquiry", "Home");
-        window.location = theUrl;
-    }
-</script>*@
-
-@*<script>
-    //pass id in url
-    function GetFilteredEnquiry(1) {
-        var url = '@Url.Action("Home", "GetFilteredEnquiry", new {id = "_id" })';
-        var urlWithId = url.replace('_id', id);
-        window.location.href = urlWithId;
-    }
-</script>*@
