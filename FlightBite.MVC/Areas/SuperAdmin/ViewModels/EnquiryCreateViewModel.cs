@@ -21,7 +21,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
         public string? ContactPhone { get; set; }
         public int PlatformSelectedId { get; set; } = 1;
         public int UserTypeSelectedId { get; set; } = 1;
-
+        public bool IsChecked { get; set; }
 
 
         public IEnumerable<EnquiryMasterModel>? EnquiryMasters { get; set; }

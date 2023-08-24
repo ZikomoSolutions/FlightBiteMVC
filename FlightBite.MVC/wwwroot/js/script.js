@@ -22,3 +22,8 @@ function toggleModalSection(modalSection) {
     document.getElementById(modalSection).classList.add("show");
 
 }
+
+function getInputValue(e) {
+    alert();
+    console.log(e.target.file[0]);
+}

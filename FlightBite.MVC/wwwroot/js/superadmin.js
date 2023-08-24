@@ -49,8 +49,11 @@ $(document).ready(function () {
     });
 
 
-    /*Client Page*/
 
+    /*Client Page*/
+    $(".input-file").change(function (e) {
+        
+    });
 
 
 });

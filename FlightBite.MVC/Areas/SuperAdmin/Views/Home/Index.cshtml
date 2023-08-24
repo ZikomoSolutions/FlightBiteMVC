@@ -15,11 +15,12 @@
                     <div class="flex flex--is-wrap flex--has-gap">
 
                         @{
-                            foreach (var UserType in Model.UserTypes)
+                            foreach (var UserType in Model.UserTypes!)
                             {
                                 <div class="zik-switch" >
                                     <label>
-                                        <input type="checkbox" class="zik-swich__input" value="@UserType.Type" />
+                                        <input type="checkbox" class="zik-swich__input" value="@Model.IsChecked" />
+                                        
                                         <span class="zik-switch"></span>
                                     </label>
                                     <span>@UserType.Type</span>

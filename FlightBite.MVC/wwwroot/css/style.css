@@ -19,8 +19,11 @@
     display: block;
 }
 
+.modal--upload-box-on-over {
+    border: dotted 4px #C0C7CE;
+}
 
-.validation-message{
+.validation-message {
     color: red !important;
     font-size: 12px !important;
 }

@@ -177,15 +177,16 @@
                 </button>
             </div>
             <div class="modal__body">
-                <label class="modal__upload-box" for="upload-icon" style="background-image: url(./img/tavel-logo.svg);cursor:pointer;">
+                <label _="on dragover add .modal--upload-box-on-over on me on dragleave remove .modal--upload-box-on-over on me" class="modal__upload-box" for="upload-icon" style="cursor:pointer;">
                     <div>
                         Click to browse your device, or drag your image file here
                     </div>
                 </label>
-                <input style=""
+                <input 
+                       class="input-file"
                        type="file"
                        name="icon-upload"
-                       id="upload-icon" />
+                       id="upload-icon" style="opacity:0;" />
             </div>
 
             <div style="padding: 24px 48px"
