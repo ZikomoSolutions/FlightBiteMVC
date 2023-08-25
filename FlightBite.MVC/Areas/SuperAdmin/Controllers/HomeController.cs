@@ -98,7 +98,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         {
             var SelectedUserType = UserTypes.Where(x => x.Selected).ToList();
             
-            if (SelectedUserType.Count() > 0)
+            if (SelectedUserType.Count() >= 0)
             {
                 var result = await _enquiryMaster.GetFilteredEnquiries(SelectedUserType.Select(e=>e.Value).ToList());
 
@@ -117,6 +117,12 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
                 return RedirectToAction("Index");
             }
 
+        }
+
+        public ViewResult EnquiryView(int id)
+        {
+
+            return View();
         }
 
         public IActionResult Client()

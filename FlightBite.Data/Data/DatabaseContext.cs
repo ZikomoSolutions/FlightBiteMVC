@@ -82,7 +82,7 @@ namespace FlightBite.Data
                 new UserTypesModel
                 {
                     Id = 1,
-                    Type = "Flight Provider / Consolidator",
+                    Type = "Supplier",
                     Description= "-",
                     CreatedAt = DateTime.Now,
                     UpdatedAt = null,

@@ -67,8 +67,10 @@
                                             </div>
                                         </div>
 
-                                        <div class="open-modal" data-modal-target="client-details-modal" @enquiry.Id>
+                                        <div class="open-modal" data-modal-target="client-details-modal" >
+                                            <a onclick="PresentData(@enquiry.Id)" id="PresentData">
                                             <span class="icon-info"></span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -82,4 +84,14 @@
 </section>
 
 <partial name="_EnquiryPartial"></partial>
-<partial name="_ClientDetailsPartial"></partial>
+<partial name="_ClientDetailsPartial" model="@Model.EnquiryMasters" ></partial>
+@*<script>
+    var PresentData = function(id) {
+        $ajax({
+            //type: "POST",
+            //url:"",
+            //data: {id:id},
+            $("#ModelName").modal('show');
+        })
+    }
+</script>*@
