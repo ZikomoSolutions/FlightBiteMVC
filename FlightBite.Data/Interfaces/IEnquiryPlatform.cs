@@ -10,5 +10,7 @@ namespace FlightBite.Data.Interfaces
     public interface IEnquiryPlatform
     {
         Task<IEnumerable<EnquiryPlatformModel>> GetAllEnquityPlatform();
+
+        string GetSpecificPlatform(int id);
     }
 }

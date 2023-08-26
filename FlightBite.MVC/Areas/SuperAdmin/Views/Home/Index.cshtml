@@ -15,7 +15,7 @@
 
             <div class="superuser__body">
                 @if (Model != null)
-                {
+                { 
                     @foreach (var enquiry in Model.EnquiryMasters)
                     {
                         <div class="flex flex--align-center flex--distribute flex--is-wrap"
@@ -27,16 +27,8 @@
                                     <span>@enquiry.CreatedAt.ToString("yyyy")</span>
                                 </div>
                                 <div class="superuser__body__clients-name">
-                                    @if (enquiry.CompanyName != null)
-                                    {
-                                        <div><strong>@enquiry.CompanyName</strong></div>
-                                        <div>@enquiry.ContactEmail</div>
-                                    }
-                                    else
-                                    {
-                                        <div><strong>@enquiry.ContactPerson</strong></div>
-                                        <div>@enquiry.ContactEmail</div>
-                                    }
+                                     <div><strong>@enquiry.CompanyName</strong></div>
+                                     <div>@enquiry.ContactEmail</div>
                                 </div>
                             </div>
                             <div class="flex flex--is-wrap flex--align-center" style="gap: 4rem">
@@ -59,6 +51,7 @@
                                             <span class="icon-file-text2"></span>
                                             <div class="counts">5</div>
                                         </div>
+
                                         <div style="position: relative">
                                             <span class="icon-bubbles"></span>
                                             <div class="counts"
@@ -67,15 +60,17 @@
                                             </div>
                                         </div>
 
-                                        <div class="open-modal" data-modal-target="client-details-modal" >
-                                            <a onclick="PresentData(@enquiry.Id)" id="PresentData">
-                                            <span class="icon-info"></span>
-                                            </a>
+                                        <div class="open-modal" data-modal-target="@("client-details-modal-" + enquiry.Id)" >
+                                             <span class="icon-info"></span>
                                         </div>
+                                        <partial name="_ClientDetailsPartial" model="enquiry"></partial>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
+
                     }
                 }
             </div>
@@ -84,14 +79,6 @@
 </section>
 
 <partial name="_EnquiryPartial"></partial>
-<partial name="_ClientDetailsPartial" model="@Model.EnquiryMasters" ></partial>
-@*<script>
-    var PresentData = function(id) {
-        $ajax({
-            //type: "POST",
-            //url:"",
-            //data: {id:id},
-            $("#ModelName").modal('show');
-        })
-    }
-</script>*@
+
+
+@*data-modal-url="@Url.Action($"EnquiryView/{enquiry.Id}")"*@

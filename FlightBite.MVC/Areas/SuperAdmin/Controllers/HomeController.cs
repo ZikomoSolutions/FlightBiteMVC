@@ -6,6 +6,7 @@ using FlightBite.Data;
 using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Azure;
 
 namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
 {
@@ -119,11 +120,21 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
 
         }
 
-        public ViewResult EnquiryView(int id)
-        {
+        //public IActionResult EnquiryView(int id)
+        //{
+        //    //EnquiryMasterModel enquiry = _enquiryMaster.GetEnquiry(id);
+        //    //EnquiryCreateViewModel enquiryCreateViewModel = new EnquiryCreateViewModel
+        //    //{
+        //    //    SelectedEnquiryId = enquiry.Id,
+        //    //    CompanyName = enquiry.CompanyName,
+        //    //    ContactEmail = enquiry.ContactEmail,
+        //    //    ContactPhone = enquiry.ContactPhone,
 
-            return View();
-        }
+        //    //};
+        //    return RedirectToAction("Index");
+         
+     
+        //}
 
         public IActionResult Client()
         {

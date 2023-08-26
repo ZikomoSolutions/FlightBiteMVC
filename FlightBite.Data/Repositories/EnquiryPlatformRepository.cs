@@ -30,5 +30,19 @@ namespace FlightBite.Data.Repositories
                 return null!;
             }
         }
+
+        public  string GetSpecificPlatform(int id)
+        {
+            try
+            {
+                var specificPlatform = context.EnquityPlatform.FirstOrDefault(s => s.Id == id).Name;
+                return specificPlatform;
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                return null!;
+            }
+        }
     }
 }

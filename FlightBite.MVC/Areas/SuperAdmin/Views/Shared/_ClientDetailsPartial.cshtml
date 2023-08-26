@@ -1,8 +1,11 @@
 ﻿@using FlightBite.Data.Models;
+@using FlightBite.Data.Interfaces;
 @using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
-@model EnquiryCreateViewModel
+@model EnquiryMasterModel 
+@inject IEnquiryPlatform _enquiryPlatform
 
-<div class="modal" id="client-details-modal">
+@*<div class="modal" id="client-details-modal">*@
+<div class="modal" id="client-details-modal-@Model.Id">
     
     <div class="modal__container" id="enquiry-details">
         <div class="modal__header flex flex--distribute flex--align-center">
@@ -15,16 +18,15 @@
         </div>
 
         <div class="modal__body">
+            <input type="hidden" asp-for="@Model.Id" />
             <div class="input-item input-item--full-width input-item--has-icon"
                  style="width: 100%">
                 <label>Enquiry Status </label>
                 <div class="flex flex--distribute flex--align-center flex--has-gap">
                     <div style="width: 100%">
                         <select name="" id="">
-                            <option value="">In Prgress...</option>
-                            <option value="">In Prgress...</option>
-                            <option value="">In Prgress...</option>
-                            <option value="">In Prgress...</option>
+                            <option value="">In Prgress</option>
+                            <option value="">Complete</option>
                         </select>
                         <!-- <i class="icon-chevron-down"></i> -->
                     </div>
@@ -48,33 +50,33 @@
                  style="margin-top: 16px">
                 <div class="flex">
                     <small style="width: 50%"> <strong> Contact Name </strong></small>
-                    <small style="width: 50%">Rikk Ogden</small>
+                    <small style="width: 50%">@Model.CompanyName</small>
                 </div>
                 <div class="flex">
                     <small style="width: 50%">
                         <strong> Position / Job Title</strong>
                     </small>
-                    <small style="width: 50%">Rikk Ogden</small>
+                    <small style="width: 50%">@Model.JobTitle</small>
                 </div>
                 <div class="flex">
                     <small style="width: 50%"> <strong> Phone Number </strong></small>
-                    <small style="width: 50%">1234567891</small>
+                    <small style="width: 50%">@Model.ContactPhone</small>
                 </div>
                 <div class="flex">
                     <small style="width: 50%"> <strong> Email </strong></small>
-                    <small style="width: 50%">rikkogden@zikomo.io</small>
+                    <small style="width: 50%">@Model.ContactEmail</small>
                 </div>
                 <div class="flex">
                     <small style="width: 50%"> <strong> ATOL </strong></small>
-                    <small style="width: 50%">1234</small>
+                    <small style="width: 50%">@Model.ATOL</small>
                 </div>
                 <div class="flex">
-                    <small style="width: 50%"> <strong> ABTA </strong></small>
-                    <small style="width: 50%">1234</small>
+                    <small style="width: 50%"> <strong> IATA </strong></small>
+                    <small style="width: 50%">@Model.IATA</small>
                 </div>
                 <div class="flex">
                     <small style="width: 50%"> <strong> Lead </strong></small>
-                    <small style="width: 50%">Google</small>
+                    <small style="width: 50%">@_enquiryPlatform.GetSpecificPlatform(Model.EnquiryPlatformId)</small>
                 </div>
             </div>
         </div>

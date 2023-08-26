@@ -4,6 +4,7 @@ let modal = document.querySelector(".modal");
 window.addEventListener("click", function (e) {
     if (e.target == modal) {
         modal.classList.remove("modal--active");
+        document.body.style.overflow = "auto";
     }
 
 });
