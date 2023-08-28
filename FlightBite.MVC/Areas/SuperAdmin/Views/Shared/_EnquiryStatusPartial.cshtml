@@ -1,0 +1,11 @@
+﻿@using FlightBite.Data.Models;
+@using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
+@model EnquiryCreateViewModel
+<form method="post" asp-controller="home" asp-action="Index">
+    <div style="width: 100%">
+        <select asp-items="@(new SelectList(Model.EnqyiryStatus, nameof(EnquiryStatusModel.Id), nameof(EnquiryStatusModel.Status)))" name="" id="">
+@*            <option value="">In Prgress option</option>
+            <option value="">Complete option</option>*@
+        </select>
+    </div>
+</form>

@@ -29,15 +29,36 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            try
-            {                
-                return await FillUserAndPlatform();
-            }
-            catch (Exception ex)
+            var result = await FillUserAndPlatform();
+            var EnquiryStatusList = FillEnquiryStatus();
+            ViewBag.EnquiryStatusList = EnquiryStatusList;
+            return View(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(List<SelectListItem> UserTypes)
+        {
+            var SelectedUserType = UserTypes.Where(x => x.Selected).ToList();
+
+            if (SelectedUserType.Count() >= 0)
             {
-                string message = ex.Message;
-                return null!;
+                var result = await _enquiryMaster.GetFilteredEnquiries(SelectedUserType.Select(e => e.Value).ToList());
+
+                var model = new EnquiryCreateViewModel
+                {
+                    SelectedUserTypes = await FillUserTypes(),
+                    Platforms = await _enquiryPlatform.GetAllEnquityPlatform(),
+                    EnquiryMasters = result,
+                    EnqyiryStatus = _enquiryStatus.GetAllEnquiryStatus()
+                };
+
+                return View(model);
             }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
         }
 
         public async Task<List<SelectListItem>> FillUserTypes()
@@ -51,24 +72,29 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
             return items;
         }
 
-        public async Task<IActionResult> FillUserAndPlatform()
+        public List<SelectListItem> FillEnquiryStatus()
         {
-            try
+            var EnquiryStatus = _enquiryStatus.GetAllEnquiryStatus();
+            List<SelectListItem> StatusList = new List<SelectListItem>();
+            foreach ( var status in EnquiryStatus)
             {
-                var model = new EnquiryCreateViewModel
-                {
-                    SelectedUserTypes = await FillUserTypes(),
-                    Platforms = await _enquiryPlatform.GetAllEnquityPlatform(),
-                    EnquiryMasters = await _enquiryMaster.GetAllEnquiry(),
-                    EnqyiryStatus = await _enquiryStatus.GetAllEnquiryStatus()
-                };
-                return View(model);
-            }   
-            catch (Exception ex)
-            {
-                string message = ex.Message;
-                return null!;
+                StatusList.Add(new SelectListItem { Text = status.Status, Value = status.Id.ToString() });
             }
+            return StatusList;
+        }
+
+        public async Task<EnquiryCreateViewModel> FillUserAndPlatform()
+        {
+
+            var model = new EnquiryCreateViewModel
+            {
+                SelectedUserTypes = await FillUserTypes(),
+                Platforms = await _enquiryPlatform.GetAllEnquityPlatform(),
+                EnquiryMasters = await _enquiryMaster.GetAllEnquiry()
+                //EnqyiryStatus = _enquiryStatus.GetAllEnquiryStatus(),
+            };
+            return model;
+  
         }
 
         [HttpPost]
@@ -93,48 +119,12 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
             }
             return RedirectToAction("Index");
         }
-
-        [HttpPost]
-        public async Task<IActionResult> Index(List<SelectListItem> UserTypes)
+        
+        public async Task<IActionResult> UpdateStatus(EnquiryMasterModel model)
         {
-            var SelectedUserType = UserTypes.Where(x => x.Selected).ToList();
-            
-            if (SelectedUserType.Count() >= 0)
-            {
-                var result = await _enquiryMaster.GetFilteredEnquiries(SelectedUserType.Select(e=>e.Value).ToList());
-
-                var model = new EnquiryCreateViewModel
-                {
-                    SelectedUserTypes = await FillUserTypes(),
-                    Platforms = await _enquiryPlatform.GetAllEnquityPlatform(),
-                    EnquiryMasters = result,
-                    EnqyiryStatus = await _enquiryStatus.GetAllEnquiryStatus()
-                };
-
-                return View(model);
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
-
+            await _enquiryMaster.UpdateStatus(model);
+            return RedirectToAction("Index");
         }
-
-        //public IActionResult EnquiryView(int id)
-        //{
-        //    //EnquiryMasterModel enquiry = _enquiryMaster.GetEnquiry(id);
-        //    //EnquiryCreateViewModel enquiryCreateViewModel = new EnquiryCreateViewModel
-        //    //{
-        //    //    SelectedEnquiryId = enquiry.Id,
-        //    //    CompanyName = enquiry.CompanyName,
-        //    //    ContactEmail = enquiry.ContactEmail,
-        //    //    ContactPhone = enquiry.ContactPhone,
-
-        //    //};
-        //    return RedirectToAction("Index");
-         
-     
-        //}
 
         public IActionResult Client()
         {

@@ -9,6 +9,6 @@ namespace FlightBite.Data.Interfaces
 {
     public interface IEnquiryStatus
     {
-        Task<IEnumerable<EnquiryStatusModel>> GetAllEnquiryStatus();
+        List<EnquiryStatusModel> GetAllEnquiryStatus();
     }
 }

@@ -22,14 +22,12 @@ namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
         public string? ContactPhone { get; set; }
         public int PlatformSelectedId { get; set; } = 1;
         public int UserTypeSelectedId { get; set; } = 1;
-        public bool IsChecked { get; set; }
 
         public List<SelectListItem>? SelectedUserTypes { get; set; }
 
         public IEnumerable<EnquiryMasterModel>? EnquiryMasters { get; set; }
-        public IEnumerable<EnquiryStatusModel>? EnqyiryStatus { get; set; }
+        public List<EnquiryStatusModel>? EnqyiryStatus { get; set; }
         public IEnumerable<EnquiryPlatformModel>? Platforms { get; set; }
-        public IEnumerable<UserTypesModel>? UserTypes { get; set; }
         public int SelectedEnquiryId { get; set; }
     }
 }

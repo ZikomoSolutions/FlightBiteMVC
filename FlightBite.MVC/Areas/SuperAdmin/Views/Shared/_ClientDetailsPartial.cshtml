@@ -1,10 +1,17 @@
 ﻿@using FlightBite.Data.Models;
 @using FlightBite.Data.Interfaces;
 @using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
-@model EnquiryMasterModel 
+@model EnquiryMasterModel
+
 @inject IEnquiryPlatform _enquiryPlatform
 
-@*<div class="modal" id="client-details-modal">*@
+@{
+    List<SelectListItem> StatusList = null;
+    if (ViewBag.EnquiryStatusList !=null)
+    {
+        StatusList = ViewBag.EnquiryStatusList as List<SelectListItem>;
+    }
+}
 <div class="modal" id="client-details-modal-@Model.Id">
     
     <div class="modal__container" id="enquiry-details">
@@ -24,12 +31,15 @@
                 <label>Enquiry Status </label>
                 <div class="flex flex--distribute flex--align-center flex--has-gap">
                     <div style="width: 100%">
-                        <select name="" id="">
-                            <option value="">In Prgress</option>
-                            <option value="">Complete</option>
-                        </select>
-                        <!-- <i class="icon-chevron-down"></i> -->
+                        @if(StatusList != null)
+                        {
+                            <form asp-action="UpdateStatus" asp-controller="Home" method="post">
+                                <select asp-items="@StatusList" asp-for="@Model.EnquiryStatusId" onchange="this.form.submit();"></select>
+                                <input type="hidden" asp-for="@Model.Id" />
+                            </form>
+                        }
                     </div>
+
                     <div class="superuser__body__notes flex" id="open-client-notes-section">
                         <div style="position: relative">
                             <span class="icon-file-text2"></span>

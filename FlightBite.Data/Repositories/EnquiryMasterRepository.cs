@@ -66,5 +66,16 @@ namespace FlightBite.Data.Repositories
                 return null!;
             }
         }
+
+        public async Task UpdateStatus(EnquiryMasterModel model)
+        {
+            var status = await context.EnquiryMaster.FindAsync(model.Id);
+            if(status != null)
+            {
+                status.EnquiryStatusId = model.EnquiryStatusId;
+                status.UpdatedAt = DateTime.Now;
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }

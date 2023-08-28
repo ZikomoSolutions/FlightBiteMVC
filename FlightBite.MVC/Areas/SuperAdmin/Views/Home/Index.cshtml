@@ -18,6 +18,7 @@
                 { 
                     @foreach (var enquiry in Model.EnquiryMasters)
                     {
+                        
                         <div class="flex flex--align-center flex--distribute flex--is-wrap"
                              style="border-bottom: 1px solid var(--grey-2); padding-bottom: 8px;">
                             <div class="flex flex--align-center flex--has-gap">
@@ -47,11 +48,13 @@
 
                                 <div class="">
                                     <div class="superuser__body__notes flex">
+                                        <!--Client Note Details-->
                                         <div style="position: relative" class="open-modal" data-modal-target="client-details-modal"  >
                                             <span class="icon-file-text2"></span>
                                             <div class="counts">5</div>
                                         </div>
-
+                                        
+                                        <!--Chat Details-->
                                         <div style="position: relative">
                                             <span class="icon-bubbles"></span>
                                             <div class="counts"
@@ -60,6 +63,7 @@
                                             </div>
                                         </div>
 
+                                        <!--Client Information-->
                                         <div class="open-modal" data-modal-target="@("client-details-modal-" + enquiry.Id)" >
                                              <span class="icon-info"></span>
                                         </div>

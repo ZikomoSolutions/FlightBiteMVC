@@ -18,9 +18,11 @@ namespace FlightBite.Data.Repositories
             this._context = context;
         }
 
-        public async Task<IEnumerable<EnquiryStatusModel>> GetAllEnquiryStatus()
+        public List<EnquiryStatusModel> GetAllEnquiryStatus()
         {
-            return await _context.EnquiryStatus.ToListAsync();
+            return  _context.EnquiryStatus.ToList();
         }
+
+
     }
 }

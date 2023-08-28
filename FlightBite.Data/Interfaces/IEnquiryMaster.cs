@@ -14,5 +14,7 @@ namespace FlightBite.Data.Interfaces
         Task<EnquiryMasterModel> AddEnquiry(EnquiryMasterModel model);
 
         Task<IEnumerable<EnquiryMasterModel>> GetFilteredEnquiries(List<string> UserIds);
+
+        Task UpdateStatus(EnquiryMasterModel model);
     }
 }
