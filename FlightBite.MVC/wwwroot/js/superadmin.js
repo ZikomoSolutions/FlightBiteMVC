@@ -22,9 +22,6 @@ $(document).ready(function () {
         $("body").css("overflow", "auto");
     });
 
-
-
-
     //Enquiry Page 
 
     $("#open-client-notes-section").click(function () {

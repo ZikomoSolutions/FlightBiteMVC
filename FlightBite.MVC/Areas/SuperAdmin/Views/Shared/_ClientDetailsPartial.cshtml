@@ -25,7 +25,7 @@
         </div>
 
         <div class="modal__body">
-            <input type="hidden" asp-for="@Model.Id" />
+            @*<input type="hidden" asp-for="@Model.Id" />*@
             <div class="input-item input-item--full-width input-item--has-icon"
                  style="width: 100%">
                 <label>Enquiry Status </label>
@@ -95,7 +95,7 @@
     <div class="modal__container hide" id="client-name-notes">
         <div class="modal__header">
             <div class="flex flex--distribute flex--align-center">
-                <div class="h3">Client Name Notes</div>
+                <div class="h3">@Model.CompanyName - Notes</div>
                 <button class="btn btn--small close-modal" title="close">
                     <i class="icon-cross" aria-hidden="true"></i>
                 </button>
