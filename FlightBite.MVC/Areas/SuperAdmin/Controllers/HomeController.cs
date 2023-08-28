@@ -85,7 +85,6 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
 
         public async Task<EnquiryCreateViewModel> FillUserAndPlatform()
         {
-
             var model = new EnquiryCreateViewModel
             {
                 SelectedUserTypes = await FillUserTypes(),
@@ -94,7 +93,6 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
                 //EnqyiryStatus = _enquiryStatus.GetAllEnquiryStatus(),
             };
             return model;
-  
         }
 
         [HttpPost]
@@ -124,6 +122,12 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         {
             await _enquiryMaster.UpdateStatus(model);
             return RedirectToAction("Index");
+        }
+
+        public IActionResult NotesDetail(int id)
+        {
+
+            return RedirectToAction("index");
         }
 
         public IActionResult Client()

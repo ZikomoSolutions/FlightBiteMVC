@@ -41,8 +41,10 @@
                     </div>
 
                     <div class="superuser__body__notes flex" id="open-client-notes-section">
-                        <div style="position: relative">
+                        <div style="position: relative" data-modal-url="@Url.Action($"NotesDetail/{Model.Id}")">
+                            <a asp-action="NotesDetail" asp-controller="home" asp-route-id="@Model.Id">
                             <span class="icon-file-text2"></span>
+                            </a>
                             <div class="counts" style="background-color: var(--success)">
                                 3
                             </div>
