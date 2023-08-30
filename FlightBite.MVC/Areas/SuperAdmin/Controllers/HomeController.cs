@@ -47,7 +47,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
             {
                 var result = await _enquiryMaster.GetFilteredEnquiries(SelectedUserType.Select(e => e.Value).ToList());
 
-                var model = new EnquiryViewModel
+                var model = new EnquiryMasterViewModel
                 {
                     SelectedUserTypes = await FillUserTypes(),
                     Platforms = await _enquiryPlatform.GetAllEnquityPlatform(),
@@ -70,7 +70,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
             List<SelectListItem> items = new List<SelectListItem>();    
             foreach (var types in UserTypes)
             {
-               items.Add(new SelectListItem(types.Type, types.Id.ToString(),true));
+               items.Add(new SelectListItem(types.UserType, types.Id.ToString(),true));
             }
             return items;
         }
@@ -86,9 +86,9 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
             return StatusList;
         }
 
-        public async Task<EnquiryViewModel> FillUserAndPlatform()
+        public async Task<EnquiryMasterViewModel> FillUserAndPlatform()
         {
-            var model = new EnquiryViewModel
+            var model = new EnquiryMasterViewModel
             {
                 SelectedUserTypes = await FillUserTypes(),
                 Platforms = await _enquiryPlatform.GetAllEnquityPlatform(),
@@ -99,7 +99,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddEnquiry(EnquiryViewModel viewModel)
+        public async Task<IActionResult> AddEnquiry(EnquiryMasterViewModel viewModel)
         {
             if(ModelState.IsValid)
             {

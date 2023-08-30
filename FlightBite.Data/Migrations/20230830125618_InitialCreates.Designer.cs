@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlightBite.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230817143807_ChangesInDbContext")]
-    partial class ChangesInDbContext
+    [Migration("20230830125618_InitialCreates")]
+    partial class InitialCreates
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,6 +75,9 @@ namespace FlightBite.Data.Migrations
                         .HasColumnType("int")
                         .HasColumnName("enquiry_status_id");
 
+                    b.Property<int?>("EnquiryStatusModelId")
+                        .HasColumnType("int");
+
                     b.Property<string>("IATA")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
@@ -94,6 +97,8 @@ namespace FlightBite.Data.Migrations
                         .HasColumnName("user_type_id");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EnquiryStatusModelId");
 
                     b.ToTable("EnquiryMaster");
                 });
@@ -116,11 +121,10 @@ namespace FlightBite.Data.Migrations
                         .HasColumnName("deleted_at");
 
                     b.Property<int>("EnquiryId")
-                        .HasColumnType("int")
-                        .HasColumnName("enquiry_id");
+                        .HasColumnType("int");
 
                     b.Property<string>("Note")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("nvarchar(Max)")
                         .HasColumnName("note");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -153,10 +157,10 @@ namespace FlightBite.Data.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("description");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("PlatForm")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
-                        .HasColumnName("name");
+                        .HasColumnName("plat_form");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
@@ -170,26 +174,23 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(1974),
+                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(305),
                             Description = "-",
-                            Name = "Google",
-                            UpdatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(1975)
+                            PlatForm = "Google"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(1980),
+                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(308),
                             Description = "-",
-                            Name = "Brochure",
-                            UpdatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(1980)
+                            PlatForm = "Brochure"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(1982),
+                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(310),
                             Description = "-",
-                            Name = "Other",
-                            UpdatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(1983)
+                            PlatForm = "Other"
                         });
                 });
 
@@ -226,17 +227,133 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(2099),
-                            Status = "In Progress",
-                            UpdatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(2099)
+                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(428),
+                            Status = "In Progress"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(2102),
-                            Status = "Complete",
-                            UpdatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(2102)
+                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(430),
+                            Status = "Complete"
                         });
+                });
+
+            modelBuilder.Entity("FlightBite.Data.Models.LogsMasterModel", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+
+                    b.Property<string>("ClassName")
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("class_name");
+
+                    b.Property<string>("ClientApiAddress")
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("client_api_address");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("DateTime")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("file_name");
+
+                    b.Property<int?>("LineNumber")
+                        .HasColumnType("int")
+                        .HasColumnName("line_number");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(MAX)")
+                        .HasColumnName("message");
+
+                    b.Property<string>("Method")
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("method");
+
+                    b.Property<string>("StackTrace")
+                        .HasColumnType("nvarchar(MAX)")
+                        .HasColumnName("stack_track");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("DateTime")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LogsMaster");
+                });
+
+            modelBuilder.Entity("FlightBite.Data.Models.RequestLogsMasterModel", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+
+                    b.Property<string>("ClientIpAddress")
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("client_ip_address");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("DateTime")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("Request")
+                        .HasColumnType("nvarchar(MAX)")
+                        .HasColumnName("request");
+
+                    b.Property<string>("Response")
+                        .HasColumnType("nvarchar(MAX)")
+                        .HasColumnName("response");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("DateTime")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RequestLogsMasters");
+                });
+
+            modelBuilder.Entity("FlightBite.Data.Models.RequestResponseLogsModel", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+
+                    b.Property<string>("ClientIpAddress")
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("client_ip_address");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("DateTime")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("Request")
+                        .HasColumnType("nvarchar(MAX)")
+                        .HasColumnName("request");
+
+                    b.Property<string>("Response")
+                        .HasColumnType("nvarchar(MAX)")
+                        .HasColumnName("response");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("DateTime")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RequestResponseLogs");
                 });
 
             modelBuilder.Entity("FlightBite.Data.Models.UserTypesModel", b =>
@@ -260,14 +377,14 @@ namespace FlightBite.Data.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("description");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("type");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("updated_at");
+
+                    b.Property<string>("UserType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("user_type");
 
                     b.HasKey("Id");
 
@@ -277,19 +394,31 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(2116),
+                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(443),
                             Description = "-",
-                            Type = "Supplier",
-                            UpdatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(2116)
+                            UserType = "Supplier"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(2119),
+                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(445),
                             Description = "-",
-                            Type = "Agent",
-                            UpdatedAt = new DateTime(2023, 8, 17, 20, 8, 7, 613, DateTimeKind.Local).AddTicks(2119)
+                            UserType = "Travel Agent"
                         });
+                });
+
+            modelBuilder.Entity("FlightBite.Data.Models.EnquiryMasterModel", b =>
+                {
+                    b.HasOne("FlightBite.Data.Models.EnquiryStatusModel", "EnquiryStatusModel")
+                        .WithMany("EnquiryMaster")
+                        .HasForeignKey("EnquiryStatusModelId");
+
+                    b.Navigation("EnquiryStatusModel");
+                });
+
+            modelBuilder.Entity("FlightBite.Data.Models.EnquiryStatusModel", b =>
+                {
+                    b.Navigation("EnquiryMaster");
                 });
 #pragma warning restore 612, 618
         }

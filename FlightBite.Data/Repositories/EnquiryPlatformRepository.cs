@@ -35,7 +35,7 @@ namespace FlightBite.Data.Repositories
         {
             try
             {
-                var specificPlatform = context.EnquityPlatform.FirstOrDefault(s => s.Id == id).Name;
+                var specificPlatform = context.EnquityPlatform.FirstOrDefault(s => s.Id == id).PlatForm;
                 return specificPlatform;
             }
             catch (Exception ex)

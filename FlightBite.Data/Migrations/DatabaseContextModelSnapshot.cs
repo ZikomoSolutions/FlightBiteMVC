@@ -72,6 +72,9 @@ namespace FlightBite.Data.Migrations
                         .HasColumnType("int")
                         .HasColumnName("enquiry_status_id");
 
+                    b.Property<int?>("EnquiryStatusModelId")
+                        .HasColumnType("int");
+
                     b.Property<string>("IATA")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
@@ -92,7 +95,7 @@ namespace FlightBite.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EnquiryStatusId");
+                    b.HasIndex("EnquiryStatusModelId");
 
                     b.ToTable("EnquiryMaster");
                 });
@@ -151,10 +154,10 @@ namespace FlightBite.Data.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("description");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("PlatForm")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
-                        .HasColumnName("name");
+                        .HasColumnName("plat_form");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
@@ -168,23 +171,23 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 28, 18, 22, 37, 811, DateTimeKind.Local).AddTicks(2061),
+                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(305),
                             Description = "-",
-                            Name = "Google"
+                            PlatForm = "Google"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 28, 18, 22, 37, 811, DateTimeKind.Local).AddTicks(2066),
+                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(308),
                             Description = "-",
-                            Name = "Brochure"
+                            PlatForm = "Brochure"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 8, 28, 18, 22, 37, 811, DateTimeKind.Local).AddTicks(2068),
+                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(310),
                             Description = "-",
-                            Name = "Other"
+                            PlatForm = "Other"
                         });
                 });
 
@@ -221,13 +224,13 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 28, 18, 22, 37, 811, DateTimeKind.Local).AddTicks(2186),
+                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(428),
                             Status = "In Progress"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 28, 18, 22, 37, 811, DateTimeKind.Local).AddTicks(2188),
+                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(430),
                             Status = "Complete"
                         });
                 });
@@ -371,14 +374,14 @@ namespace FlightBite.Data.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("description");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("type");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("updated_at");
+
+                    b.Property<string>("UserType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("user_type");
 
                     b.HasKey("Id");
 
@@ -388,28 +391,26 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 28, 18, 22, 37, 811, DateTimeKind.Local).AddTicks(2204),
+                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(443),
                             Description = "-",
-                            Type = "Supplier"
+                            UserType = "Supplier"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 28, 18, 22, 37, 811, DateTimeKind.Local).AddTicks(2206),
+                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(445),
                             Description = "-",
-                            Type = "Travel Agent"
+                            UserType = "Travel Agent"
                         });
                 });
 
             modelBuilder.Entity("FlightBite.Data.Models.EnquiryMasterModel", b =>
                 {
-                    b.HasOne("FlightBite.Data.Models.EnquiryStatusModel", "EnquiryStatus")
+                    b.HasOne("FlightBite.Data.Models.EnquiryStatusModel", "EnquiryStatusModel")
                         .WithMany("EnquiryMaster")
-                        .HasForeignKey("EnquiryStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EnquiryStatusModelId");
 
-                    b.Navigation("EnquiryStatus");
+                    b.Navigation("EnquiryStatusModel");
                 });
 
             modelBuilder.Entity("FlightBite.Data.Models.EnquiryStatusModel", b =>

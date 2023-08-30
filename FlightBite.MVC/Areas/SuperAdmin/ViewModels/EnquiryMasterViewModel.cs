@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
 {
-    public class EnquiryViewModel
+    public class EnquiryMasterViewModel
     {
         [Required(ErrorMessage ="The company name is required ")]
         public string? CompanyName { get; set; }
@@ -31,9 +31,6 @@ namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
         public int EnquiryPlatformId { get; set; }
 
 
-        //For Enquiry Notes
-        [Required(ErrorMessage = "The Note is required")]
-        public string? EnquiryNote { get; set; }
         public IEnumerable<EnquiryNoteDetailsModel>? EnquiryNotesDetailsViewModel { get; set; }
 
     }

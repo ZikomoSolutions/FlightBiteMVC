@@ -15,8 +15,8 @@ namespace FlightBite.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [Column(name:"type", TypeName ="nvarchar(50)")]
-        public string? Type { get; set; }
+        [Column(name: "user_type", TypeName ="nvarchar(50)")]
+        public string? UserType { get; set; }
         
         [Column(name:"description", TypeName ="nvarchar(255)")]
         public string? Description { get; set; }

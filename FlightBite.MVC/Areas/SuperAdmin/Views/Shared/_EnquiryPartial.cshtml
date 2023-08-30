@@ -1,5 +1,5 @@
 ﻿@using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
-@model EnquiryViewModel
+@model EnquiryMasterViewModel
 @{
 	Layout = null;
 }
@@ -105,7 +105,7 @@
 						{
 							<div>
 								<label class="radio-button-container">
-									@platform.Name
+									@platform.PlatForm
 									<input type="radio" value="@platform.Id" asp-for="@Model.PlatformSelectedId" />
 									<span class="checkmark"></span>
 								</label>

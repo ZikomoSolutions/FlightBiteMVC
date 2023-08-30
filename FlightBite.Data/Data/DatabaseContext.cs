@@ -31,7 +31,7 @@ namespace FlightBite.Data
                 new EnquiryPlatformModel
                 {
                     Id = 1,
-                    Name = "Google",
+                    PlatForm = "Google",
                     Description = "-",
                     CreatedAt = DateTime.Now,
                     UpdatedAt = null,
@@ -40,7 +40,7 @@ namespace FlightBite.Data
                 new EnquiryPlatformModel
                 {
                     Id = 2,
-                    Name = "Brochure",
+                    PlatForm = "Brochure",
                     Description = "-",
                     CreatedAt = DateTime.Now,
                     UpdatedAt = null,
@@ -49,7 +49,7 @@ namespace FlightBite.Data
                 new EnquiryPlatformModel
                 {
                     Id = 3,
-                    Name = "Other",
+                    PlatForm = "Other",
                     Description = "-",
                     CreatedAt = DateTime.Now,
                     UpdatedAt = null,
@@ -82,7 +82,7 @@ namespace FlightBite.Data
                 new UserTypesModel
                 {
                     Id = 1,
-                    Type = "Supplier",
+                    UserType = "Supplier",
                     Description= "-",
                     CreatedAt = DateTime.Now,
                     UpdatedAt = null,
@@ -91,7 +91,7 @@ namespace FlightBite.Data
                 new UserTypesModel
                 {
                     Id = 2,
-                    Type = "Travel Agent",
+                    UserType = "Travel Agent",
                     Description= "-",
                     CreatedAt = DateTime.Now,
                     UpdatedAt = null,
