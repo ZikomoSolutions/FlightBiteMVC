@@ -127,10 +127,21 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult NotesDetail(int id)
+        public async Task<IActionResult> NotesDetail(int id)
         {
+            //var EnquiryNotes = await _enquiryNoteDetails.GetSpecificEnquiryAllNotes(id);
+            //List<SelectListItem> NotesList = new List<SelectListItem>();
+            //foreach (var notes in EnquiryNotes)
+            //{
+            //    NotesList.Add(new SelectListItem { Text = notes.Note, Value = notes.Id.ToString() });
+            //}
+            var model = new EnquiryMasterViewModel
+            {
+                EnquiryNotesDetailsViewModel = await _enquiryNoteDetails.GetSpecificEnquiryAllNotes(id)
 
-            return RedirectToAction("index");
+            };
+            //return PartialView("_NotesDetailPartial", model);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Client()

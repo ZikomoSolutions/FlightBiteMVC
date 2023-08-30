@@ -52,5 +52,7 @@ namespace FlightBite.Data.Models
 
         [Column(name:"user_type_id")]
         public int UserTypeId { get; set; }
+
+
     }
 }

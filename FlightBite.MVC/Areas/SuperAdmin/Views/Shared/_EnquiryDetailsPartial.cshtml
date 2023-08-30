@@ -12,6 +12,7 @@
         StatusList = ViewBag.EnquiryStatusList as List<SelectListItem>;
     }
 }
+
 <div class="modal" id="client-details-modal-@Model.Id">
     
     <div class="modal__container" id="enquiry-details">
@@ -140,3 +141,33 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+@*            @{
+                if (Model.EnquiryNoteDetailsModel.Where(s => s.EnquiryId == Model.Id).ToList() != null)
+                {
+                    foreach (var notes in Model.EnquiryNoteDetailsModel.Where(s => s.EnquiryId == Model.Id).ToList())
+                    {
+                        <div class="flex flex--align-center flex--has-gap flex--distribute flex--is-wrap"
+                        style="border-bottom: 1px solid var(--grey-2); padding-bottom: 8px">
+                            <div class="flex flex--align-center flex--has-gap">
+                                <div class="superuser__body__date">
+                                    <span>@notes.CreatedAt.ToString("MMM dd")</span>
+                                    <span style="font-size: 16px"> <strong> @notes.CreatedAt.ToString("MMM") </strong></span>
+                                    <span>@notes.CreatedAt.ToString("yyyy")</span>
+                                </div>
+                                <div class="superuser__body__clients-name">
+                                    <div><strong>@Model.CompanyName</strong></div>
+                                    <div>@notes.Note</div>
+                                </div>
+                            </div>
+                            <button class="btn btn--small" title="close">
+                                <i class="icon-bin2 h3" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    }
+                }
+            }*@
