@@ -17,14 +17,17 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         private readonly IUserType _userType;
         private readonly IEnquiryPlatform _enquiryPlatform;
         private readonly IEnquiryStatus _enquiryStatus;
+        private readonly IEnquiryNoteDetails _enquiryNoteDetails;
         private List<SelectListItem> SelectedUserTypes;
 
-        public HomeController(IEnquiryMaster enquiryMaster, IUserType userType, IEnquiryPlatform enquiryPlatform, IEnquiryStatus enquiryStatus)
+        public HomeController(IEnquiryMaster enquiryMaster, IUserType userType, IEnquiryPlatform enquiryPlatform, IEnquiryStatus enquiryStatus,
+                              IEnquiryNoteDetails enquiryNoteDetails)
         {
             this._enquiryMaster = enquiryMaster;
             this._userType = userType;
             this._enquiryPlatform = enquiryPlatform;
             this._enquiryStatus = enquiryStatus;
+            this._enquiryNoteDetails = enquiryNoteDetails;
         }
 
         public async Task<IActionResult> Index()

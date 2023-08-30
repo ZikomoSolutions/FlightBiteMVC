@@ -22,6 +22,7 @@ namespace FlightBite.MVC
             builder.Services.AddScoped<IEnquiryPlatform, EnquiryPlatformRepository>();
             builder.Services.AddScoped<IUserType, UserTypeRepository>();
             builder.Services.AddScoped<IEnquiryStatus, EnquiryStatusRepository>();
+            builder.Services.AddScoped<IEnquiryNoteDetails, EnquiryNoteDetailsRepository>();
 
             builder.Services.AddScoped<ILogRequestResponse, LogRequestResponse<DatabaseContext>>();
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

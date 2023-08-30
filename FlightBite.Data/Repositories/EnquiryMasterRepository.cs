@@ -37,7 +37,7 @@ namespace FlightBite.Data.Repositories
         {
             try
             {
-                IList<EnquiryMasterModel> enquiryMasters = await context.EnquiryMaster.Include(c=>c.EnquiryStatus).ToListAsync();
+                IList<EnquiryMasterModel> enquiryMasters = await context.EnquiryMaster.Include(c=>c.EnquiryStatus).OrderByDescending(c=>c.CreatedAt).ToListAsync();
                 return (enquiryMasters);
             }
             catch (Exception ex)
@@ -57,7 +57,7 @@ namespace FlightBite.Data.Repositories
         {
             try
             {
-                var enquiries = await context.EnquiryMaster.Where(e => UserIds.Contains(e.UserTypeId.ToString())).ToListAsync();
+                var enquiries = await context.EnquiryMaster.Where(e => UserIds.Contains(e.UserTypeId.ToString())).OrderByDescending(e=>e.CreatedAt).ToListAsync();
                 return (enquiries);
             }
             catch (Exception ex)

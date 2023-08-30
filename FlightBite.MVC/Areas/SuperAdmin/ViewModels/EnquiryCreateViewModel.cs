@@ -26,7 +26,15 @@ namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
         public IEnumerable<EnquiryMasterModel>? EnquiryMasters { get; set; }
         public List<EnquiryStatusModel>? EnqyiryStatus { get; set; }
         public IEnumerable<EnquiryPlatformModel>? Platforms { get; set; }
-        public int SelectedEnquiryId { get; set; }
+        public int EnquiryId { get; set; }
+        public int EnquiryStatusId { get; set; }
+        public int EnquiryPlatformId { get; set; }
+
+
+        //For Enquiry Notes
+        [Required(ErrorMessage = "The Note is required")]
+        public string? EnquiryNote { get; set; }
+        public IEnumerable<EnquiryNoteDetailsModel>? EnquiryNotesDetailsViewModel { get; set; }
 
     }
 }
