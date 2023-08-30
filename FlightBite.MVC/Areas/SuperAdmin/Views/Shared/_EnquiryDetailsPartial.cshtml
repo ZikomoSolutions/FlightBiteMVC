@@ -41,7 +41,8 @@
                     </div>
 
                     <div class="superuser__body__notes flex" id="open-client-notes-section">
-                        <div style="position: relative" data-modal-url="@Url.Action($"NotesDetail/{Model.Id}")">
+                        @*data-modal-url="@Url.Action($"NotesDetail/{Model.Id}")"*@
+                        <div style="position: relative">
                             <a asp-action="NotesDetail" asp-controller="home" asp-route-id="@Model.Id">
                             <span class="icon-file-text2"></span>
                             </a>

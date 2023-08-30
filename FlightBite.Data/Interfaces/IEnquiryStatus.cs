@@ -10,5 +10,7 @@ namespace FlightBite.Data.Interfaces
     public interface IEnquiryStatus
     {
         List<EnquiryStatusModel> GetAllEnquiryStatus();
+
+        string GetSpecificEnquiryStatus(int id);
     }
 }

@@ -1,7 +1,9 @@
 ﻿@using FlightBite.Data.Models;
+@using FlightBite.Data.Interfaces;
 @using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
-@model EnquiryCreateViewModel
+@model EnquiryViewModel
 
+@inject IEnquiryStatus _enquiryStatus
 <section class="enquiries-section">
     <div class=" page-content page-content--max-1440">
         <div class="superuser">
@@ -42,7 +44,8 @@
                                     <div class="superuser__body__status flex  flex--is-wrap flex--align-center flex--has-sm-gap"
                                          style="color: var(--warning)">
                                         <div style="background-color: var(--warning)"></div>
-                                        @enquiry.EnquiryStatus?.Status
+                                        @*@enquiry.EnquiryStatusModel?.Status*@
+                                        @_enquiryStatus.GetSpecificEnquiryStatus(enquiry.EnquiryStatusId)
                                     </div>
                                 </div>
 

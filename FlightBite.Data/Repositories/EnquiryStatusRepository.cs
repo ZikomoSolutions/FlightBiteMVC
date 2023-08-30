@@ -22,7 +22,12 @@ namespace FlightBite.Data.Repositories
         {
             return  _context.EnquiryStatus.ToList();
         }
-
+        public string GetSpecificEnquiryStatus(int id)
+        {
+            var specificEnquiryStatus = _context.EnquiryStatus.FirstOrDefault(s => s.Id == id).Status;
+            return specificEnquiryStatus;
+ 
+        }
 
     }
 }

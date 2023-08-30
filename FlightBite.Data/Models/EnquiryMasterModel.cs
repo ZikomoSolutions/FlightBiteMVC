@@ -48,7 +48,7 @@ namespace FlightBite.Data.Models
 
         [Column(name:"enquiry_status_id")]
         public int EnquiryStatusId { get; set; }
-        public EnquiryStatusModel? EnquiryStatus { get; set; }
+        public EnquiryStatusModel? EnquiryStatusModel { get; set; }
 
         [Column(name:"user_type_id")]
         public int UserTypeId { get; set; }

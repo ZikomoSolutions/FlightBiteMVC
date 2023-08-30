@@ -37,7 +37,7 @@ namespace FlightBite.Data.Repositories
         {
             try
             {
-                IList<EnquiryMasterModel> enquiryMasters = await context.EnquiryMaster.Include(c=>c.EnquiryStatus).OrderByDescending(c=>c.CreatedAt).ToListAsync();
+                IList<EnquiryMasterModel> enquiryMasters = await context.EnquiryMaster.Include(c=>c.EnquiryStatusModel).OrderByDescending(c=>c.CreatedAt).ToListAsync();
                 return (enquiryMasters);
             }
             catch (Exception ex)
