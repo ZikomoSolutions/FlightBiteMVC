@@ -53,11 +53,11 @@ namespace FlightBite.Data.Repositories
             return context.EnquiryMaster.Find(id);
         }
 
-        public async Task<IEnumerable<EnquiryMasterModel>> GetFilteredEnquiries(List<string> UserIds)
+        public async Task<IEnumerable<EnquiryMasterModel>> GetFilteredEnquiries(List<string> UserIds, string SortOrder)
         {
             try
             {
-                var enquiries = await context.EnquiryMaster.Where(e => UserIds.Contains(e.UserTypeId.ToString())).OrderByDescending(e=>e.CreatedAt).ToListAsync();
+                var enquiries = await context.EnquiryMaster.Where(e => UserIds.Contains(e.UserTypesModelId.ToString())).OrderByDescending(e=>e.CreatedAt).ToListAsync();
                 return (enquiries);
             }
             catch (Exception ex)
@@ -72,7 +72,7 @@ namespace FlightBite.Data.Repositories
             var status = await context.EnquiryMaster.FindAsync(model.Id);
             if(status != null)
             {
-                status.EnquiryStatusId = model.EnquiryStatusId;
+                status.EnquiryStatusModelId = model.EnquiryStatusModelId;
                 status.UpdatedAt = DateTime.Now;
                 await context.SaveChangesAsync();
             }

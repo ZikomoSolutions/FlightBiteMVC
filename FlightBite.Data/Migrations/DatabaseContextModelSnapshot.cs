@@ -64,15 +64,10 @@ namespace FlightBite.Data.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("deleted_at");
 
-                    b.Property<int>("EnquiryPlatformId")
-                        .HasColumnType("int")
-                        .HasColumnName("enquiry_platform_id");
+                    b.Property<int>("EnquiryPlatformModelId")
+                        .HasColumnType("int");
 
-                    b.Property<int>("EnquiryStatusId")
-                        .HasColumnType("int")
-                        .HasColumnName("enquiry_status_id");
-
-                    b.Property<int?>("EnquiryStatusModelId")
+                    b.Property<int>("EnquiryStatusModelId")
                         .HasColumnType("int");
 
                     b.Property<string>("IATA")
@@ -89,13 +84,16 @@ namespace FlightBite.Data.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("updated_at");
 
-                    b.Property<int>("UserTypeId")
-                        .HasColumnType("int")
-                        .HasColumnName("user_type_id");
+                    b.Property<int>("UserTypesModelId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EnquiryPlatformModelId");
+
                     b.HasIndex("EnquiryStatusModelId");
+
+                    b.HasIndex("UserTypesModelId");
 
                     b.ToTable("EnquiryMaster");
                 });
@@ -117,7 +115,7 @@ namespace FlightBite.Data.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("deleted_at");
 
-                    b.Property<int>("EnquiryId")
+                    b.Property<int?>("EnquiryMasterModelId")
                         .HasColumnType("int");
 
                     b.Property<string>("Note")
@@ -129,6 +127,8 @@ namespace FlightBite.Data.Migrations
                         .HasColumnName("updated_at");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EnquiryMasterModelId");
 
                     b.ToTable("EnquiryNoteDetail");
                 });
@@ -171,21 +171,21 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(305),
+                            CreatedAt = new DateTime(2023, 9, 4, 13, 8, 11, 492, DateTimeKind.Local).AddTicks(2950),
                             Description = "-",
                             PlatForm = "Google"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(308),
+                            CreatedAt = new DateTime(2023, 9, 4, 13, 8, 11, 492, DateTimeKind.Local).AddTicks(2954),
                             Description = "-",
                             PlatForm = "Brochure"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(310),
+                            CreatedAt = new DateTime(2023, 9, 4, 13, 8, 11, 492, DateTimeKind.Local).AddTicks(2958),
                             Description = "-",
                             PlatForm = "Other"
                         });
@@ -224,13 +224,13 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(428),
+                            CreatedAt = new DateTime(2023, 9, 4, 13, 8, 11, 492, DateTimeKind.Local).AddTicks(3083),
                             Status = "In Progress"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(430),
+                            CreatedAt = new DateTime(2023, 9, 4, 13, 8, 11, 492, DateTimeKind.Local).AddTicks(3086),
                             Status = "Complete"
                         });
                 });
@@ -391,14 +391,14 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(443),
+                            CreatedAt = new DateTime(2023, 9, 4, 13, 8, 11, 492, DateTimeKind.Local).AddTicks(3102),
                             Description = "-",
                             UserType = "Supplier"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(445),
+                            CreatedAt = new DateTime(2023, 9, 4, 13, 8, 11, 492, DateTimeKind.Local).AddTicks(3104),
                             Description = "-",
                             UserType = "Travel Agent"
                         });
@@ -406,16 +406,58 @@ namespace FlightBite.Data.Migrations
 
             modelBuilder.Entity("FlightBite.Data.Models.EnquiryMasterModel", b =>
                 {
+                    b.HasOne("FlightBite.Data.Models.EnquiryPlatformModel", "EnquiryPlatformModel")
+                        .WithMany("EnquiryMasterModels")
+                        .HasForeignKey("EnquiryPlatformModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("FlightBite.Data.Models.EnquiryStatusModel", "EnquiryStatusModel")
-                        .WithMany("EnquiryMaster")
-                        .HasForeignKey("EnquiryStatusModelId");
+                        .WithMany("EnquiryMasterModels")
+                        .HasForeignKey("EnquiryStatusModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FlightBite.Data.Models.UserTypesModel", "UserTypesModel")
+                        .WithMany("EnquiryMasterModels")
+                        .HasForeignKey("UserTypesModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EnquiryPlatformModel");
 
                     b.Navigation("EnquiryStatusModel");
+
+                    b.Navigation("UserTypesModel");
+                });
+
+            modelBuilder.Entity("FlightBite.Data.Models.EnquiryNoteDetailsModel", b =>
+                {
+                    b.HasOne("FlightBite.Data.Models.EnquiryMasterModel", "EnquiryMasterModel")
+                        .WithMany("EnquiryNoteDetailsModel")
+                        .HasForeignKey("EnquiryMasterModelId");
+
+                    b.Navigation("EnquiryMasterModel");
+                });
+
+            modelBuilder.Entity("FlightBite.Data.Models.EnquiryMasterModel", b =>
+                {
+                    b.Navigation("EnquiryNoteDetailsModel");
+                });
+
+            modelBuilder.Entity("FlightBite.Data.Models.EnquiryPlatformModel", b =>
+                {
+                    b.Navigation("EnquiryMasterModels");
                 });
 
             modelBuilder.Entity("FlightBite.Data.Models.EnquiryStatusModel", b =>
                 {
-                    b.Navigation("EnquiryMaster");
+                    b.Navigation("EnquiryMasterModels");
+                });
+
+            modelBuilder.Entity("FlightBite.Data.Models.UserTypesModel", b =>
+                {
+                    b.Navigation("EnquiryMasterModels");
                 });
 #pragma warning restore 612, 618
         }

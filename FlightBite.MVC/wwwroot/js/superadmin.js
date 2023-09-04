@@ -24,26 +24,26 @@ $(document).ready(function () {
 
     //Enquiry Page 
 
-    $("#open-client-notes-section").click(function () {
-        $("#client-name-notes").show();
-        $("#enquiry-details").hide();
+    //$("#open-client-notes-section").click(function () {
+    //    $("#client-name-notes").show();
+    //    $("#enquiry-details").hide();
 
-    });
-    $("#back-to-enquiry-details").click(function () {
-        $("#enquiry-details").show();
-        $("#client-name-notes").hide();
-    });
-    $("#submit-selected-client-type").click(function () {
-        $("#enquiry-section-2").show();
-        $("#enquiry-section-1").hide();
-    });
-    $("#back-to-enquiry-section-1").click(function () {
-        $("#enquiry-section-2").hide();
-        $("#enquiry-section-1").show();
-    })
-    $("#submit-button").click(function () {
-        $(".modal").removeClass("modal--active");
-    });
+    //});
+    //$("#back-to-enquiry-details").click(function () {
+    //    $("#enquiry-details").show();
+    //    $("#client-name-notes").hide();
+    //});
+    //$("#submit-selected-client-type").click(function () {
+    //    $("#enquiry-section-2").show();
+    //    $("#enquiry-section-1").hide();
+    //});
+    //$("#back-to-enquiry-section-1").click(function () {
+    //    $("#enquiry-section-2").hide();
+    //    $("#enquiry-section-1").show();
+    //})
+    //$("#submit-button").click(function () {
+    //    $(".modal").removeClass("modal--active");
+    //});
 
 
 

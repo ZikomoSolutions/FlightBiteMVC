@@ -21,5 +21,6 @@ namespace FlightBite.Data.Models
         [Column(name:"description", TypeName ="nvarchar(255)")]
         public string? Description { get; set; }
 
+        public ICollection<EnquiryMasterModel>? EnquiryMasterModels { get; set; }
     }
 }

@@ -18,9 +18,9 @@ namespace FlightBite.Data.Repositories
             this._context = context;
         }
 
-        public List<EnquiryStatusModel> GetAllEnquiryStatus()
+        public  List<EnquiryStatusModel> GetAllEnquiryStatus()
         {
-            return  _context.EnquiryStatus.ToList();
+            return _context.EnquiryStatus.ToList();
         }
         public string GetSpecificEnquiryStatus(int id)
         {

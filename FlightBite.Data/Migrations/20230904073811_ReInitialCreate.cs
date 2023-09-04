@@ -8,28 +8,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FlightBite.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreates : Migration
+    public partial class ReInitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "EnquiryNoteDetail",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EnquiryId = table.Column<int>(type: "int", nullable: false),
-                    note = table.Column<string>(type: "nvarchar(Max)", nullable: true),
-                    deleted_at = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    created_at = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EnquiryNoteDetail", x => x.id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "EnquiryStatus",
                 columns: table => new
@@ -148,10 +131,9 @@ namespace FlightBite.Data.Migrations
                     job_title = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     contact_email = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     contact_phone = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    enquiry_platform_id = table.Column<int>(type: "int", nullable: false),
-                    enquiry_status_id = table.Column<int>(type: "int", nullable: false),
-                    EnquiryStatusModelId = table.Column<int>(type: "int", nullable: true),
-                    user_type_id = table.Column<int>(type: "int", nullable: false),
+                    EnquiryPlatformModelId = table.Column<int>(type: "int", nullable: false),
+                    EnquiryStatusModelId = table.Column<int>(type: "int", nullable: false),
+                    UserTypesModelId = table.Column<int>(type: "int", nullable: false),
                     deleted_at = table.Column<DateTime>(type: "datetime2", nullable: true),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false),
                     updated_at = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -163,6 +145,41 @@ namespace FlightBite.Data.Migrations
                         name: "FK_EnquiryMaster_EnquiryStatus_EnquiryStatusModelId",
                         column: x => x.EnquiryStatusModelId,
                         principalTable: "EnquiryStatus",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EnquiryMaster_EnquityPlatform_EnquiryPlatformModelId",
+                        column: x => x.EnquiryPlatformModelId,
+                        principalTable: "EnquityPlatform",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EnquiryMaster_UserType_UserTypesModelId",
+                        column: x => x.UserTypesModelId,
+                        principalTable: "UserType",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EnquiryNoteDetail",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    note = table.Column<string>(type: "nvarchar(Max)", nullable: true),
+                    EnquiryMasterModelId = table.Column<int>(type: "int", nullable: true),
+                    deleted_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    created_at = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EnquiryNoteDetail", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_EnquiryNoteDetail_EnquiryMaster_EnquiryMasterModelId",
+                        column: x => x.EnquiryMasterModelId,
+                        principalTable: "EnquiryMaster",
                         principalColumn: "id");
                 });
 
@@ -171,8 +188,8 @@ namespace FlightBite.Data.Migrations
                 columns: new[] { "id", "created_at", "deleted_at", "status", "updated_at" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(428), null, "In Progress", null },
-                    { 2, new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(430), null, "Complete", null }
+                    { 1, new DateTime(2023, 9, 4, 13, 8, 11, 492, DateTimeKind.Local).AddTicks(3083), null, "In Progress", null },
+                    { 2, new DateTime(2023, 9, 4, 13, 8, 11, 492, DateTimeKind.Local).AddTicks(3086), null, "Complete", null }
                 });
 
             migrationBuilder.InsertData(
@@ -180,9 +197,9 @@ namespace FlightBite.Data.Migrations
                 columns: new[] { "id", "created_at", "deleted_at", "description", "plat_form", "updated_at" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(305), null, "-", "Google", null },
-                    { 2, new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(308), null, "-", "Brochure", null },
-                    { 3, new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(310), null, "-", "Other", null }
+                    { 1, new DateTime(2023, 9, 4, 13, 8, 11, 492, DateTimeKind.Local).AddTicks(2950), null, "-", "Google", null },
+                    { 2, new DateTime(2023, 9, 4, 13, 8, 11, 492, DateTimeKind.Local).AddTicks(2954), null, "-", "Brochure", null },
+                    { 3, new DateTime(2023, 9, 4, 13, 8, 11, 492, DateTimeKind.Local).AddTicks(2958), null, "-", "Other", null }
                 });
 
             migrationBuilder.InsertData(
@@ -190,27 +207,36 @@ namespace FlightBite.Data.Migrations
                 columns: new[] { "id", "created_at", "deleted_at", "description", "updated_at", "user_type" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(443), null, "-", null, "Supplier" },
-                    { 2, new DateTime(2023, 8, 30, 18, 26, 18, 899, DateTimeKind.Local).AddTicks(445), null, "-", null, "Travel Agent" }
+                    { 1, new DateTime(2023, 9, 4, 13, 8, 11, 492, DateTimeKind.Local).AddTicks(3102), null, "-", null, "Supplier" },
+                    { 2, new DateTime(2023, 9, 4, 13, 8, 11, 492, DateTimeKind.Local).AddTicks(3104), null, "-", null, "Travel Agent" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EnquiryMaster_EnquiryPlatformModelId",
+                table: "EnquiryMaster",
+                column: "EnquiryPlatformModelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EnquiryMaster_EnquiryStatusModelId",
                 table: "EnquiryMaster",
                 column: "EnquiryStatusModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EnquiryMaster_UserTypesModelId",
+                table: "EnquiryMaster",
+                column: "UserTypesModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EnquiryNoteDetail_EnquiryMasterModelId",
+                table: "EnquiryNoteDetail",
+                column: "EnquiryMasterModelId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "EnquiryMaster");
-
-            migrationBuilder.DropTable(
                 name: "EnquiryNoteDetail");
-
-            migrationBuilder.DropTable(
-                name: "EnquityPlatform");
 
             migrationBuilder.DropTable(
                 name: "LogsMaster");
@@ -222,10 +248,16 @@ namespace FlightBite.Data.Migrations
                 name: "RequestResponseLogs");
 
             migrationBuilder.DropTable(
-                name: "UserType");
+                name: "EnquiryMaster");
 
             migrationBuilder.DropTable(
                 name: "EnquiryStatus");
+
+            migrationBuilder.DropTable(
+                name: "EnquityPlatform");
+
+            migrationBuilder.DropTable(
+                name: "UserType");
         }
     }
 }

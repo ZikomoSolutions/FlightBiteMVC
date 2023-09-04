@@ -24,14 +24,25 @@ namespace FlightBite.Data.Repositories
             return result.Entity;
         }
 
-        public Task DeleteSpecificEnquiryNote(int NoteId)
+        public async Task DeleteSpecificEnquiryNote(int NoteId)
         {
-            throw new NotImplementedException();
+            var UpdateDeleteDate = await _context.EnquiryNoteDetail.FindAsync(NoteId);
+            if (UpdateDeleteDate != null)
+            {
+                UpdateDeleteDate.DeletedAt = DateTime.Now;
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public async Task<IEnumerable<EnquiryNoteDetailsModel>> GetSpecificEnquiryAllNotes(int EnquiryId)
+        public async Task<IEnumerable<EnquiryNoteDetailsModel>> GetAllEnquiryNotes()
         {
-            IEnumerable<EnquiryNoteDetailsModel> enquiryNoteDetails = await _context.EnquiryNoteDetail.Where(c=>c.EnquiryId == EnquiryId).OrderBy(c=>c.CreatedAt).ToListAsync();
+            var EnquiryNotes = await _context.EnquiryNoteDetail.Where(p=>p.DeletedAt == null).ToListAsync();
+            return (EnquiryNotes);
+        }
+
+        public  List<EnquiryNoteDetailsModel> GetSpecificEnquiryAllNotes(int EnquiryId)
+        {
+            List<EnquiryNoteDetailsModel> enquiryNoteDetails = _context.EnquiryNoteDetail.Where(c=>c.EnquiryMasterModelId == EnquiryId).Where(c=>c.DeletedAt == null).OrderBy(c=>c.CreatedAt).ToList();
             if(enquiryNoteDetails.Count() > 0 )
             {
                 return enquiryNoteDetails;

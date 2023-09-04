@@ -14,9 +14,13 @@ namespace FlightBite.Data.Models
         [Key, Column(name: "id")]
         public int Id { get; set; }
 
-        public int EnquiryId { get; set; }
-
         [Column(name:"note", TypeName ="nvarchar(Max)")]
         public string? Note { get; set; }
+
+        //Navigation
+        [ForeignKey("enquiry_id")]
+        public int? EnquiryMasterModelId { get; set; }
+
+        public EnquiryMasterModel? EnquiryMasterModel { get; set; }
     }
 }

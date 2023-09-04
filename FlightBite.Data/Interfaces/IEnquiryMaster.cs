@@ -13,7 +13,7 @@ namespace FlightBite.Data.Interfaces
         Task<IEnumerable<EnquiryMasterModel>> GetAllEnquiry();
         Task<EnquiryMasterModel> AddEnquiry(EnquiryMasterModel model);
 
-        Task<IEnumerable<EnquiryMasterModel>> GetFilteredEnquiries(List<string> UserIds);
+        Task<IEnumerable<EnquiryMasterModel>> GetFilteredEnquiries(List<string> UserIds, string SortOrder);
 
         Task UpdateStatus(EnquiryMasterModel model);
     }

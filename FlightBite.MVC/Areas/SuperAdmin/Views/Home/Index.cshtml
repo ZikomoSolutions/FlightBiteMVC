@@ -4,6 +4,8 @@
 @model EnquiryMasterViewModel
 
 @inject IEnquiryStatus _enquiryStatus
+@inject IEnquiryNoteDetails _enquiryNoteDetails
+
 <section class="enquiries-section">
     <div class=" page-content page-content--max-1440">
         <div class="superuser">
@@ -17,7 +19,7 @@
 
             <div class="superuser__body">
                 @if (Model != null)
-                { 
+                {
                     @foreach (var enquiry in Model.EnquiryMasters)
                     {
                         
@@ -45,17 +47,18 @@
                                          style="color: var(--warning)">
                                         <div style="background-color: var(--warning)"></div>
                                         @*@enquiry.EnquiryStatusModel?.Status*@
-                                        @_enquiryStatus.GetSpecificEnquiryStatus(enquiry.EnquiryStatusId)
+                                        @_enquiryStatus.GetSpecificEnquiryStatus(enquiry.EnquiryStatusModelId)
                                     </div>
                                 </div>
 
                                 <div class="">
                                     <div class="superuser__body__notes flex">
                                         <!--Client Note Details-->
-                                        <div style="position: relative" class="open-modal" data-modal-target="@("client-details-modal-" + enquiry.Id)">
+                                        <div style="position: relative" class="open-modal" data-modal-target=@("client-details-modal-" + enquiry.Id)" )">
                                             <span class="icon-file-text2"></span>
-                                            <div class="counts">5</div>
+                                            <div class="counts">@_enquiryNoteDetails.GetSpecificEnquiryAllNotes(enquiry.Id).Count()</div>
                                         </div>
+                                        
 
                                         <!--Chat Details-->
                                         <div style="position: relative">
@@ -76,8 +79,6 @@
                                 </div>
                             </div>
                         </div>
-                        
-
                     }
                 }
             </div>

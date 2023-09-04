@@ -9,10 +9,12 @@ namespace FlightBite.Data.Interfaces
 {
     public interface IEnquiryNoteDetails
     {
-        Task<IEnumerable<EnquiryNoteDetailsModel>> GetSpecificEnquiryAllNotes(int EnquiryId);
+        List<EnquiryNoteDetailsModel> GetSpecificEnquiryAllNotes(int EnquiryId);
 
         Task<EnquiryNoteDetailsModel> AddSpecificEnquiryNote(EnquiryNoteDetailsModel model);
 
         Task DeleteSpecificEnquiryNote(int NoteId);
+
+        Task<IEnumerable<EnquiryNoteDetailsModel>> GetAllEnquiryNotes();
     }
 }
