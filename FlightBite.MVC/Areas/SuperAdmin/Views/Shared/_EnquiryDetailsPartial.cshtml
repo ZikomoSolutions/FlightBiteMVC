@@ -128,7 +128,7 @@
 							</div>
 						</div>
 						<form asp-action="DeleteNote" asp-controller="home" asp-route-NoteId="@Enquiries.Id">
-							<button class="btn btn--small" title="close">
+							<button class="btn btn--small" title="close" onclick="return confirm('Do You Want To Delete?')">
 								<i class="icon-bin2 h3" aria-hidden="true"></i>
 							</button>
 						</form>
