@@ -7,80 +7,80 @@
 @inject IEnquiryNoteDetails _enquiryNoteDetails
 
 <section class="enquiries-section">
-    <div class=" page-content page-content--max-1440">
-        <div class="superuser">
-            <div class="superuser__header">
-                <div class="flex flex--is-wrap flex--distribute">
-                    <h1><strong> Enquires / Leads </strong></h1>
-                    <button class="btn btn--success open-modal" data-modal-target="enquiry-modal">Add Manual Enquiry</button>
-                </div>
-                <partial name="_FilterEnquiryPartial" model="Model.SelectedUserTypes"></partial>
-            </div>
+	<div class=" page-content page-content--max-1440">
+		<div class="superuser">
+			<div class="superuser__header">
+				<div class="flex flex--is-wrap flex--distribute">
+					<h1><strong> Enquires / Leads </strong></h1>
+					<button class="btn btn--success open-modal" data-modal-target="enquiry-modal">Add Manual Enquiry</button>
+				</div>
+				<partial name="_FilterEnquiryPartial" model="Model.SelectedUserTypes"></partial>
+			</div>
 
-            <div class="superuser__body">
-                @if (Model != null)
-                {
-                    @foreach (var enquiry in Model.EnquiryMasters)
-                    {
-                        <div class="flex flex--align-center flex--distribute flex--is-wrap"
-                             style="border-bottom: 1px solid var(--grey-2); padding-bottom: 8px;">
-                            <div class="flex flex--align-center flex--has-gap">
-                                <div class="superuser__body__date">
-                                    <span>@enquiry.CreatedAt.ToString("MMM dd")</span>
-                                    <span style="font-size: 16px"> <strong> @enquiry.CreatedAt.ToString("MMM") </strong></span>
-                                    <span>@enquiry.CreatedAt.ToString("yyyy")</span>
-                                </div>
-                                <div class="superuser__body__clients-name">
-                                     <div><strong>@enquiry.CompanyName</strong></div>
-                                     <div>@enquiry.ContactEmail</div>
-                                </div>
-                            </div>
-                            <div class="flex flex--is-wrap flex--align-center" style="gap: 4rem">
-                                <div class="flex flex--is-wrap flex--has-gap">
-                                    <div class="superuser__body__provider">
-                                        Provider
-                                        <span style="background-color: var(--brand-1)">Api</span>
-                                    </div>
+			<div class="superuser__body">
+				@if (Model != null)
+				{
+					@foreach (var enquiry in Model.EnquiryMasters)
+					{
+						<div class="flex flex--align-center flex--distribute flex--is-wrap"
+							 style="border-bottom: 1px solid var(--grey-2); padding-bottom: 8px;">
+							<div class="flex flex--align-center flex--has-gap">
+								<div class="superuser__body__date">
+									<span>@enquiry.CreatedAt.ToString("MMM dd")</span>
+									<span style="font-size: 16px"> <strong> @enquiry.CreatedAt.ToString("MMM") </strong></span>
+									<span>@enquiry.CreatedAt.ToString("yyyy")</span>
+								</div>
+								<div class="superuser__body__clients-name">
+									<div><strong>@enquiry.CompanyName</strong></div>
+									<div>@enquiry.ContactEmail</div>
+								</div>
+							</div>
+							<div class="flex flex--is-wrap flex--align-center" style="gap: 4rem">
+								<div class="flex flex--is-wrap flex--has-gap">
+									<div class="superuser__body__provider">
+										Provider
+										<span style="background-color: var(--brand-1)">Api</span>
+									</div>
 
-                                    <div class="superuser__body__status flex  flex--is-wrap flex--align-center flex--has-sm-gap"
-                                         style="color: var(--warning)">
-                                        <div style="background-color: var(--warning)"></div>
-                                        @enquiry.EnquiryStatusModel?.Status
-                                        @*@_enquiryStatus.GetSpecificEnquiryStatus(enquiry.EnquiryStatusModelId)*@
-                                    </div>
-                                </div>
+									<div class="superuser__body__status flex  flex--is-wrap flex--align-center flex--has-sm-gap"
+										 style="color: var(--warning)">
+										<div style="background-color: var(--warning)"></div>
+										@enquiry.EnquiryStatusModel?.Status
+										@*@_enquiryStatus.GetSpecificEnquiryStatus(enquiry.EnquiryStatusModelId)*@
+									</div>
+								</div>
 
-                                <div class="">
-                                    <div class="superuser__body__notes flex">
-                                        <!--Client Note Details-->
-                                        <div style="position: relative" class="open-modal" data-modal-target=@("client-details-modal-" + enquiry.Id)" )">
-                                            <span class="icon-file-text2"></span>
-                                            <div class="counts">@_enquiryNoteDetails.GetSpecificEnquiryAllNotes(enquiry.Id).Count()</div>
-                                        </div>
+								<div class="">
+									<div class="superuser__body__notes flex">
+										<!--Client Note Details-->
+										<div style="position: relative"   class="open-modal" data-modal-target="@("client-details-modal-" + enquiry.Id)">
+											<span class="icon-file-text2"></span>
+											<div class="counts">@_enquiryNoteDetails.GetSpecificEnquiryAllNotes(enquiry.Id).Count()</div>
+										</div>
 
-                                        <!--Chat Details-->
-                                        <div style="position: relative">
-                                            <span class="icon-bubbles"></span>
-                                            <div class="counts"
-                                                 style="background-color: var(--success)">
-                                                2
-                                            </div>
-                                        </div>
+										<!--Chat Details-->
+										<div style="position: relative">
+											<span class="icon-bubbles"></span>
+											<div class="counts"
+												 style="background-color: var(--success)">
+												2
+											</div>
+										</div>
 
-                                        <!--Client Information-->
-                                        <div class="open-modal" data-modal-target="@("client-details-modal-" + enquiry.Id)" >
-                                             <span class="icon-info"></span>
-                                        </div>
-                                        <partial name="_EnquiryDetailsPartial" model="enquiry"></partial>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
-            </div>
-        </div>
-    </div>
+										<!--Client Information-->
+										<div class="open-modal" data-modal-target="@("client-details-modal-" + enquiry.Id)">
+											<span class="icon-info"></span>
+										</div>
+										<partial name="_EnquiryDetailsPartial" model="enquiry"></partial>
+									</div>
+								</div>
+							</div>
+						</div>
+					}
+				}
+			</div>
+		</div>
+	</div>
 </section>
 
 <partial name="_EnquiryPartial"></partial>
