@@ -20,8 +20,8 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         private readonly IEnquiryStatus _enquiryStatus;
         private readonly IEnquiryNoteDetails _enquiryNoteDetails;
         private readonly IEnumerable<EnquiryMasterModel> result;
-        private List<SelectListItem> SelectedUserTypes;
-        private List<SelectListItem> SelectSortByItems;
+        private List<SelectListItem>? SelectedUserTypes;
+        private List<SelectListItem>? SelectSortByItems;
 
         public HomeController(IEnquiryMaster enquiryMaster, IUserType userType, IEnquiryPlatform enquiryPlatform, IEnquiryStatus enquiryStatus,
                               IEnquiryNoteDetails enquiryNoteDetails)
@@ -48,7 +48,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(List<SelectListItem> UserTypes, IFormCollection formCollection)
         {
-            string? ordername = formCollection["SortName"];
+            string ordername = formCollection["SortName"]!;
             var SelectedUserType = UserTypes.Where(x => x.Selected).ToList();
             if (SelectedUserType.Count() >= 0)
             {

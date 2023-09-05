@@ -29,6 +29,7 @@
     <Folder Include="Areas\Supplier\Models\" />
     <Folder Include="Areas\Supplier\Views\" />
     <Folder Include="Controllers\" />
+    <Folder Include="ViewComponents\" />
     <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\" />
     <Folder Include="wwwroot\lib\jquery-validation\" />
     <Folder Include="wwwroot\lib\jquery-validation\dist\" />
