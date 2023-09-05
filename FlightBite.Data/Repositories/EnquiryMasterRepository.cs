@@ -13,6 +13,7 @@ namespace FlightBite.Data.Repositories
     public class EnquiryMasterRepository : IEnquiryMaster
     {
         private readonly DatabaseContext context;
+        private IEnumerable<EnquiryMasterModel> enquiries;
 
         public EnquiryMasterRepository(DatabaseContext context)
         {
@@ -57,7 +58,23 @@ namespace FlightBite.Data.Repositories
         {
             try
             {
-                var enquiries = await context.EnquiryMaster.Where(e => UserIds.Contains(e.UserTypesModelId.ToString())).OrderByDescending(e=>e.CreatedAt).ToListAsync();
+
+                switch (SortOrder)
+                {
+                    case "Company Name Ascending":
+                        enquiries = await context.EnquiryMaster.OrderBy(e => e.CompanyName).ToListAsync();
+                        break;
+                    case "Date Wise Ascending":
+                        enquiries = await context.EnquiryMaster.OrderBy(e => e.CreatedAt).AsNoTracking().ToListAsync();
+                        break;
+                    case "Date Wise Descending":
+                        enquiries = await context.EnquiryMaster.OrderByDescending(e => e.CreatedAt).ToListAsync();
+                        break;
+                    default:
+                        enquiries = await context.EnquiryMaster.Where(e => UserIds.Contains(e.UserTypesModelId.ToString())).OrderByDescending(e => e.CreatedAt).ToListAsync();
+                        break;
+                }
+                
                 return (enquiries);
             }
             catch (Exception ex)

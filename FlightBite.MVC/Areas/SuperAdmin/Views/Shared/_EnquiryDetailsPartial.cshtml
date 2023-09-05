@@ -6,7 +6,7 @@
 @inject IEnquiryPlatform _enquiryPlatform
 @inject IEnquiryNoteDetails _enquiryNoteDetails
 @{
-	List<SelectListItem> StatusList = null;
+	List<SelectListItem>? StatusList = null;
 	if (ViewBag.EnquiryStatusList != null)
 	{
 		StatusList = ViewBag.EnquiryStatusList as List<SelectListItem>;
@@ -26,11 +26,11 @@
 		</div>
 
 		<div class="modal__body">
-			@*<input type="hidden" asp-for="@Model.Id" />*@
 			<div class="input-item input-item--full-width input-item--has-icon"
 				 style="width: 100%">
 				<label>Enquiry Status </label>
 				<div class="flex flex--distribute flex--align-center flex--has-gap">
+					<!--Enquiry Status-->
 					<div style="width: 100%">
 						@if (StatusList != null)
 						{
@@ -41,12 +41,10 @@
 						}
 					</div>
 
+					<!--Enquiry Note-->
 					<div class="superuser__body__notes flex" id="" onclick="toggleModalSection('client-name-notes-@Model.Id')">
-						@*data-modal-url="@Url.Action($"NotesDetail/{Model.Id}")"*@
 						<div style="position: relative">
-							@*<a asp-action="NotesDetail" asp-controller="home" asp-route-EnquiryId="@Model.Id" target="_self">*@
 							<span class="icon-file-text2"></span>
-							@* </a>*@
 							<div class="counts" style="background-color: var(--success)">
 								@_enquiryNoteDetails.GetSpecificEnquiryAllNotes(Model.Id).Count()
 							</div>
@@ -137,7 +135,6 @@
 					</div>
 				}
 			}
-
 		</div>
 		<form asp-action="AddNotes" asp-controller="home" asp-route-EnquiryId="@Model.Id">
 			<div class="modal__footer flex flex--align-end flex--distribute flex--is-wrap">

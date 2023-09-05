@@ -22,7 +22,6 @@
                 {
                     @foreach (var enquiry in Model.EnquiryMasters)
                     {
-                        
                         <div class="flex flex--align-center flex--distribute flex--is-wrap"
                              style="border-bottom: 1px solid var(--grey-2); padding-bottom: 8px;">
                             <div class="flex flex--align-center flex--has-gap">
@@ -46,8 +45,8 @@
                                     <div class="superuser__body__status flex  flex--is-wrap flex--align-center flex--has-sm-gap"
                                          style="color: var(--warning)">
                                         <div style="background-color: var(--warning)"></div>
-                                        @*@enquiry.EnquiryStatusModel?.Status*@
-                                        @_enquiryStatus.GetSpecificEnquiryStatus(enquiry.EnquiryStatusModelId)
+                                        @enquiry.EnquiryStatusModel?.Status
+                                        @*@_enquiryStatus.GetSpecificEnquiryStatus(enquiry.EnquiryStatusModelId)*@
                                     </div>
                                 </div>
 
@@ -58,7 +57,6 @@
                                             <span class="icon-file-text2"></span>
                                             <div class="counts">@_enquiryNoteDetails.GetSpecificEnquiryAllNotes(enquiry.Id).Count()</div>
                                         </div>
-                                        
 
                                         <!--Chat Details-->
                                         <div style="position: relative">
@@ -74,7 +72,6 @@
                                              <span class="icon-info"></span>
                                         </div>
                                         <partial name="_EnquiryDetailsPartial" model="enquiry"></partial>
-
                                     </div>
                                 </div>
                             </div>

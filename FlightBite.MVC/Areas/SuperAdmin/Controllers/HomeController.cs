@@ -7,6 +7,7 @@ using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Azure;
+using Microsoft.Data.SqlClient;
 
 namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
 {
@@ -18,6 +19,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         private readonly IEnquiryPlatform _enquiryPlatform;
         private readonly IEnquiryStatus _enquiryStatus;
         private readonly IEnquiryNoteDetails _enquiryNoteDetails;
+        private readonly IEnumerable<EnquiryMasterModel> result;
         private List<SelectListItem> SelectedUserTypes;
         private List<SelectListItem> SelectSortByItems;
 
@@ -44,21 +46,25 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(List<SelectListItem> UserTypes, string SortOrder)
+        public async Task<IActionResult> Index(List<SelectListItem> UserTypes, IFormCollection formCollection)
         {
+            string? ordername = formCollection["SortName"];
             var SelectedUserType = UserTypes.Where(x => x.Selected).ToList();
             if (SelectedUserType.Count() >= 0)
             {
-                var result = await _enquiryMaster.GetFilteredEnquiries(SelectedUserType.Select(e => e.Value).ToList(), null) ;
+
+                var result = await _enquiryMaster.GetFilteredEnquiries(SelectedUserType.Select(e => e.Value).ToList(), ordername);
 				var EnquiryStatusList = FillEnquiryStatus();
 				ViewBag.EnquiryStatusList = EnquiryStatusList;
 
-				var model = new EnquiryMasterViewModel
+                var SortByItemsList = FillSortByItems();
+                ViewBag.SortByItemsList = SortByItemsList;
+
+                var model = new EnquiryMasterViewModel
                 {
                     SelectedUserTypes = await FillUserTypes(),
                     Platforms = await _enquiryPlatform.GetAllEnquityPlatform(),
                     EnquiryMasters = result
-    				//EnqyiryStatus = _enquiryStatus.GetAllEnquiryStatus()
 			    };
                 return View(model);
             }
@@ -83,10 +89,10 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         {
             List<SelectListItem> items = new List<SelectListItem>();
             {
-                items.Add(new SelectListItem { Value = "0", Text = "Select One..." });
-                items.Add(new SelectListItem { Value = "1", Text = "Company Name" });
-                items.Add(new SelectListItem { Value = "2", Text = "Date Wise Ascending" });
-                items.Add(new SelectListItem { Value = "3", Text = "Date Wise Descending" });
+                items.Add(new SelectListItem { Value = "Select One...", Text = "Select One..." });
+                items.Add(new SelectListItem { Value = "Company Name Ascending", Text = "Company Name Ascending" });
+                items.Add(new SelectListItem { Value = "Date Wise Ascending", Text = "Date Wise Ascending" });
+                items.Add(new SelectListItem { Value = "Date Wise Descending", Text = "Date Wise Descending" });
             }
             return items;
         }
@@ -110,7 +116,6 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
                 Platforms = await _enquiryPlatform.GetAllEnquityPlatform(),
                 EnquiryMasters = await _enquiryMaster.GetAllEnquiry(),
                 EnquiryNoteDetailsModel = await _enquiryNoteDetails.GetAllEnquiryNotes()
-                //EnqyiryStatus = _enquiryStatus.GetAllEnquiryStatus(),
             };
             return model;
         }
@@ -141,32 +146,6 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         public async Task<IActionResult> UpdateStatus(EnquiryMasterModel model)
         {
             await _enquiryMaster.UpdateStatus(model);
-            return RedirectToAction("Index");
-        }
-
-        public IActionResult NotesDetail(int EnquiryId)
-        {
-
-            var EnquiryNotes = _enquiryNoteDetails.GetSpecificEnquiryAllNotes(EnquiryId);
-            var EnquiryMaster = _enquiryMaster.GetEnquiry(EnquiryId);
-
-            var model = new EnquiryMasterModel
-            {
-                EnquiryNoteDetailsModel = EnquiryNotes,
-
-                Id = EnquiryMaster.Id,
-                CompanyName = EnquiryMaster.CompanyName,
-                ContactPerson = EnquiryMaster.ContactPerson, 
-                ATOL = EnquiryMaster.ATOL,
-                IATA = EnquiryMaster.IATA,
-                JobTitle = EnquiryMaster.JobTitle,
-                ContactEmail = EnquiryMaster.ContactEmail,
-                ContactPhone = EnquiryMaster.ContactPhone,
-                EnquiryPlatformModelId = EnquiryMaster.EnquiryPlatformModelId,
-                EnquiryStatusModelId = EnquiryMaster.EnquiryStatusModelId,
-                UserTypesModelId = EnquiryMaster.UserTypesModelId
-            };
-            //return PartialView("_NotesDetailPartial", model);
             return RedirectToAction("Index");
         }
 
