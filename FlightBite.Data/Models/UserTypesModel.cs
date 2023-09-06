@@ -22,5 +22,7 @@ namespace FlightBite.Data.Models
         public string? Description { get; set; }
 
         public ICollection<EnquiryMasterModel>? EnquiryMasterModels { get; set; }
+
+        public ICollection<ClientMasterModel>? ClientMasterModels { get; set; }
     }
 }

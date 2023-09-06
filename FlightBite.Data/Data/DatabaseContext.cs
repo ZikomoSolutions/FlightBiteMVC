@@ -23,9 +23,19 @@ namespace FlightBite.Data
         public DbSet<LogsMasterModel> LogsMaster { get; set; }
         public DbSet<RequestResponseLogsModel> RequestResponseLogs { get; set; }
         public DbSet<RequestLogsMasterModel> RequestLogsMasters { get; set; }  
+
+        public DbSet<ClientMasterModel> ClientMasters { get; set; }
+        public DbSet<TermMasterModel> TermMasters { get; set; }
+        public DbSet<ClientTermsModel> ClientTerms { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ClientTermsModel>().HasKey(c => new { c.ClientMasterModelId, c.TermMasterModelId });
+            modelBuilder.Entity<ClientTermsModel>().HasOne(ct => ct.ClientMasterModel).WithMany(m => m.ClientTermsModels).HasForeignKey(c => c.ClientMasterModelId);
+            modelBuilder.Entity<ClientTermsModel>().HasOne(ct => ct.TermMasterModel).WithMany(m => m.ClientTermsModels).HasForeignKey(c=>c.TermMasterModelId);
+
             modelBuilder.Entity<EnquiryPlatformModel>().HasData
             (
                 new EnquiryPlatformModel
@@ -93,6 +103,46 @@ namespace FlightBite.Data
                     Id = 2,
                     UserType = "Travel Agent",
                     Description= "-",
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = null,
+                    DeletedAt = null,
+                }
+            );
+
+            modelBuilder.Entity<TermMasterModel>().HasData
+            (
+                new TermMasterModel
+                {
+                    Id = 1,
+                    Terms = "FlightBite Agreement Signed",
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = null,
+                    DeletedAt = null,
+                },
+                new TermMasterModel
+                {
+                    Id = 2,
+                    Terms = "Required Documents Added and Signed Off",
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = null,
+                    DeletedAt = null,
+                }
+            );
+
+            modelBuilder.Entity<SupplierSourceModel>().HasData
+            (
+                new SupplierSourceModel
+                {
+                    Id = 1,
+                    SourceName = "API",
+                    CreatedAt  = DateTime.Now,
+                    UpdatedAt = null,
+                    DeletedAt = null,
+                },
+                new SupplierSourceModel
+                {
+                    Id = 2,
+                    SourceName = "WEB",
                     CreatedAt = DateTime.Now,
                     UpdatedAt = null,
                     DeletedAt = null,

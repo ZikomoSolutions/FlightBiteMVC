@@ -2,7 +2,7 @@
 @model List<SelectListItem>
 
 @{
-    List<SelectListItem> SortByList = null;
+    List<SelectListItem> SortByList = null!;
     if (ViewBag.SortByItemsList != null)
     {
         SortByList = ViewBag.SortByItemsList as List<SelectListItem>;
@@ -27,29 +27,22 @@
         </div>
     </form>
     
-    
-        <div class="input-item input-item--full-width input-item--has-icon input-item--label-inside input-item--is-select"
-             style="min-width: 20%">
-            <div>
-                @if (SortByList != null)
-                {
-@*                    @for (int i = 0; i < SortByList.Count(); i++)
-                    {*@
-                        <form method="post" asp-controller="home" asp-action="Index" >
-                            <select asp-items="@SortByList" onchange="this.form.submit();" id="SortId" name="SortName">
-
-                                @*<option value="0">Select One...</option>
-                                <option value="1">Company Name</option>
-                                <option value="2">Date Wise Ascending</option>
-                                <option value="3">Date Wise Descending</option>*@
-                            </select>
-                            <i class="icon-chevron-down"></i>
-                            <label>Sort by</label>
-                        </form>
-@*                    }*@
-
-                }
-            </div>
+    <div class="input-item input-item--full-width input-item--has-icon input-item--label-inside input-item--is-select"
+            style="min-width: 20%">
+        <div>
+            @if (SortByList != null)
+            {
+                <form method="post" asp-controller="home" asp-action="Index" >
+                    <select asp-items="@SortByList" onchange="this.form.submit();" id="SortId" name="SortName">
+                        @*<option value="0">Select One...</option>
+                        <option value="1">Company Name</option>
+                        <option value="2">Date Wise Ascending</option>
+                        <option value="3">Date Wise Descending</option>*@
+                    </select>
+                    <i class="icon-chevron-down"></i>
+                    <label>Sort by</label>
+                </form>
+            }
         </div>
-    
+    </div>
 </div>
