@@ -1,11 +1,12 @@
-﻿@using FlightBite.Data.Models;
-@using FlightBite.Data.Interfaces;
+﻿@using FlightBite.Data.Interfaces;
 @using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
-@model EnquiryMasterModel
+@model EnquiryInfoViewModel
 
-@inject IEnquiryPlatform _enquiryPlatform
 @inject IEnquiryNoteDetails _enquiryNoteDetails
+@inject IEnquiryStatus _enquiryStatus
 @{
+	Layout = null;
+
 	List<SelectListItem>? StatusList = null;
 	if (ViewBag.EnquiryStatusList != null)
 	{
@@ -13,9 +14,9 @@
 	}
 }
 
-@*<div class="modal" id="client-details-modal-@Model.Id">
+<div class="modal modal--active" id="client-details-modal">
 
-	<div class="modal__container" id="enquiry-details-@Model.Id">
+	<div class="modal__container" id="enquiry-details">
 		<div class="modal__header flex flex--distribute flex--align-center">
 			<div class="h3">@Model.CompanyName</div>
 			<div class="" style="cursor: pointer">
@@ -32,6 +33,7 @@
 				<div class="flex flex--distribute flex--align-center flex--has-gap">
 					<!--Enquiry Status-->
 					<div style="width: 100%">
+
 						@if (StatusList != null)
 						{
 							<form asp-action="UpdateStatus" asp-controller="Home" method="post">
@@ -43,7 +45,7 @@
 
 					<!--Enquiry Note-->
 					<div class="superuser__body__notes flex" id="" onclick="toggleModalSection('client-name-notes-@Model.Id')">
-						<div style="position: relative">
+						<div style="position: relative" hx-trigger="click" hx-get="@Url.Action("NoteView","Home", new { id = Model.Id })" hx-target="#NoteDetails">
 							<span class="icon-file-text2"></span>
 							<div class="counts" style="background-color: var(--success)">
 								@_enquiryNoteDetails.GetSpecificEnquiryAllNotes(Model.Id).Count()
@@ -88,63 +90,10 @@
 				</div>
 				<div class="flex">
 					<small style="width: 50%"> <strong> Lead </strong></small>
-					<small style="width: 50%">@_enquiryPlatform.GetSpecificPlatform(Model.EnquiryPlatformModelId)</small>
+					<small style="width: 50%">@Model.PlatForm</small>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<div class="modal__container hide" id="client-name-notes-@Model.Id">
-		<div class="modal__header">
-			<div class="flex flex--distribute flex--align-center">
-				<div class="h3">@Model.CompanyName - Notes</div>
-				<button class="btn btn--small close-modal" title="close">
-					<i class="icon-cross" aria-hidden="true"></i>
-				</button>
-			</div>
-			<div onclick="toggleModalSection('enquiry-details-@Model.Id')" style="text-decoration: underline;color: var(--brand-1);margin-top: 16px;">
-				Enquiry Details
-			</div>
-		</div>
-		<div class="modal__body flex flex--is-column flex--has-gap">
-			@if (Model.EnquiryNoteDetailsModel != null)
-			{
-				@foreach (var Enquiries in Model.EnquiryNoteDetailsModel)
-				{
-					<div class="flex flex--align-center flex--has-gap flex--distribute flex--is-wrap"
-						 style="border-bottom: 1px solid var(--grey-2); padding-bottom: 8px">
-
-						<div class="flex flex--align-center flex--has-gap">
-							<div class="superuser__body__date">
-								<span>@Enquiries.CreatedAt.ToString("MMM dd")</span>
-								<span style="font-size: 16px"> <strong> @Enquiries.CreatedAt.ToString("MMM") </strong></span>
-								<span>@Enquiries.CreatedAt.ToString("yyyy")</span>
-							</div>
-							<div class="superuser__body__clients-name">
-								<div><strong>@Model.CompanyName</strong></div>
-								<div>@Enquiries.Note</div>
-							</div>
-						</div>
-						<form asp-action="DeleteNote" asp-controller="home" asp-route-NoteId="@Enquiries.Id">
-							<button class="btn btn--small" title="close" onclick="return confirm('Do You Want To Delete?')">
-								<i class="icon-bin2 h3" aria-hidden="true"></i>
-							</button>
-						</form>
-					</div>
-				}
-			}
-		</div>
-		<form asp-action="AddNotes" asp-controller="home" asp-route-EnquiryId="@Model.Id">
-			<div class="modal__footer flex flex--align-end flex--distribute flex--is-wrap">
-				<div style="width: 85%" class="input-item input-item--full-width">
-					<div>
-						<label> Note </label>
-						<input type="text" asp-for="EnquiryNote" placeholder="Write Note" />
-					</div>
-				</div>
-				<button class="btn btn--brand-1">Add Note</button>
-			</div>
-		</form>
-	</div>
-</div>*@
-
+</div>
+<div id="NoteDetails"></div>

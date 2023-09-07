@@ -40,7 +40,7 @@ namespace FlightBite.Data.Repositories
             return (EnquiryNotes);
         }
 
-        public  List<EnquiryNoteDetailsModel> GetSpecificEnquiryAllNotes(int EnquiryId)
+        public List<EnquiryNoteDetailsModel> GetSpecificEnquiryAllNotes(int EnquiryId)
         {
             List<EnquiryNoteDetailsModel> enquiryNoteDetails = _context.EnquiryNoteDetail.Where(c=>c.EnquiryMasterModelId == EnquiryId).Where(c=>c.DeletedAt == null).OrderBy(c=>c.CreatedAt).ToList();
             return enquiryNoteDetails;

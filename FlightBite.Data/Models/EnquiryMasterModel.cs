@@ -41,22 +41,16 @@ namespace FlightBite.Data.Models
 
         [Required]
         [Column(name:"contact_phone", TypeName ="nvarchar(50)")]
-        public string? ContactPhone { get; set;}
+        public string? ContactPhone { get; set; }
 
-        [ForeignKey("plat_form_id")]
         public int EnquiryPlatformModelId { get; set; }
         public EnquiryPlatformModel? EnquiryPlatformModel { get; set; }
-        [ForeignKey("status_id")]
         public int EnquiryStatusModelId { get; set; }
         public EnquiryStatusModel? EnquiryStatusModel { get; set; }
-        [ForeignKey("user_type_id")]
         public int UserTypesModelId { get; set; }
         public UserTypesModel? UserTypesModel { get; set; }
 
-
         public ICollection<EnquiryNoteDetailsModel>? EnquiryNoteDetailsModel { get; set; }
 
-        [NotMapped]
-        public string? EnquiryNote { get; set; }
     }
 }

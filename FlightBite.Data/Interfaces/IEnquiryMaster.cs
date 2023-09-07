@@ -9,7 +9,7 @@ namespace FlightBite.Data.Interfaces
 {
     public interface IEnquiryMaster
     {
-        EnquiryMasterModel GetEnquiry(int id);
+        Task<EnquiryMasterModel> GetEnquiry(int id);
         Task<IEnumerable<EnquiryMasterModel>> GetAllEnquiry();
         Task<EnquiryMasterModel> AddEnquiry(EnquiryMasterModel model);
 

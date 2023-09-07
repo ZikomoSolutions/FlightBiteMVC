@@ -1,10 +1,9 @@
 ﻿@using FlightBite.Data.Models;
 @using FlightBite.Data.Interfaces;
 @using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
-@model EnquiryMasterViewModel
+@model EnquiryViewModel
 
-@inject IEnquiryStatus _enquiryStatus
-@inject IEnquiryNoteDetails _enquiryNoteDetails
+@inject IEnquiryNoteDetails _enquiryNoteDetails //For counting notes purpose inject it.
 
 <section class="enquiries-section">
 	<div class=" page-content page-content--max-1440">
@@ -12,15 +11,18 @@
 			<div class="superuser__header">
 				<div class="flex flex--is-wrap flex--distribute">
 					<h1><strong> Enquires / Leads </strong></h1>
-					<button class="btn btn--success open-modal" data-modal-target="enquiry-modal">Add Manual Enquiry</button>
+					<div hx-trigger="click" hx-get="@Url.Action("AddEnquiry","Home")" hx-target="#ShowEnquiryForm">
+						<button class="btn btn--success open-modal" data-modal-target="enquiry-modal">Add Manual Enquiry</button>
+					</div>
+					@*<button class="btn btn--success open-modal" data-modal-target="enquiry-modal">Add Manual Enquiry</button>*@
 				</div>
 				<partial name="_FilterEnquiryPartial" model="Model.SelectedUserTypes"></partial>
 			</div>
 
 			<div class="superuser__body">
-				@if (Model != null)
+				@if (Model.EnquiryMasters != null)
 				{
-					@foreach (var enquiry in Model.EnquiryMasters)
+					@foreach (var enquiry in Model.EnquiryMasters!)
 					{
 						<div class="flex flex--align-center flex--distribute flex--is-wrap"
 							 style="border-bottom: 1px solid var(--grey-2); padding-bottom: 8px;">
@@ -45,15 +47,14 @@
 									<div class="superuser__body__status flex  flex--is-wrap flex--align-center flex--has-sm-gap"
 										 style="color: var(--warning)">
 										<div style="background-color: var(--warning)"></div>
-										@enquiry.EnquiryStatusModel?.Status
-										@*@_enquiryStatus.GetSpecificEnquiryStatus(enquiry.EnquiryStatusModelId)*@
+										@enquiry.EnquiryStatusModel!.Status
 									</div>
 								</div>
 
 								<div class="">
 									<div class="superuser__body__notes flex">
-										<!--Client Note Details-->
-										<div style="position: relative"   class="open-modal" data-modal-target="@("client-details-modal-" + enquiry.Id)">
+										<!--Note Details-->
+										<div style="position: relative" hx-trigger="click" hx-get="@Url.Action("NoteView","Home", new { id = enquiry.Id })" hx-target="#NoteDetails">
 											<span class="icon-file-text2"></span>
 											<div class="counts">@_enquiryNoteDetails.GetSpecificEnquiryAllNotes(enquiry.Id).Count()</div>
 										</div>
@@ -67,11 +68,11 @@
 											</div>
 										</div>
 
-										<!--Client Information-->
-										<div class="open-modal" data-modal-target="@("client-details-modal-" + enquiry.Id)">
+										<!--Enquiry Details-->
+										<div hx-trigger="click" hx-get="@Url.Action("EnquiryView","Home",new { id = enquiry.Id })" hx-target="#EnquiryDetails">
 											<span class="icon-info"></span>
 										</div>
-										<partial name="_EnquiryDetailsPartial" model="enquiry"></partial>
+
 									</div>
 								</div>
 							</div>
@@ -82,5 +83,6 @@
 		</div>
 	</div>
 </section>
-
-<partial name="_EnquiryPartial"></partial>
+<div id="ShowEnquiryForm"></div>
+<div id="EnquiryDetails"></div>
+<div id="NoteDetails"></div>
