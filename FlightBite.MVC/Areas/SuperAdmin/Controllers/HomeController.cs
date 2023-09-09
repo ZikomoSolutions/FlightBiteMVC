@@ -37,7 +37,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var result = await FillUserAndPlatform();
+            var result = await FillPrimaryData();
             var EnquiryStatusList = FillEnquiryStatus();
             ViewBag.EnquiryStatusList = EnquiryStatusList;
 
@@ -65,7 +65,6 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
                 var model = new EnquiryViewModel
                 {
                     SelectedUserTypes = await FillUserTypes(),
-                    //Platforms = await _enquiryPlatform.GetAllEnquityPlatform(),
                     EnquiryMasters = result
 			    };
                 return View(model);
@@ -102,15 +101,129 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
             return View(model);
         }
 
-        public IActionResult NoteView(int id)
+		public async Task<IActionResult> UpdateStatus(EnquiryMasterModel model)
+		{
+			await _enquiryMaster.UpdateStatus(model);
+			return RedirectToAction("Index");
+		}
+
+        public async Task<IActionResult> UserTypeView()
         {
-            var NoteList = _enquiryNoteDetails.GetSpecificEnquiryAllNotes(id);
+            var UserTypeList = await _userType.GetAllUserTypes();
+            EnquiryCreateViewModel model = new EnquiryCreateViewModel()
+            {
+                UserTypes = UserTypeList,
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+		public async Task<IActionResult> AddEnquiry()
+        {
+			//var UserTypeList = await _userType.GetAllUserTypes();
+            var PlatFormList = await _enquiryPlatform.GetAllEnquityPlatform();
+            EnquiryCreateViewModel model = new EnquiryCreateViewModel()
+            {
+                //UserTypes = UserTypeList,
+                Platforms = PlatFormList,
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddEnquiry(EnquiryCreateViewModel viewModel)
+        {
+			var PlatFormList = await _enquiryPlatform.GetAllEnquityPlatform();
+            
+			if (ModelState.IsValid)
+            {
+                var model = new EnquiryMasterModel()
+                {
+                    CompanyName = viewModel.CompanyName,
+                    ContactPerson = "-", //viewModel.ContactPerson,
+                    ATOL = viewModel.ATOL,
+                    IATA = viewModel.IATA,
+                    JobTitle = viewModel.JobTitle,
+                    ContactEmail = viewModel.ContactEmail,
+                    ContactPhone = viewModel.ContactPhone,
+                    EnquiryPlatformModelId = viewModel.PlatformSelectedId,
+                    EnquiryStatusModelId = 1,
+                    UserTypesModelId = viewModel.UserTypeSelectedId
+                };
+                var result = await _enquiryMaster.AddEnquiry(model);
+
+                ModelState.Clear();
+
+				var vmodel = new EnquiryCreateViewModel()
+				{
+					Platforms = PlatFormList,
+				};
+
+				return View(vmodel);
+            }
+            else
+            {
+				var model = new EnquiryCreateViewModel()
+				{
+					Platforms = PlatFormList,
+				};
+				return View(model);
+			}
+        }
+
+        public IActionResult NoteView(int EnquiryId)
+        {
+            var NoteList = _enquiryNoteDetails.GetSpecificEnquiryAllNotes(EnquiryId);
+            var CompanyName = _enquiryMaster.GetSpecificCompanyName(EnquiryId);
             EnquiryNoteViewModel model = new EnquiryNoteViewModel()
             {
-                EnquiryId = id,
+                EnquiryId = EnquiryId,
+                CompanyName = CompanyName,
                 EnquiryNoteDetailsModel = NoteList,
             };
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> NoteView(int EnquiryId, EnquiryNoteViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var AddInModel = new EnquiryNoteDetailsModel
+                {
+                    EnquiryMasterModelId = model.EnquiryId,
+                    Note = model.EnquiryNote,
+                    CreatedAt = DateTime.Now,
+                };
+                var result = await _enquiryNoteDetails.AddSpecificEnquiryNote(AddInModel);
+            }
+
+            ModelState.Remove("EnquiryNote");
+
+			var NoteList = _enquiryNoteDetails.GetSpecificEnquiryAllNotes(EnquiryId);
+			var CompanyName = _enquiryMaster.GetSpecificCompanyName(EnquiryId);
+			EnquiryNoteViewModel vmodel = new EnquiryNoteViewModel()
+			{
+				EnquiryId = EnquiryId,
+				CompanyName = CompanyName,
+				EnquiryNoteDetailsModel = NoteList,
+			};
+			return View(vmodel);
+        }
+
+        public async Task<IActionResult> DeleteNote(int NoteId, int EnquiryId)
+        {
+            await _enquiryNoteDetails.DeleteSpecificEnquiryNote(NoteId);
+
+            var NoteList = _enquiryNoteDetails.GetSpecificEnquiryAllNotes(EnquiryId);
+            var CompanyName = _enquiryMaster.GetSpecificCompanyName(EnquiryId);
+            EnquiryNoteViewModel vmodel = new EnquiryNoteViewModel()
+            {
+                EnquiryId = EnquiryId,
+                CompanyName = CompanyName,
+                EnquiryNoteDetailsModel = NoteList,
+            };
+            return View("NoteView", vmodel);
         }
 
         public async Task<List<SelectListItem>> FillUserTypes()
@@ -147,78 +260,14 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
             return StatusList;
         }
 
-        public async Task<EnquiryViewModel> FillUserAndPlatform()
+        public async Task<EnquiryViewModel> FillPrimaryData()
         {
             var model = new EnquiryViewModel
             {
                 SelectedUserTypes = await FillUserTypes(),
-                //Platforms = await _enquiryPlatform.GetAllEnquityPlatform(),
                 EnquiryMasters = await _enquiryMaster.GetAllEnquiry(),
-                //EnquiryNoteDetailsModel = await _enquiryNoteDetails.GetAllEnquiryNotes()
             };
             return model;
-        }
-
-        public async Task<IActionResult> AddEnquiry()
-        {
-            var UserTypeList = await _userType.GetAllUserTypes();
-            var PlatFormList = await _enquiryPlatform.GetAllEnquityPlatform();
-            EnquiryCreateViewModel model = new EnquiryCreateViewModel()
-            {
-                SelectedUserTypes = UserTypeList,
-                Platforms = PlatFormList,
-            };
-            return View(model);
-        }
-
-		[HttpPost]
-        public async Task<IActionResult> AddEnquiry(EnquiryCreateViewModel viewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                var model = new EnquiryMasterModel()
-                {
-                    CompanyName = viewModel.CompanyName,
-                    ContactPerson = "-", //viewModel.ContactPerson,
-                    ATOL = viewModel.ATOL,
-                    IATA = viewModel.IATA,
-                    JobTitle = viewModel.JobTitle,
-                    ContactEmail = viewModel.ContactEmail,
-                    ContactPhone = viewModel.ContactPhone,
-                    EnquiryPlatformModelId = viewModel.PlatformSelectedId,
-                    EnquiryStatusModelId = 1,
-                    UserTypesModelId = viewModel.UserTypeSelectedId
-                };
-                var result = await _enquiryMaster.AddEnquiry(model);
-            }
-            return RedirectToAction("Index");
-        }
-
-        public async Task<IActionResult> UpdateStatus(EnquiryMasterModel model)
-        {
-            await _enquiryMaster.UpdateStatus(model);
-            return RedirectToAction("Index");
-        }
-
-        public async Task<IActionResult> AddNotes(int EnquiryId, EnquiryNoteViewModel model)
-        {
-            if(ModelState.IsValid)
-            {
-                var AddInModel = new EnquiryNoteDetailsModel
-                {
-                    EnquiryMasterModelId = model.EnquiryId,
-                    Note = model.EnquiryNote,
-                    CreatedAt = DateTime.Now,
-                };
-                var result = await _enquiryNoteDetails.AddSpecificEnquiryNote(AddInModel);
-            }
-            return RedirectToAction("Index");
-        }
-
-        public async Task<IActionResult> DeleteNote(int NoteId)
-        {
-            await _enquiryNoteDetails.DeleteSpecificEnquiryNote(NoteId);
-            return RedirectToAction("Index");
         }
 
         public IActionResult Client()

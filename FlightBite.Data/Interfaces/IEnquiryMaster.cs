@@ -16,5 +16,7 @@ namespace FlightBite.Data.Interfaces
         Task<IEnumerable<EnquiryMasterModel>> GetFilteredEnquiries(List<string> UserIds, string SortOrder);
 
         Task UpdateStatus(EnquiryMasterModel model);
+
+        string GetSpecificCompanyName(int EnquiryId);
     }
 }

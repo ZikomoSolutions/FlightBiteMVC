@@ -3,40 +3,13 @@
 @{
 	Layout = null;
 }
+<div id="AddEnquiry">
 <form method="post" asp-controller="home" asp-action="AddEnquiry">
 	<div class="modal modal--active" id="enquiry-modal">
-
-		<div class="modal__container " id="enquiry-section-1">
-			<div class="modal__header flex flex--distribute flex--align-center">
-				<div class="h3">I AM A</div>
-			</div>
-
-			<div class="modal__body">
-				<div id="type-of-client">
-					@{
-						foreach (var UserType in Model.SelectedUserTypes!)
-						{
-							<div style="margin-top: 24px;">
-								<label class="radio-button-container">
-									@UserType.UserType
-									<input type="radio" value="@UserType.Id" asp-for="@Model.UserTypeSelectedId" />
-									<span class="checkmark"></span>
-									<br />
-								</label>
-							</div>
-						}
-					}
-					<div class="flex flex--align-center" style="justify-content:center">
-						<button type="button" class="btn btn--brand-1" style="margin-top:16px;" onclick="toggleModalSection('enquiry-section-2')">  Proceed </button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="modal__container hide " id="enquiry-section-2">
+		<div class="modal__container " id="enquiry-section-2">
 			<div class="modal__header flex flex--distribute flex--align-center" id="form-header">
 				<div class="h3">Add Enquiry Form</div>
-				<div class="h4" style="color: var(--brand-1); cursor: pointer" onclick="toggleModalSection('enquiry-section-1')">
+				<div class="h4" style="color: var(--brand-1); cursor: pointer"  >
 					Back
 				</div>
 			</div>
@@ -101,28 +74,31 @@
 					</div>
 
 					<div class="flex flex--is-column flex--has-gap" style="margin-top: 24px;">
-						@foreach (var platform in Model.Platforms!)
+						@if(Model.Platforms != null)
 						{
-							<div>
-								<label class="radio-button-container">
-									@platform.PlatForm
-									<input type="radio" value="@platform.Id" asp-for="@Model.PlatformSelectedId" />
-									<span class="checkmark"></span>
-								</label>
-							</div>
+							@foreach (var platform in Model.Platforms!)
+							{
+								<div>
+									<label class="radio-button-container">
+										@platform.PlatForm
+										<input type="radio" value="@platform.Id" asp-for="@Model.PlatformSelectedId" />
+										<span class="checkmark"></span>
+									</label>
+								</div>
+							}
 						}
 					</div>
 
 					<!--!-->
 
-
 				</div>
 			</div>
 
 			<div class=" modal__footer flex " style="justify-content: center;">
-				<button type="submit" class="btn btn--brand-1 ">Submit</button>
+				 <button type="button" class="btn btn--brand-1 " hx-post="@Url.Action("AddEnquiry","Home")" hx-target="#AddEnquiry">Submit</button>
 			</div>
 		</div>
 		<!--!-->
 	</div>
 </form>
+</div>

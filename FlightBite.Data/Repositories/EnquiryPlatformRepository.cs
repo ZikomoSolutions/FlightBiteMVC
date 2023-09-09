@@ -11,17 +11,17 @@ namespace FlightBite.Data.Repositories
 {
     public class EnquiryPlatformRepository : IEnquiryPlatform
     {
-        private readonly DatabaseContext context;
+        private readonly DatabaseContext _context;
 
         public EnquiryPlatformRepository(DatabaseContext context)
         {
-            this.context = context;
+            this._context = context;
         }
         public async Task<IEnumerable<EnquiryPlatformModel>> GetAllEnquityPlatform()
         {
             try
             {
-                var resutl = await context.EnquityPlatform.ToListAsync();
+                var resutl = await _context.EnquityPlatform.ToListAsync();
                 return resutl;
             }
             catch (Exception ex)
@@ -31,11 +31,11 @@ namespace FlightBite.Data.Repositories
             }
         }
 
-        public  string GetSpecificPlatform(int id)
+        public string GetSpecificPlatform(int id)
         {
             try
             {
-                var specificPlatform = context.EnquityPlatform.FirstOrDefault(s => s.Id == id).PlatForm;
+                var specificPlatform = _context.EnquityPlatform.FirstOrDefault(s => s.Id == id).PlatForm;
                 return specificPlatform;
             }
             catch (Exception ex)

@@ -6,7 +6,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
     {
         public int EnquiryId { get; set; }
         public string? EnquiryNote { get; set; }
-
+        public string? CompanyName { get; set; }
         public List<EnquiryNoteDetailsModel>? EnquiryNoteDetailsModel { get; set; }
     }
 }

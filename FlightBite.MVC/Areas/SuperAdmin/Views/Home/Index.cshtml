@@ -11,10 +11,9 @@
 			<div class="superuser__header">
 				<div class="flex flex--is-wrap flex--distribute">
 					<h1><strong> Enquires / Leads </strong></h1>
-					<div hx-trigger="click" hx-get="@Url.Action("AddEnquiry","Home")" hx-target="#ShowEnquiryForm">
-						<button class="btn btn--success open-modal" data-modal-target="enquiry-modal">Add Manual Enquiry</button>
+					<div hx-trigger="click" hx-get="@Url.Action("UserTypeView","Home")" hx-target="#ShowUserType">
+						<button type="button" class="btn btn--success " >Add Manual Enquiry</button>
 					</div>
-					@*<button class="btn btn--success open-modal" data-modal-target="enquiry-modal">Add Manual Enquiry</button>*@
 				</div>
 				<partial name="_FilterEnquiryPartial" model="Model.SelectedUserTypes"></partial>
 			</div>
@@ -54,7 +53,7 @@
 								<div class="">
 									<div class="superuser__body__notes flex">
 										<!--Note Details-->
-										<div style="position: relative" hx-trigger="click" hx-get="@Url.Action("NoteView","Home", new { id = enquiry.Id })" hx-target="#NoteDetails">
+										<div style="position: relative" hx-trigger="click" hx-get="@Url.Action("NoteView","Home", new { EnquiryId = enquiry.Id })" hx-target="#NoteDetails">
 											<span class="icon-file-text2"></span>
 											<div class="counts">@_enquiryNoteDetails.GetSpecificEnquiryAllNotes(enquiry.Id).Count()</div>
 										</div>
@@ -83,6 +82,8 @@
 		</div>
 	</div>
 </section>
+<div id="ShowUserType"></div>
 <div id="ShowEnquiryForm"></div>
 <div id="EnquiryDetails"></div>
 <div id="NoteDetails"></div>
+<div id="AddNote"></div>

@@ -45,7 +45,7 @@
 
 					<!--Enquiry Note-->
 					<div class="superuser__body__notes flex" id="" onclick="toggleModalSection('client-name-notes-@Model.Id')">
-						<div style="position: relative" hx-trigger="click" hx-get="@Url.Action("NoteView","Home", new { id = Model.Id })" hx-target="#NoteDetails">
+						<div style="position: relative" hx-trigger="click" hx-get="@Url.Action("NoteView","Home", new { EnquiryId = Model.Id })" hx-target="#NoteDetails">
 							<span class="icon-file-text2"></span>
 							<div class="counts" style="background-color: var(--success)">
 								@_enquiryNoteDetails.GetSpecificEnquiryAllNotes(Model.Id).Count()

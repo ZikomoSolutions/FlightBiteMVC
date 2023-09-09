@@ -42,7 +42,7 @@ namespace FlightBite.Data.Repositories
 
         public List<EnquiryNoteDetailsModel> GetSpecificEnquiryAllNotes(int EnquiryId)
         {
-            List<EnquiryNoteDetailsModel> enquiryNoteDetails = _context.EnquiryNoteDetail.Where(c=>c.EnquiryMasterModelId == EnquiryId).Where(c=>c.DeletedAt == null).OrderBy(c=>c.CreatedAt).ToList();
+            List<EnquiryNoteDetailsModel> enquiryNoteDetails = _context.EnquiryNoteDetail.Where(c=>c.EnquiryMasterModelId == EnquiryId).Where(c=>c.DeletedAt == null).OrderByDescending(c=>c.CreatedAt).ToList();
             return enquiryNoteDetails;
         }
     }

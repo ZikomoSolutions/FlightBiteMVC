@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using FlightBite.Data.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
 {
@@ -21,7 +22,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
 
 		public IEnumerable<EnquiryPlatformModel>? Platforms { get; set; }
 
-		public IEnumerable<UserTypesModel>? SelectedUserTypes { get; set; }
+		public IEnumerable<UserTypesModel>? UserTypes { get; set; }
 
 	}
 }

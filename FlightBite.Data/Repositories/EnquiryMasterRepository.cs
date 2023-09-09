@@ -102,5 +102,23 @@ namespace FlightBite.Data.Repositories
                 await _context.SaveChangesAsync();
             }
         }
-    }
+
+		public string GetSpecificCompanyName(int EnquiryId)
+		{
+            try
+            {
+                var companyname = "Company Name";
+                if (EnquiryId != 0)
+                {
+                   companyname = _context.EnquiryMaster.FirstOrDefault(e => e.Id == EnquiryId)!.CompanyName;
+                }
+                return companyname!;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(new EventId(), ex, ex.Message);
+                return null!;
+            }
+		}
+	}
 }
