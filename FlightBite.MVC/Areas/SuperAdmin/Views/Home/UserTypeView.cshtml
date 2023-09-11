@@ -4,6 +4,7 @@
 	Layout = null;
 }
 
+
 <div class="modal modal--active" id="enquiry-modal">
 	<div class="modal__container " id="enquiry-section-1">
 		<div class="modal__header flex flex--distribute flex--align-center">
@@ -28,22 +29,9 @@
 						}
 					}
 
-					//foreach (var UserType in Model.SelectedUserTypes!)
-					//{
-					//	<div style="margin-top: 24px;">
-					//		<label class="radio-button-container">
-					//			@UserType.Text	
-					//			<input type="radio" value="@UserType.Value" asp-for="@UserType.Selected"/>
-								
-					//			<span class="checkmark"></span>
-					//			<br />
-					//		</label>
-					//	</div>
-					//}
-
 				}
 				<div class="flex flex--align-center" style="justify-content:center" hx-trigger="click" hx-get="@Url.Action("AddEnquiry","Home")" hx-target="#ShowEnquiryForm">
-					<button type="button" class="btn btn--brand-1" style="margin-top:16px;">  Proceed </button>
+					<button type="button" class="btn btn--brand-1 " style="margin-top:16px;">  Proceed </button>
 				</div>
 			</div>
 		</div>

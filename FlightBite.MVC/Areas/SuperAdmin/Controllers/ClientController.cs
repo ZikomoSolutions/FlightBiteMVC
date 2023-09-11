@@ -13,7 +13,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         {
             return View();
         }
-		public async Task<IActionResult> CreateNewClient()
+		public IActionResult CreateNewClient()
 		{
 			return View();
 		}

@@ -54,7 +54,7 @@ namespace FlightBite.Data.Repositories
         {
             try
             {
-                return await _context.EnquiryMaster.Include(c=>c.EnquiryStatusModel).OrderByDescending(c=>c.CreatedAt).ToListAsync();
+                return await _context.EnquiryMaster.Include(c => c.EnquiryStatusModel).OrderByDescending(c => c.CreatedAt).AsNoTracking().ToListAsync();
             }
             catch (Exception ex)
             {

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using FlightBite.Data.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
@@ -8,9 +9,9 @@ namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
     {
 		[Required(ErrorMessage = "The company name is required ")]
 		public string? CompanyName { get; set; }
-		public string? ATOL { get; set; }
-		public string? IATA { get; set; }
-		public string? JobTitle { get; set; }
+		public string? ATOL { get; set; } = "-";
+		public string? IATA { get; set; } = "-";
+		public string? JobTitle { get; set; } = "-";
 		[Required(ErrorMessage = "The email is required")]
 		[EmailAddress]
 		public string? ContactEmail { get; set; }
@@ -24,5 +25,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
 
 		public IEnumerable<UserTypesModel>? UserTypes { get; set; }
 
+		[TempData]
+		public string? CheckModalState { get; set; } = "Invalid";
 	}
 }

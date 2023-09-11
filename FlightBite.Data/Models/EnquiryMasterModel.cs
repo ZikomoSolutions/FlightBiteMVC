@@ -21,19 +21,19 @@ namespace FlightBite.Data.Models
 
         [Required]
         [Column(name: "contact_person", TypeName ="nvarchar(150)")]
-        public string? ContactPerson { get; set; }
+        public string? ContactPerson { get; set; } = null;
 
         [Required]
         [Column(name: "ATOL", TypeName = "nvarchar(50)")]
-        public string? ATOL { get; set; }
+        public string? ATOL { get; set; } = null;
 
         [Required]
         [Column(name: "IATA", TypeName = "nvarchar(50)")]
-        public string? IATA { get; set; }
+        public string? IATA { get; set; } = null;
 
-        [Required]    
-        [Column(name:"job_title", TypeName = "nvarchar(50)")]
-        public string? JobTitle { get; set; }
+        [Required]
+        [Column(name: "job_title", TypeName = "nvarchar(50)")]
+        public string? JobTitle { get; set; } = null;
 
         [Required]
         [Column(name:"contact_email", TypeName = "nvarchar(50)")]
