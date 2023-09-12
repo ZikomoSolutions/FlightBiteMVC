@@ -4,6 +4,7 @@ using FlightBite.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlightBite.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230912092951_ClientMastAddSuppSource2")]
+    partial class ClientMastAddSuppSource2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -327,21 +330,21 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5431),
+                            CreatedAt = new DateTime(2023, 9, 12, 14, 59, 51, 844, DateTimeKind.Local).AddTicks(8969),
                             Description = "-",
                             PlatForm = "Google"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5433),
+                            CreatedAt = new DateTime(2023, 9, 12, 14, 59, 51, 844, DateTimeKind.Local).AddTicks(8972),
                             Description = "-",
                             PlatForm = "Brochure"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5435),
+                            CreatedAt = new DateTime(2023, 9, 12, 14, 59, 51, 844, DateTimeKind.Local).AddTicks(8974),
                             Description = "-",
                             PlatForm = "Other"
                         });
@@ -380,13 +383,13 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5539),
+                            CreatedAt = new DateTime(2023, 9, 12, 14, 59, 51, 844, DateTimeKind.Local).AddTicks(9144),
                             Status = "In Progress"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5541),
+                            CreatedAt = new DateTime(2023, 9, 12, 14, 59, 51, 844, DateTimeKind.Local).AddTicks(9146),
                             Status = "Complete"
                         });
                 });
@@ -537,19 +540,19 @@ namespace FlightBite.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SupplierSources");
+                    b.ToTable("SupplierSourceModel");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5590),
+                            CreatedAt = new DateTime(2023, 9, 12, 14, 59, 51, 844, DateTimeKind.Local).AddTicks(9192),
                             SourceName = "API"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5592),
+                            CreatedAt = new DateTime(2023, 9, 12, 14, 59, 51, 844, DateTimeKind.Local).AddTicks(9194),
                             SourceName = "WEB"
                         });
                 });
@@ -588,13 +591,13 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5577),
+                            CreatedAt = new DateTime(2023, 9, 12, 14, 59, 51, 844, DateTimeKind.Local).AddTicks(9178),
                             Terms = "FlightBite Agreement Signed"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5579),
+                            CreatedAt = new DateTime(2023, 9, 12, 14, 59, 51, 844, DateTimeKind.Local).AddTicks(9180),
                             Terms = "Required Documents Added and Signed Off"
                         });
                 });
@@ -637,14 +640,14 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5559),
+                            CreatedAt = new DateTime(2023, 9, 12, 14, 59, 51, 844, DateTimeKind.Local).AddTicks(9162),
                             Description = "-",
                             UserType = "Supplier"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5561),
+                            CreatedAt = new DateTime(2023, 9, 12, 14, 59, 51, 844, DateTimeKind.Local).AddTicks(9165),
                             Description = "-",
                             UserType = "Travel Agent"
                         });

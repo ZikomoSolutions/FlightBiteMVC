@@ -4,6 +4,7 @@ using FlightBite.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlightBite.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230912065627_AddClientNoteTable")]
+    partial class AddClientNoteTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,9 +102,6 @@ namespace FlightBite.Data.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("registeration_no");
 
-                    b.Property<int>("SupplierSourceModelId")
-                        .HasColumnType("int");
-
                     b.Property<string>("TTA")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
@@ -120,8 +120,6 @@ namespace FlightBite.Data.Migrations
                         .HasColumnName("vat_number");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SupplierSourceModelId");
 
                     b.HasIndex("UserTypesModelId");
 
@@ -170,6 +168,18 @@ namespace FlightBite.Data.Migrations
 
                     b.Property<int>("TermMasterModelId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("updated_at");
 
                     b.HasKey("ClientMasterModelId", "TermMasterModelId");
 
@@ -327,21 +337,21 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5431),
+                            CreatedAt = new DateTime(2023, 9, 12, 12, 26, 27, 589, DateTimeKind.Local).AddTicks(4490),
                             Description = "-",
                             PlatForm = "Google"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5433),
+                            CreatedAt = new DateTime(2023, 9, 12, 12, 26, 27, 589, DateTimeKind.Local).AddTicks(4492),
                             Description = "-",
                             PlatForm = "Brochure"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5435),
+                            CreatedAt = new DateTime(2023, 9, 12, 12, 26, 27, 589, DateTimeKind.Local).AddTicks(4494),
                             Description = "-",
                             PlatForm = "Other"
                         });
@@ -380,13 +390,13 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5539),
+                            CreatedAt = new DateTime(2023, 9, 12, 12, 26, 27, 589, DateTimeKind.Local).AddTicks(4644),
                             Status = "In Progress"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5541),
+                            CreatedAt = new DateTime(2023, 9, 12, 12, 26, 27, 589, DateTimeKind.Local).AddTicks(4646),
                             Status = "Complete"
                         });
                 });
@@ -537,19 +547,19 @@ namespace FlightBite.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SupplierSources");
+                    b.ToTable("SupplierSourceModel");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5590),
+                            CreatedAt = new DateTime(2023, 9, 12, 12, 26, 27, 589, DateTimeKind.Local).AddTicks(9629),
                             SourceName = "API"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5592),
+                            CreatedAt = new DateTime(2023, 9, 12, 12, 26, 27, 589, DateTimeKind.Local).AddTicks(9631),
                             SourceName = "WEB"
                         });
                 });
@@ -588,13 +598,13 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5577),
+                            CreatedAt = new DateTime(2023, 9, 12, 12, 26, 27, 589, DateTimeKind.Local).AddTicks(4685),
                             Terms = "FlightBite Agreement Signed"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5579),
+                            CreatedAt = new DateTime(2023, 9, 12, 12, 26, 27, 589, DateTimeKind.Local).AddTicks(4687),
                             Terms = "Required Documents Added and Signed Off"
                         });
                 });
@@ -637,14 +647,14 @@ namespace FlightBite.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5559),
+                            CreatedAt = new DateTime(2023, 9, 12, 12, 26, 27, 589, DateTimeKind.Local).AddTicks(4671),
                             Description = "-",
                             UserType = "Supplier"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 9, 12, 15, 42, 41, 165, DateTimeKind.Local).AddTicks(5561),
+                            CreatedAt = new DateTime(2023, 9, 12, 12, 26, 27, 589, DateTimeKind.Local).AddTicks(4673),
                             Description = "-",
                             UserType = "Travel Agent"
                         });
@@ -652,19 +662,11 @@ namespace FlightBite.Data.Migrations
 
             modelBuilder.Entity("FlightBite.Data.Models.ClientMasterModel", b =>
                 {
-                    b.HasOne("FlightBite.Data.Models.SupplierSourceModel", "SupplierSourceModel")
-                        .WithMany()
-                        .HasForeignKey("SupplierSourceModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FlightBite.Data.Models.UserTypesModel", "UserTypesModel")
                         .WithMany("ClientMasterModels")
                         .HasForeignKey("UserTypesModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("SupplierSourceModel");
 
                     b.Navigation("UserTypesModel");
                 });

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FlightBite.Data.Models
 {
-	public class ClientTermsModel
+	public class ClientTermsModel //Note: BaseEntityModel Not Required Here
 	{
 		public int ClientMasterModelId { get; set; }
 		public ClientMasterModel? ClientMasterModel { get; set; }

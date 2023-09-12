@@ -1,0 +1,44 @@
+﻿@using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
+@model List<SelectListItem>
+
+@{
+    List<SelectListItem> SortByList = null!;
+    if (ViewBag.SortByItemsList != null)
+    {
+        SortByList = ViewBag.SortByItemsList as List<SelectListItem>;
+    }
+}
+
+<div class="flex flex--distribute flex--align-center flex--is-wrap">
+    <form method="post" asp-controller="Client" asp-action="Index">
+        <div class="flex flex--is-wrap flex--has-gap">
+            @for (var index = 0; index < Model.Count(); index++)
+            {
+                <div class="zik-switch">
+                    <label asp-for="@Model[index].Selected">
+                        <input type="checkbox" asp-for="@Model[index].Selected" class="zik-swich__input" onchange="this.form.submit();" />
+                        <span class="zik-switch"></span>
+                    </label>
+                    <input type="hidden" asp-for="@Model[index].Value" />
+                    <input type="hidden" asp-for="@Model[index].Text" />
+                    <span>@Model[index].Text</span>
+                </div>
+            }
+        </div>
+    </form>
+
+    <div class="input-item input-item--full-width input-item--has-icon input-item--label-inside input-item--is-select"
+         style="min-width: 20%">
+        <div>
+            @if (SortByList != null)
+            {
+                <form method="post" asp-controller="Client" asp-action="Index">
+                    <select asp-items="@SortByList" onchange="this.form.submit();" id="SortId" name="SortName">
+                    </select>
+                    <i class="icon-chevron-down"></i>
+                    <label>Sort by</label>
+                </form>
+            }
+        </div>
+    </div>
+</div>

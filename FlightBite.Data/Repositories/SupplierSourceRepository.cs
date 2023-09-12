@@ -10,19 +10,19 @@ using Microsoft.Extensions.Logging;
 
 namespace FlightBite.Data.Repositories
 {
-    public class UserTypeRepository : IUserType
+    public class SupplierSourceRepository : ISupplierSource
     {
         private readonly DatabaseContext _context;
-        private readonly ILogger<UserTypeRepository> _logger;
+        private readonly ILogger<SupplierSourceRepository> _logger;
 
-        public UserTypeRepository(DatabaseContext context, ILogger<UserTypeRepository> logger)
+        public SupplierSourceRepository(DatabaseContext context, ILogger<SupplierSourceRepository> logger)
         {
             this._context = context;
             this._logger = logger;
         }
-        public async Task<IEnumerable<UserTypesModel>> GetAllUserTypes()
+        public async Task<IEnumerable<SupplierSourceModel>> GetAllSupplierSource()
         {
-            return await _context.UserType.ToListAsync();
+            return await _context.SupplierSources.ToListAsync();
         }
     }
 }

@@ -1,0 +1,65 @@
+﻿@using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
+@model ClientNoteViewModel
+@{
+    Layout = null;
+}
+
+@if (Model.ClientNoteDetailsModel != null)
+{
+    <div class="modal modal--active" id="client-details-modal-@Model.ClientId">
+        <div class="modal__container" id="client-name-notes-@Model.ClientId">
+            <div class="modal__header">
+                <div class="flex flex--distribute flex--align-center">
+                    <div class="h3">@Model.ClientName - Notes</div>
+                    <button class="btn btn--small close-modal" title="close">
+                        <i class="icon-cross" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div id="back-to-enquiry-details" style="text-decoration: underline;color: var(--brand-1);margin-top: 16px;">
+                    Enquiry Details
+                </div>
+            </div>
+            <div class="modal__body flex flex--is-column flex--has-gap">
+                @if (Model != null)
+                {
+                    @foreach (var Note in Model.ClientNoteDetailsModel)
+                    {
+                        <form asp-action="DeleteNote" asp-controller="Client" asp-route-NoteId="@Note.Id">
+                            <div class="flex flex--align-center flex--has-gap flex--distribute flex--is-wrap"
+                                 style="border-bottom: 1px solid var(--grey-2); padding-bottom: 8px">
+                                <div class="flex flex--align-center flex--has-gap">
+                                    <div class="superuser__body__date">
+                                        <span>@Note.CreatedAt.ToString("MMM dd")</span>
+                                        <span style="font-size: 16px"> <strong> @Note.CreatedAt.ToString("MMM") </strong></span>
+                                        <span>@Note.CreatedAt.ToString("yyyy")</span>
+                                    </div>
+                                    <div class="superuser__body__clients-name">
+                                        <div><strong>Company Name</strong></div>
+                                        <div>@Note.Note</div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn--small" title="delete" hx-delete="@Url.Action("DeleteNote","Client", new {NoteId = Note.Id, ClientId = Note.ClientMasterModelId})"
+                                        hx-confirm="Are you sure you wish to delete this Note?" hx-target="#AddNote">
+                                    <i class="icon-bin2 h3" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </form>
+                    }
+                }
+
+            </div>
+            <form asp-action="NoteView" asp-controller="Client" asp-route-EnquiryId="@Model.ClientId">
+                <div class="modal__footer flex flex--align-end flex--distribute flex--is-wrap">
+                    <div style="width: 85%" class="input-item input-item--full-width">
+                        <div>
+                            <label> Note </label>
+                            <input type="text" asp-for="ClientNote" placeholder="Write Note" />
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn--brand-1" hx-post="@Url.Action("NoteView","Client",new { ClientId = Model!.ClientId })" hx-target="#AddNote">Add Note</button>
+                </div>
+            </form>
+        </div>
+    </div>
+}

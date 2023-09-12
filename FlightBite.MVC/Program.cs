@@ -24,9 +24,13 @@ namespace FlightBite.MVC
             builder.Services.AddScoped<IEnquiryStatus, EnquiryStatusRepository>();
             builder.Services.AddScoped<IEnquiryNoteDetails, EnquiryNoteDetailsRepository>();
 
+            builder.Services.AddScoped<IClientMaster, ClientMasterRepository>();
+            builder.Services.AddScoped<IClientNoteDetails, ClientNoteDetailsRepository>();
+            builder.Services.AddScoped<ISupplierSource, SupplierSourceRepository>();
+            builder.Services.AddScoped<ITermMaster, TermMasterRepository>();
+            
             builder.Services.AddScoped<ILogRequestResponse, LogRequestResponse<DatabaseContext>>();
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
 
             var app = builder.Build();
 

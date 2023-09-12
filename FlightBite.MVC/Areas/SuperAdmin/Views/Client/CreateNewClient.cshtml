@@ -2,9 +2,12 @@
 @using FlightBite.Data.Interfaces;
 @using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
 @model ClientCreateViewModel
+@{
+    Layout = null;
+}
 
 <form>
-    <div class="modal" id="add-new-client-modal">
+    <div class="modal modal--active" id="add-new-client-modal">
 
         <div class="modal__container" id="add-client-section" style="max-width:1100px;">
             <div class="modal__header flex flex--distribute flex--align-center">
@@ -24,18 +27,33 @@
 
                 <div class="flex" style="gap: 2rem ; margin-top: 1.5rem;">
                     <div>
-                        <label class="radio-button-container">
-                            Agent
-                            <input type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
+                        @if(Model.UserTypes != null)
+                        {
+                            @foreach (var UserType in Model.UserTypes)
+                            {
+                                <label class="radio-button-container">
+                                    @UserType.UserType
+                                    <input type="radio" name="radio" value="@UserType.Id" asp-for="@Model.UserTypeSelectedId" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            }
+                        }
                     </div>
+                </div>
+
+                <div class="flex" style="gap: 2rem ; margin-top: 1.5rem;">
                     <div>
-                        <label class="radio-button-container">
-                            Supplier
-                            <input type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
+                        @if (Model.SupplierSourceModels != null)
+                        {
+                            @foreach (var Source in Model.SupplierSourceModels)
+                            {
+                                <label class="radio-button-container">
+                                    @Source.SourceName
+                                    <input type="radio" name="radio" value="@Source.Id" asp-for="@Model.SupplierSourceModelId" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            }
+                        }
                     </div>
                 </div>
 
@@ -46,49 +64,45 @@
 
                     <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
                         <div>
-                            <input type="text"
-                                   placeholder="search for a really good hotel" />
-                            <label>Company Name </label>
+                            <input type="text" placeholder="Company / Group Name" asp-for="@Model.CompanyName" />
+                            <label asp-for="@Model.CompanyName">Company Name </label>
+                            <span asp-validation-for="CompanyName" class="validation-message"></span>
                             <i class="icon-pencil"></i>
                         </div>
                     </div>
                     <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
                         <div>
-                            <input type="text"
-                                   placeholder="search for a really good hotel" />
-                            <label>Vat Number </label>
+                            <input type="text" placeholder="VAT Number" asp-for="@Model.VATNumber" />
+                            <label asp-for="@Model.VATNumber">VAT Number </label>
                             <i class="icon-pencil"></i>
                         </div>
                     </div>
                     <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
                         <div>
-                            <input type="text"
-                                   placeholder="search for a really good hotel" />
-                            <label>Registraion Number </label>
+                            <input type="text" placeholder="Registraion Number" asp-for="@Model.RegisterationNo" />
+                            <label asp-for="@Model.RegisterationNo">Registraion Number </label>
                             <i class="icon-pencil"></i>
                         </div>
                     </div>
                     <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
                         <div>
-                            <input type="text"
-                                   placeholder="search for a really good hotel" />
-                            <label>Account Holder </label>
+                            <input type="text" placeholder="Account Holder" asp-for="@Model.AccountHolder" />
+                            <label asp-for="@Model.AccountHolder">Account Holder </label>
                             <i class="icon-pencil"></i>
                         </div>
                     </div>
                     <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
                         <div>
-                            <input type="text"
-                                   placeholder="search for a really good hotel" />
-                            <label> Position / Job Title </label>
+                            <input type="text" placeholder="Position / Job Title" asp-for="@Model.JobTitle" />
+                            <label asp-for="@Model.JobTitle"> Position / Job Title </label>
                             <i class="icon-pencil"></i>
                         </div>
                     </div>
                     <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
                         <div>
-                            <input type="text"
-                                   placeholder="search for a really good hotel" />
-                            <label>Email Address </label>
+                            <input type="text" placeholder="Email Address" asp-for="@Model.ContactEmail"/>
+                            <label asp-for="@Model.ContactEmail">Email Address </label>
+                            <span asp-validation-for="ContactEmail" class="validation-message"></span>
                             <i class="icon-pencil"></i>
                         </div>
                     </div>
@@ -101,45 +115,40 @@
                 <div class="flex flex--is-column flex--has-gap">
                     <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
                         <div>
-                            <input type="text"
-                                   placeholder="search for a really good hotel" />
-                            <label> ATOL </label>
+                            <input type="text" placeholder="ATOL" asp-for="@Model.ATOL" />
+                            <label asp-for="@Model.ATOL"> ATOL </label>
                             <i class="icon-pencil"></i>
                         </div>
                     </div>
 
                     <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
                         <div>
-                            <input type="text"
-                                   placeholder="search for a really good hotel" />
-                            <label> IATA </label>
+                            <input type="text" placeholder="IATA" asp-for="@Model.IATA"/>
+                            <label asp-for="@Model.IATA"> IATA </label>
                             <i class="icon-pencil"></i>
                         </div>
                     </div>
 
                     <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
                         <div>
-                            <input type="text"
-                                   placeholder="search for a really good hotel" />
-                            <label> PTS</label>
+                            <input type="text" placeholder="PTS" asp-for="@Model.PTS" />
+                            <label asp-for="@Model.PTS"> PTS</label>
                             <i class="icon-pencil"></i>
                         </div>
                     </div>
 
                     <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
                         <div>
-                            <input type="text"
-                                   placeholder="search for a really good hotel" />
-                            <label> TTA </label>
+                            <input type="text" placeholder="TTA" asp-for="@Model.TTA" />
+                            <label asp-for="@Model.TTA"> TTA </label>
                             <i class="icon-pencil"></i>
                         </div>
                     </div>
 
                     <div class="input-item input-item--full-width input-item--label-inside input-item--has-icon">
                         <div>
-                            <input type="text"
-                                   placeholder="search for a really good hotel" />
-                            <label> Other </label>
+                            <input type="text" placeholder="Other" asp-for="@Model.Other"/>
+                            <label asp-for="@Model.Other"> Other </label>
                             <i class="icon-pencil"></i>
                         </div>
                     </div>
@@ -150,15 +159,19 @@
                 </div>
 
                 <div class="flex flex--is-column flex--has-gap">
-                    <div class="checkbox">
-                        <input type="checkbox" id="Agreement" />
-                        <label for="Agreement">FlightBite Agreement Signed</label>
-                    </div>
 
-                    <div class="checkbox">
-                        <input type="checkbox" id="Document" />
-                        <label for="Document">Required Documnets Added And Signed Off</label>
-                    </div>
+                        @for (int i = 0; i < Model.AvailableTerms.Capacity; i++)
+                        {
+                            <div class="checkbox">
+                                <input type="checkbox" 
+                                       value="@Model.AvailableTerms[i].Title"
+                                       name ="Term"
+                                       id="checkbox_@Model.AvailableTerms[i].Title" 
+                                       checked="@Model.AvailableTerms[i].IsChecked" />
+                                <label for="checkbox_@Model.AvailableTerms[i].Title">@Model.AvailableTerms[i].Title </label>
+                            </div>
+                        }
+
                 </div>
             </div>
             <!--!-->
@@ -168,8 +181,6 @@
                 <button class="btn btn--brand-1">Save</button>
             </div>
         </div>
-
-
 
 
         <div class="modal__container hide" id="client-logo-section" style="max-width:1100px;">
@@ -186,8 +197,7 @@
                         Click to browse your device, or drag your image file here
                     </div>
                 </label>
-                <input 
-                       class="input-file"
+                <input class="input-file"
                        type="file"
                        name="icon-upload"
                        id="upload-icon" style="opacity:0;" />

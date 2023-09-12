@@ -27,7 +27,8 @@ namespace FlightBite.Data
         public DbSet<ClientMasterModel> ClientMasters { get; set; }
         public DbSet<TermMasterModel> TermMasters { get; set; }
         public DbSet<ClientTermsModel> ClientTerms { get; set; }
-        
+        public DbSet<ClientNoteDetailsModel> ClientNoteDetails { get; set; }
+        public DbSet<SupplierSourceModel> SupplierSources { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

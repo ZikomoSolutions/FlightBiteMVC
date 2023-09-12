@@ -151,15 +151,6 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
                 };
                 var result = await _enquiryMaster.AddEnquiry(model);
 
-                //ModelState.Clear();
-
-				//var vmodel = new EnquiryCreateViewModel()
-				//{
-				//	Platforms = PlatFormList,
-				//};
-
-				//return RedirectToAction("Index");
-
             }
             else
             {

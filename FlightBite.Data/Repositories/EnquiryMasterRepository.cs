@@ -33,8 +33,8 @@ namespace FlightBite.Data.Repositories
             }
             catch (Exception ex)
             {
-                string message = ex.Message;
-                return null!;
+				_logger.LogError(new EventId(), ex, ex.Message);
+				return null!;
             }
         }
 		public  async Task<EnquiryMasterModel> GetEnquiry(int id)
