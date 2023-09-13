@@ -11,9 +11,6 @@
 			<div class="superuser__header">
 				<div class="flex flex--is-wrap flex--distribute">
 					<h1><strong> Enquires / Leads </strong></h1>
-@*					<div hx-trigger="click" hx-get="@Url.Action("UserTypeView","Home")" hx-target="#ShowUserType">
-						<button type="button" class="btn btn--success " >Add Manual Enquiry</button>
-					</div>*@
 					<button class="btn btn--success open-modal" data-modal-target="enquiry-modal">Add Manual Enquiry</button>
 				</div>
 				<partial name="_FilterEnquiryPartial" model="Model.SelectedUserTypes"></partial>
@@ -84,10 +81,6 @@
 	</div>
 </section>
 <partial name="_EnquiryPartial"></partial>
-<div id="IndexPage"></div>
-<div id="ShowUserType"></div>
-<div id="ShowEnquiryForm"></div>
 <div id="EnquiryDetails"></div>
 <div id="NoteDetails"></div>
 <div id="AddNote"></div>
-<div id="AddEnquiry"></div>

@@ -25,6 +25,5 @@ namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
 
 		public IEnumerable<UserTypesModel>? UserTypes { get; set; }
 
-
 	}
 }

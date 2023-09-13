@@ -112,28 +112,6 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
 			return RedirectToAction("Index");
 		}
 
-   //     public async Task<IActionResult> UserTypeView()
-   //     {
-   //         var UserType = await _userType.GetAllUserTypes();
-   //         EnquiryCreateViewModel model = new EnquiryCreateViewModel()
-   //         {
-   //             UserTypes = UserType,
-   //         };
-			//return View(model);
-   //     }
-
-  //      [HttpGet]
-		//public async Task<IActionResult> AddEnquiryView()
-  //      {
-  //          var PlatFormList = await _enquiryPlatform.GetAllEnquityPlatform();
-  //          EnquiryCreateViewModel model = new EnquiryCreateViewModel()
-  //          {
-  //              Platforms = PlatFormList,
-  //          };
-
-		//	return View("AddEnquiry",model);
-  //      }
-
         [HttpPost]
         public async Task<IActionResult> AddEnquiry(EnquiryViewModel viewModel)
         {
@@ -156,17 +134,6 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
                 var result = await _enquiryMaster.AddEnquiry(model);
                 int eid = model.Id;
             }
-    //        else
-    //        {
-    //            var PlatFormList = await _enquiryPlatform.GetAllEnquityPlatform();
-    //            var model = new EnquiryCreateViewModel()
-    //            {
-    //                Platforms = PlatFormList,
-    //            };
-
-				//return View(model);
-
-    //        }
             return RedirectToAction("Index");
 
 		}
