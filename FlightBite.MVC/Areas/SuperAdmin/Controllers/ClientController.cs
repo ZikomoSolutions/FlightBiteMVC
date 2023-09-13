@@ -148,6 +148,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         {
             if(ModelState.IsValid)
             {
+                List<ClientTermsModel> terms = new List<ClientTermsModel>();
                 string uniqueFileName = ProcessUploadedFile(viewModel);
                 var model = new ClientMasterModel()
                 {
@@ -167,9 +168,21 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
                     LogoPath = uniqueFileName,
                     UserTypesModelId = viewModel.UserTypeSelectedId,
                     SupplierSourceModelId = viewModel.SupplierSourceModelId
-
                 };
                 var result = await _clientMaster.AddClient(model);
+                int clientId = model.Id;
+
+                if(viewModel.AvailableTerms != null)
+                {
+                    foreach (var item in viewModel.AvailableTerms!)
+                    {
+                        if (item.IsChecked == true)
+                        {
+                            terms.Add(new ClientTermsModel() { ClientMasterModelId = clientId, TermMasterModelId = item.Id });
+                        }
+                    }
+                }
+
             }
             return RedirectToAction("Index");
         }
@@ -220,28 +233,16 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
         public string ProcessUploadedFile(ClientCreateViewModel model)
         {
             string uniqueFileName = null!;
-            //if the photo property on the incoming model object is not null, then the user
-            //has selected an image to upload.
             if (model.Logo != null)
             {
-                //the image must be uploaded to the images folder in wwwroot
-                //to get the path of the wwwroot folder we are using the inject
-                //HostingEnvironment service provided by ASP.net core
                 string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "clientLogo");
-                //To make sure the file name is unique we are appending a new
-                //GUID_value and an underscore to the file name
-
                 FileInfo fileinfo = new FileInfo(model.Logo.FileName);
                 string fileExtension = fileinfo.Extension;
-
-                //var fileextension = model.Logo.FileName.Split('.').Last();
                 var imagefilename = model.Logo.FileName.Split('.').First();
                 uniqueFileName = imagefilename + "_" + Guid.NewGuid().ToString() + fileExtension;
 
                 //uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                //Use CopyTo() method provided by IFormFile interface to
-                //copy the file to wwwroot-->clientLogo folder
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
                     model.Logo.CopyTo(fileStream);

@@ -22,7 +22,7 @@ namespace FlightBite.Data.Repositories
         }
         public async Task<IEnumerable<SupplierSourceModel>> GetAllSupplierSource()
         {
-            return await _context.SupplierSources.ToListAsync();
+            return await _context.SupplierSources.Where(e=>e.Id != 1).ToListAsync();
         }
     }
 }

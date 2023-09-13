@@ -6,7 +6,7 @@
     Layout = null;
 }
 
-<form>
+<form asp-action="CreateNewClient" asp-controller="Client" method="post">
     <div class="modal modal--active" id="add-new-client-modal">
 
         <div class="modal__container" id="add-client-section" style="max-width:1100px;">
@@ -160,17 +160,17 @@
 
                 <div class="flex flex--is-column flex--has-gap">
 
-                        @for (int i = 0; i < Model.AvailableTerms.Capacity; i++)
-                        {
-                            <div class="checkbox">
-                                <input type="checkbox" 
-                                       value="@Model.AvailableTerms[i].Title"
-                                       name ="Term"
-                                       id="checkbox_@Model.AvailableTerms[i].Title" 
-                                       checked="@Model.AvailableTerms[i].IsChecked" />
-                                <label for="checkbox_@Model.AvailableTerms[i].Title">@Model.AvailableTerms[i].Title </label>
-                            </div>
-                        }
+                    @for (int i = 0; i < Model.AvailableTerms!.Capacity; i++)
+                    {
+                        <div class="checkbox">
+                            <input type="checkbox" 
+                                    value="@Model.AvailableTerms[i].Title"
+                                    name ="SelectedTerms"
+                                    id="checkbox_@Model.AvailableTerms[i].Title" 
+                                    checked="@Model.AvailableTerms[i].IsChecked" />
+                            <label for="checkbox_@Model.AvailableTerms[i].Title">@Model.AvailableTerms[i].Title </label>
+                        </div>
+                    }
 
                 </div>
             </div>

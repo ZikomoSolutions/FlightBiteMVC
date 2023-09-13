@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
 {
-	public class EnquiryCreateViewModel 
-    {
+	public class EnquiryCreateViewModel
+	{
 		[Required(ErrorMessage = "The company name is required ")]
 		public string? CompanyName { get; set; }
 		public string? ATOL { get; set; } = "-";
@@ -25,7 +25,6 @@ namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
 
 		public IEnumerable<UserTypesModel>? UserTypes { get; set; }
 
-		[TempData]
-		public string? CheckModalState { get; set; } = "Invalid";
+
 	}
 }

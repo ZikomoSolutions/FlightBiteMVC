@@ -1,5 +1,5 @@
 ﻿@using FlightBite.MVC.Areas.SuperAdmin.ViewModels;
-@model EnquiryCreateViewModel
+@model EnquiryViewModel
 @{
 	Layout = null;
 }
@@ -14,19 +14,16 @@
 			<div class="modal__body">
 				<div id="type-of-client">
 					@{
-						if(Model.UserTypes != null)
+						foreach (var UserType in Model.SelectedUserTypes!)
 						{
-							foreach (var UserType in Model.UserTypes!)
-							{
-								<div style="margin-top: 24px;">
-									<label class="radio-button-container">
-										@UserType.UserType
-										<input type="radio" value="@UserType.Id" asp-for="@Model.UserTypeSelectedId" />
-										<span class="checkmark"></span>
-										<br />
-									</label>
-								</div>
-							}
+							<div style="margin-top: 24px;">
+								<label class="radio-button-container">
+									@UserType.Text
+									<input type="radio" value="@UserType.Value" asp-for="@Model.UserTypeSelectedId" />
+									<span class="checkmark"></span>
+									<br />
+								</label>
+							</div>
 						}
 					}
 					<div class="flex flex--align-center" style="justify-content:center">
@@ -34,7 +31,7 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 
 		<div class="modal__container hide " id="enquiry-section-2">
 			<div class="modal__header flex flex--distribute flex--align-center" id="form-header">
@@ -121,7 +118,7 @@
 
 				</div>
 			</div>
-			
+
 			<div class=" modal__footer flex " style="justify-content: center;">
 				<button type="submit" class="btn btn--brand-1 ">Submit</button>
 			</div>

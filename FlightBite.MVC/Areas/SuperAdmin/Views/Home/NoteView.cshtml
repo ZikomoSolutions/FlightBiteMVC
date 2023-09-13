@@ -11,9 +11,11 @@
             <div class="modal__header">
                 <div class="flex flex--distribute flex--align-center">
                     <div class="h3">@Model.CompanyName - Notes</div>
-                    <button class="btn btn--small close-modal" title="close">
-                        <i class="icon-cross" aria-hidden="true"></i>
-                    </button>
+                    <form asp-action="Index" asp-controller="home" method="get">
+                        <button class="btn btn--small close-modal" title="close">
+                            <i class="icon-cross" aria-hidden="true"></i>
+                        </button>
+                    </form>
                 </div>
                 <div id="back-to-enquiry-details" style="text-decoration: underline;color: var(--brand-1);margin-top: 16px;">
                     Enquiry Details
@@ -57,7 +59,7 @@
                             <input type="text" asp-for="EnquiryNote" placeholder="Write Note" />
                         </div>
                     </div>
-                    <button type="button" class="btn btn--brand-1" hx-post="@Url.Action("NoteView","Home",new { EnquiryId = Model!.EnquiryId })" hx-target="#AddNote">Add Note</button>
+                    <button type="button" class="btn btn--brand-1" hx-post="@Url.Action("NoteView","Home",new { EnquiryId = Model!.EnquiryId })" hx-target="#AddNote" >Add Note</button>
                 </div>
             </form>
         </div>

@@ -35,9 +35,9 @@ namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
 
         public string? Other { get; set; } = "-";
 
-        [Required(ErrorMessage = "The phone number is required")]
-        [Phone]
-        public string? ContactPhone { get; set; }
+		[Required(ErrorMessage = "The phone number is required")]
+		[Phone]
+		public string? ContactPhone { get; set; } = "0";
 
 		public IFormFile? Logo { get; set; }
 
@@ -45,7 +45,7 @@ namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
 
         public IEnumerable<UserTypesModel>? UserTypes { get; set; }
 
-		public int SupplierSourceModelId { get; set;}
+		public int SupplierSourceModelId { get; set; } = 1;
 
 		public IEnumerable<SupplierSourceModel>? SupplierSourceModels { get; set; }
 
@@ -53,9 +53,10 @@ namespace FlightBite.MVC.Areas.SuperAdmin.ViewModels
 
 		public List<CheckBoxItem>? AvailableTerms { get; set; }
 
-		
+		public List<string>? SelectedTerms { get; set; }
 
-        
+
+
 
     }
 }

@@ -135,6 +135,14 @@ namespace FlightBite.Data
                 new SupplierSourceModel
                 {
                     Id = 1,
+                    SourceName = "NotInUsed",
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = null,
+                    DeletedAt = null,
+                },
+                new SupplierSourceModel
+                {
+                    Id = 2,
                     SourceName = "API",
                     CreatedAt  = DateTime.Now,
                     UpdatedAt = null,
@@ -142,7 +150,7 @@ namespace FlightBite.Data
                 },
                 new SupplierSourceModel
                 {
-                    Id = 2,
+                    Id = 3,
                     SourceName = "WEB",
                     CreatedAt = DateTime.Now,
                     UpdatedAt = null,

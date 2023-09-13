@@ -64,9 +64,12 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
                 var SortByItemsList = FillSortByItems();
                 ViewBag.SortByItemsList = SortByItemsList;
 
-                var model = new EnquiryViewModel
+				var PlatFormList = await _enquiryPlatform.GetAllEnquityPlatform();
+
+				var model = new EnquiryViewModel
                 {
                     SelectedUserTypes = await FillUserTypes(),
+                    Platforms = PlatFormList,
                     EnquiryMasters = result
 			    };
                 return View(model);
@@ -109,29 +112,30 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
 			return RedirectToAction("Index");
 		}
 
-        public async Task<IActionResult> UserTypeView()
-        {
-            var UserTypeList = await _userType.GetAllUserTypes();
-            EnquiryCreateViewModel model = new EnquiryCreateViewModel()
-            {
-                UserTypes = UserTypeList,
-            };
-            return View(model);
-        }
+   //     public async Task<IActionResult> UserTypeView()
+   //     {
+   //         var UserType = await _userType.GetAllUserTypes();
+   //         EnquiryCreateViewModel model = new EnquiryCreateViewModel()
+   //         {
+   //             UserTypes = UserType,
+   //         };
+			//return View(model);
+   //     }
 
-        [HttpGet]
-		public async Task<IActionResult> AddEnquiry()
-        {
-            var PlatFormList = await _enquiryPlatform.GetAllEnquityPlatform();
-            EnquiryCreateViewModel model = new EnquiryCreateViewModel()
-            {
-                Platforms = PlatFormList,
-            };
-            return View(model);
-        }
+  //      [HttpGet]
+		//public async Task<IActionResult> AddEnquiryView()
+  //      {
+  //          var PlatFormList = await _enquiryPlatform.GetAllEnquityPlatform();
+  //          EnquiryCreateViewModel model = new EnquiryCreateViewModel()
+  //          {
+  //              Platforms = PlatFormList,
+  //          };
+
+		//	return View("AddEnquiry",model);
+  //      }
 
         [HttpPost]
-        public async Task<IActionResult> AddEnquiry(EnquiryCreateViewModel viewModel)
+        public async Task<IActionResult> AddEnquiry(EnquiryViewModel viewModel)
         {
 
 			if (ModelState.IsValid)
@@ -150,19 +154,19 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
                     UserTypesModelId = viewModel.UserTypeSelectedId
                 };
                 var result = await _enquiryMaster.AddEnquiry(model);
-
+                int eid = model.Id;
             }
-            else
-            {
-                var PlatFormList = await _enquiryPlatform.GetAllEnquityPlatform();
-                var model = new EnquiryCreateViewModel()
-                {
-                    Platforms = PlatFormList,
-                };
+    //        else
+    //        {
+    //            var PlatFormList = await _enquiryPlatform.GetAllEnquityPlatform();
+    //            var model = new EnquiryCreateViewModel()
+    //            {
+    //                Platforms = PlatFormList,
+    //            };
 
-				return View(model);
+				//return View(model);
 
-            }
+    //        }
             return RedirectToAction("Index");
 
 		}
@@ -258,10 +262,12 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
 
         public async Task<EnquiryViewModel> FillPrimaryData()
         {
-            var model = new EnquiryViewModel
+			var PlatFormList = await _enquiryPlatform.GetAllEnquityPlatform();
+			var model = new EnquiryViewModel
             {
                 SelectedUserTypes = await FillUserTypes(),
-                EnquiryMasters = await _enquiryMaster.GetAllEnquiry(),
+                Platforms = PlatFormList,
+				EnquiryMasters = await _enquiryMaster.GetAllEnquiry(),
             };
             return model;
         }
