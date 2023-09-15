@@ -123,25 +123,6 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
             return View("NoteView", vmodel);
         }
 
-        public async Task<IActionResult> CreateNewClient()
-		{
-            var UserTypeList = await _userType.GetAllUserTypes();
-            var SupplierSourceList = await _supplierSource.GetAllSupplierSource();
-            var TermList = await _termMaster.GetAllTerms();
-            ClientCreateViewModel model = new ClientCreateViewModel()
-            {
-                UserTypes = UserTypeList,
-                SupplierSourceModels = SupplierSourceList,
-            };
-            model.AvailableTerms = TermList.Select(vm => new CheckBoxItem()
-            {
-                Id = vm.Id,
-                Title = vm.Terms,
-                IsChecked = false
-            }).ToList();
-			return View(model);
-		}
-
         [HttpPost]
         [Obsolete]
         public async Task<IActionResult> CreateNewClient(ClientCreateViewModel viewModel)
@@ -189,11 +170,19 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
 
         public async Task<ClientViewModel> FillPrimaryData()
         {
+            var TermList = await _termMaster.GetAllTerms();
             var model = new ClientViewModel
             {
                 SelectedUserTypes = await FillUserTypes(),
                 ClientMasters = await _clientMaster.GetAllClient(),
-            };
+                AvailableTerms = TermList.Select(vm => new CheckBoxItem()
+                {
+                    Id = vm.Id,
+                    Title = vm.Terms,
+                    IsChecked = false
+                }).ToList(),
+        };
+
             return model;
         }
         public List<SelectListItem> FillSortByItems()
@@ -216,17 +205,6 @@ namespace FlightBite.MVC.Areas.SuperAdmin.Controllers
                 items.Add(new SelectListItem(types.UserType, types.Id.ToString(), true));
             }
             return items;
-        }
-
-        public async Task<List<SelectListItem>> FillTermList()
-        {
-            var TermLists = await _termMaster.GetAllTerms();
-            List<SelectListItem> terms = new List<SelectListItem>();
-            foreach (var item in TermLists)
-            {
-                terms.Add(new SelectListItem(item.Terms, item.Id.ToString()));
-            }
-            return terms;
         }
 
         [Obsolete]

@@ -40,7 +40,7 @@ namespace FlightBite.Data.Repositories
 		{
 			try
 			{
-				return await _context.ClientMasters.OrderByDescending(c => c.CreatedAt).AsNoTracking().ToListAsync();
+				return await _context.ClientMasters.OrderByDescending(c => c.CreatedAt).ToListAsync();
 			}
 			catch (Exception ex)
 			{

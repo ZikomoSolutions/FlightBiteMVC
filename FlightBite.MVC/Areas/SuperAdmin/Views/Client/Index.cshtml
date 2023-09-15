@@ -16,7 +16,7 @@
                 <div class="flex flex--is-wrap flex--distribute">
                     <h1><strong> Clients </strong></h1>
                     <div>
-                        <button type="button" class="btn btn--success open-modal" hx-trigger="click" hx-get="@Url.Action("CreateNewClient","Client")" hx-target="#CreateClientView" data-modal-target="add-new-client-modal">New Client</button>
+                        <button type="button" class="btn btn--success open-modal" data-modal-target="add-new-client-modal">New Client</button>
                     </div>
                 </div>
                 <partial name="_FilterClientPartial" model="Model.SelectedUserTypes"></partial>
@@ -67,13 +67,13 @@
                                                 5
                                             </div>
                                         </div>
-                                        <div style="position: relative">
-                                            <span class="icon-file-text2"></span>
-                                            <div class="counts">5</div>
-                                        </div>
                                         <div style="position: relative" hx-trigger="click" hx-get="@Url.Action("NoteView","Client", new { ClientId = client.Id })" hx-target="#NoteDetails">
-                                            <span class="icon-bubbles"></span>
+                                            <span class="icon-file-text2"></span>
                                             <div class="counts">@_clilentNoteDetails.GetSpecificClientAllNotes(client.Id).Count()</div>
+                                        </div>
+                                        <div style="position: relative" >
+                                            <span class="icon-bubbles"></span>
+                                            <div class="counts">5</div>
                                         </div>
                                         <div>
                                             <a asp-area="SuperAdmin" asp-controller="ClientInformation" asp-action="Index">
@@ -91,7 +91,7 @@
         </div>
     </div>
 </section>
+<partial name="_AddNewClientPartial"></partial>
 <div id="NoteDetails"></div>
 <div id="AddNote"></div>
-<div id="CreateClientView"></div>
-@*<partial name="_AddNewClientPartial"></partial>*@
+
